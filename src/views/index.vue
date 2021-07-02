@@ -1,5 +1,6 @@
 <template>
 	<div class="model-box">
+		<loading-progress :progress="modelLoadingText" v-show="modelLoading"></loading-progress>
 		<div id="model-container" class="three-box"></div>
 		<div class="test-box">
 			<div class="tool-box">
@@ -133,17 +134,29 @@
 				<div class="tool-item-box">
 					<!-- 喉位移常数项：6，喉位移常数项：X，暂为0 -->
 					<span class="tool-item-title tool-item-title-long">喉结位移常数：</span>
-					<el-input class="tool-item-input tool-item-input-long" v-model="throatShift" :clearable="true" placeholder="请输入喉结位移常数"></el-input>
+					<el-input class="tool-item-input tool-item-input-long" v-model="throatShift" :clearable="true" placeholder="请输入喉结位移常数" @input="testTip()"></el-input>
 				</div>
 				<div class="tool-item-box">
 					<!-- 颞颌关节活动度常数项：15，常数b：b=1 -->
 					<span class="tool-item-title tool-item-title-long">颞颌关节活动度常数：</span>
-					<el-input class="tool-item-input tool-item-input-long" v-model="jointShiftA" :clearable="true" placeholder="请输入颞颌关节活动常数"></el-input>
+					<el-input
+						class="tool-item-input tool-item-input-long"
+						v-model="jointShiftA"
+						:clearable="true"
+						placeholder="请输入颞颌关节活动常数"
+						@input="testTip()"
+					></el-input>
 				</div>
 				<div class="tool-item-box">
 					<!-- 颞颌关节张口度常数项：18，常数b：b=3 -->
 					<span class="tool-item-title tool-item-title-long">颞颌关节张口度常数：</span>
-					<el-input class="tool-item-input tool-item-input-long" v-model="jointShiftB" :clearable="true" placeholder="请输入颞颌关节活动常数"></el-input>
+					<el-input
+						class="tool-item-input tool-item-input-long"
+						v-model="jointShiftB"
+						:clearable="true"
+						placeholder="请输入颞颌关节活动常数"
+						@input="testTip()"
+					></el-input>
 				</div>
 				<div class="tool-item-box">
 					<span class="tool-item-title">舌体厚度：</span>
@@ -154,22 +167,41 @@
 						:max="tongueThickness.maxnum"
 						:step="tongueThickness.stepnum"
 						show-input
+						@change="testTip()"
 					></el-slider>
 				</div>
 				<div class="tool-item-box">
 					<!-- 舌体厚度常数项：10，系数b：b=15 -->
 					<span class="tool-item-title tool-item-title-long">舌体厚度常数：</span>
-					<el-input class="tool-item-input tool-item-input-long" v-model="tongueThicknessConstant" :clearable="true" placeholder="请输入舌体厚度常数"></el-input>
+					<el-input
+						class="tool-item-input tool-item-input-long"
+						v-model="tongueThicknessConstant"
+						:clearable="true"
+						placeholder="请输入舌体厚度常数"
+						@input="testTip()"
+					></el-input>
 				</div>
 				<div class="tool-item-box">
 					<!-- 舌厚度缺失下舌体厚度常数项：20，系数b：b=100 -->
 					<span class="tool-item-title tool-item-title-long">舌体厚度缺失下常数：</span>
-					<el-input class="tool-item-input tool-item-input-long" v-model="tongueConstantA" :clearable="true" placeholder="请输入舌体厚度缺失下常数"></el-input>
+					<el-input
+						class="tool-item-input tool-item-input-long"
+						v-model="tongueConstantA"
+						:clearable="true"
+						placeholder="请输入舌体厚度缺失下常数"
+						@input="testTip()"
+					></el-input>
 				</div>
 				<div class="tool-item-box">
 					<!-- 舌颏缺失下舌体厚度常数项：20，系数b：b=140 -->
 					<span class="tool-item-title tool-item-title-long">舌颏距离缺失下常数：</span>
-					<el-input class="tool-item-input tool-item-input-long" v-model="tongueConstantB" :clearable="true" placeholder="请输入舌颏距离缺失下常数"></el-input>
+					<el-input
+						class="tool-item-input tool-item-input-long"
+						v-model="tongueConstantB"
+						:clearable="true"
+						placeholder="请输入舌颏距离缺失下常数"
+						@input="testTip()"
+					></el-input>
 				</div>
 				<div class="tool-item-box">提示：使用透明度设置后，部分模型必须旋转一定角度才可以透视</div>
 				<div class="tool-item-box">
@@ -200,12 +232,14 @@
 			Designed & Powered by
 			<a href="https://fx67ll.com" target="_blank">fx67ll</a>
 			&#12288; Copyright© 2018-{{ this.year }}&#12288;
-			<a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank">皖ICP备18017174号-2</a>
+			<a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank">皖ICP备18017174号-1</a>
 		</div>
 	</div>
 </template>
 
 <script>
+import loadingProgress from '@c/loading-progress/loading-progress.vue';
+
 import * as THREE from 'three/build/three.module.js';
 import Stats from 'three/examples/jsm/libs/stats.module.js';
 
@@ -216,6 +250,9 @@ import _ from 'underscore';
 import moment from 'moment';
 export default {
 	name: 'modelIndex',
+	components: {
+		loadingProgress
+	},
 	data() {
 		return {
 			// footer
@@ -370,6 +407,15 @@ export default {
 		this.modelInit();
 	},
 	methods: {
+		// 测试提示
+		testTip() {
+			this.$message({
+				showClose: true,
+				message: '功能开发中，暂无显示效果！',
+				type: 'warning',
+				duration: 2000
+			});
+		},
 		// 测试用例
 		test() {
 			// 打印模型下标与名称
@@ -729,7 +775,7 @@ export default {
 			grid.material.opacity = 0.2;
 			grid.material.transparent = true;
 			self.scene.add(grid);
-			
+
 			// 开始加载模型
 			this.modelLoading = true;
 			// 使用FBXLoader加载模型
@@ -772,9 +818,9 @@ export default {
 					// self.test();
 				},
 				function(xhr) {
-					// console.log('加载完成的百分比' + (xhr.loaded / xhr.total) * 100 + '%');
-					self.modelLoadingText = (xhr.loaded / xhr.total) * 100 + '%';
-					if((xhr.loaded / xhr.total) * 100 + '%' === '100%'){
+					// console.log('加载完成的百分比' + parseInt((xhr.loaded / xhr.total) * 100) + '%');
+					self.modelLoadingText = parseInt((xhr.loaded / xhr.total) * 100) + '%';
+					if ((xhr.loaded / xhr.total) * 100 + '%' === '100%') {
 						self.modelLoading = false;
 					}
 				}
