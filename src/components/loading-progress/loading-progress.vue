@@ -17,11 +17,19 @@ export default {
 				var isPer = str.substr(str.length - 1, 1) === '%';
 				// var isNum = new RegExp('^(([1-9][0-9]|[1-9])(\.\d{1,2})?|0\.\d{1,2}|100)$').test(Number(str.substr(0, str.length - 1)));
 				// var isNum = new RegExp('^(100)$|^((\d|[1-9]\d)(\.\d{1,2})?)$').test(Number(str.substr(0, str.length - 1)));
-				var isNum = new RegExp('^(([1-9][0-9]|[1-9])(\.\d{1,2})?|0\.\d{1,2}|100)$').test(parseInt(str.substr(0, str.length - 1)))
+				var isNum = new RegExp('^(([1-9][0-9]|[1-9])(\.\d{1,2})?|0\.\d{1,2}|100)$').test(parseInt(str.substr(0, str.length - 1)));
 				return isPer && isNum;
 			}
-		}
-	},
+		},
+		// isFinished: {
+		// 	type: Boolean,
+		// 	required: true,
+		// 	default: false,
+		// 	validator(val) {
+		// 		return typeof val === 'boolean';
+		// 	}
+		// }
+	}
 	// mounted() {
 	// 	console.log(new RegExp('^(([1-9][0-9]|[1-9])(\.\d{1,2})?|0\.\d{1,2}|100)$').test(88.88));
 	// }
