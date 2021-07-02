@@ -1,5 +1,5 @@
 <template>
-	<div class="progress-box">
+	<div class="progress-box" :class="{ 'progress-transition': displayTransition, 'progress-display': displayDisplay }">
 		<div class="progress-tip">资源加载中...... {{ progress }}</div>
 		<div class="progress progress-striped" :style="{ '--progress': progress }"><div class="progress-bar"></div></div>
 	</div>
@@ -21,14 +21,36 @@ export default {
 				return isPer && isNum;
 			}
 		},
-		// isFinished: {
-		// 	type: Boolean,
-		// 	required: true,
-		// 	default: false,
-		// 	validator(val) {
-		// 		return typeof val === 'boolean';
-		// 	}
-		// }
+		isFinished: {
+			type: Boolean,
+			required: true,
+			default: false,
+			validator(val) {
+				return typeof val === 'boolean';
+			}
+		}
+	},
+	data() {
+		return {
+			displayTransition: false,
+			displayDisplay: false
+		};
+	},
+	watch: {
+		isFinished: {
+			deep: true,
+			handler: function(newval, oldVal) {
+				var self = this;
+				if (!newval) {
+					setTimeout(function() {
+						self.displayTransition = !newval;
+					}, 1000);
+					setTimeout(function() {
+						self.displayDisplay = !newval;
+					}, 2600);
+				}
+			}
+		}
 	}
 	// mounted() {
 	// 	console.log(new RegExp('^(([1-9][0-9]|[1-9])(\.\d{1,2})?|0\.\d{1,2}|100)$').test(88.88));
@@ -37,6 +59,12 @@ export default {
 </script>
 
 <style lang="less" scoped="scoped">
+.progress-transition {
+	opacity: 0;
+}
+.progress-display {
+	display: none;
+}
 .progress-box {
 	width: 100%;
 	height: 100%;
@@ -45,6 +73,7 @@ export default {
 	background-color: #2c303a;
 	z-index: 99999;
 	position: absolute;
+	transition: opacity 1.6s;
 
 	.progress-tip {
 		width: 40%;
@@ -64,14 +93,13 @@ export default {
 		background: rgba(0, 0, 0, 0.25);
 		border-radius: 6px;
 		box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
-	}
-
-	.progress-bar {
-		height: 18px;
-		background-color: #ee303c;
-		border-radius: 4px;
-		transition: 0.4s linear;
-		transition-property: width, background-color;
+		.progress-bar {
+			height: 18px;
+			background-color: #ee303c;
+			border-radius: 4px;
+			transition: 0.4s linear;
+			transition-property: width, background-color;
+		}
 	}
 
 	.progress-striped .progress-bar {

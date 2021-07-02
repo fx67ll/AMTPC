@@ -1,7 +1,7 @@
 <template>
 	<div class="model-box">
-		<!-- <loading-progress :progress="'100%'" :isFinished="modelLoading"></loading-progress> -->
-		<loading-progress :progress="modelLoadingText" v-if="modelLoading"></loading-progress>
+		<loading-progress :progress="modelLoadingText" :isFinished="modelLoading"></loading-progress>
+		<!-- <loading-progress :progress="modelLoadingText" v-if="modelLoading"></loading-progress> -->
 		<div id="model-container" class="three-box"></div>
 		<div class="test-box">
 			<div class="tool-box">
