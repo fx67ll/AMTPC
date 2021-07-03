@@ -3,7 +3,7 @@
 		<loading-progress :progress="modelLoadingText" :isFinished="modelLoading"></loading-progress>
 		<!-- <loading-progress :progress="modelLoadingText" v-if="modelLoading"></loading-progress> -->
 		<div id="model-container" class="three-box"></div>
-		<div class="test-box">
+		<div class="test-box" v-if="!isShowPanel">
 			<div class="tool-box">
 				<div class="tool-item-box" style="justify-content: flex-start;">
 					<span class="tool-item-title">查看声门：</span>
@@ -77,11 +77,16 @@
 		</div>
 		<div
 			class="panel-box"
+			v-if="!isCheckGlottis && !isShowPanel"
+		>
+		<!-- 因为加了侧边操作栏的滚动条，这个loading组件对于隐藏部分的内容无法遮罩到，所以暂时弃用 -->
+		<!-- <div
+			class="panel-box"
 			v-loading="isCheckGlottis"
 			element-loading-text="正在查看声门，禁止调整参数"
 			element-loading-spinner="el-icon-lock"
 			:element-loading-background="loadingBgc"
-		>
+		> -->
 			<div class="tool-box">
 				<div class="tool-item-box">
 					<!-- 张口角度0-30° -->
@@ -228,6 +233,10 @@
 					<el-button :type="isShowAdam ? 'primary' : 'info'" class="tool-item-btn" @click="visAdam()">{{ isShowAdamText }}</el-button>
 				</div>
 			</div>
+		</div>
+		<div class="panel-showbtn">
+			<el-button v-if="!isShowPanel" icon="el-icon-thumb" circle @click="turnPanel()"></el-button>
+			<el-button v-if="isShowPanel" icon="el-icon-coordinate" circle @click="turnPanel()"></el-button>
 		</div>
 		<div class="fx67ll-footer">
 			Designed & Powered by
@@ -401,11 +410,15 @@ export default {
 			// 模型是否加载完成
 			modelLoading: false,
 			// 模型加载进度提示
-			modelLoadingText: '0%'
+			modelLoadingText: '0%',
+			// 是否显示右侧面板
+			isShowPanel: false
 		};
 	},
 	mounted() {
 		this.modelInit();
+		// 系统统一提示
+		this.showOperationTips();
 	},
 	methods: {
 		// 测试提示
@@ -467,6 +480,10 @@ export default {
 			this.showModel(4, true);
 			this.getEachItem(this.fbxGroupKeys.check.keys)[1].material.transparent = true;
 			this.getEachItem(this.fbxGroupKeys.check.keys)[1].material.opacity = this.checkOpacityValue[3];
+		},
+		// 收起和展开右侧操作面板
+		turnPanel(){
+			this.isShowPanel = !this.isShowPanel;
 		},
 		// 查看声门
 		checkGlottis() {

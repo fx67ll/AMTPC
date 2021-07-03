@@ -12,6 +12,23 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
+// 每次加载之后添加统一操作提示
+Vue.prototype.showOperationTips = function(msg) {
+	this.$notify({
+		title: '操作指南',
+		position: 'top-right',
+		dangerouslyUseHTMLString: true,
+		message: `
+			<br/>
+			<strong>按住 <i class="el-icon-mouse"></i>鼠标左键 可以三维旋转</strong><br/><br/>
+			<strong>按住 <i class="el-icon-mouse"></i>鼠标右键 可以垂直水平方向移动</strong><br/><br/>
+			<strong>使用 <i class="el-icon-mouse"></i>鼠标滚轮 可以放大缩小</strong>
+		`,
+		duration: 30000,
+		showClose: true
+	});
+}
+
 new Vue({
 	router,
 	store,
