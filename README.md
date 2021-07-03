@@ -1,7 +1,7 @@
 # AMTPC
 All My Threejs Projects Collection  
 
-欢迎参观 [three.fx67ll.com](http://three.fx67ll.com '后期是展示个人所有Threejs作品的网站（目前是能够完成变形操作的Threejs医疗模型示例）')  
+欢迎参观 [three.fx67ll.com](http://three.fx67ll.com '后期是展示个人所有Threejs作品的网站（目前是能够完成部分变形操作的Threejs医疗模型示例）')  
 
 ## 0.1.2.20210703
 * 修复右侧面板在小分辨率屏幕下溢出的问题  
