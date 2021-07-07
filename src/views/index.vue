@@ -248,7 +248,7 @@
 </template>
 
 <script>
-import loadingProgress from '@c/loading-progress/loading-progress.vue';
+import loadingProgress from '@c/loading-progress/index.vue';
 
 import * as THREE from 'three/build/three.module.js';
 import Stats from 'three/examples/jsm/libs/stats.module.js';
