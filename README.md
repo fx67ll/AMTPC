@@ -1,7 +1,12 @@
 # AMTPC
 All My Threejs Projects Collection  
 
-欢迎参观 [three.fx67ll.com](http://three.fx67ll.com '后期是展示个人所有Threejs作品的网站（目前是能够完成部分变形操作的Threejs医疗模型示例）')  
+欢迎参观 [three.fx67ll.com](http://three.fx67ll.com '展示个人所有Threejs作品的网站')  
+
+## 0.2.0.20211125
+* 界面开始重新设计，参考地平线4的游戏界面，但是卡在画完布局上了  
+* 进度条组件待搬移至`fx67llVueUI`项目中并发布  
+* 缺少统一的全局返回按钮，目前的方案是点击重开网页，这个后期考虑一下优化方案  
 
 ## 0.1.2.20210703
 * 修复右侧面板在小分辨率屏幕下溢出的问题  

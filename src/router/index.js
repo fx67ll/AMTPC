@@ -20,9 +20,14 @@ export const fx67llRoutes = [
 		component: () => import('@v/index.vue') //首页
 	},
 	{
-		path: '/back',
-		name: 'back',
-		component: () => import('@v/index-back.vue') //备份
+		path: '/medical',
+		name: 'medical',
+		component: () => import('@v/medical.vue') //医疗模型
+	},
+	{
+		path: '/medical/back',
+		name: 'medical/back',
+		component: () => import('@v/medical-back.vue') //医疗模型备份
 	},
 ]
 
