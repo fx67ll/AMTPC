@@ -61,7 +61,7 @@
 	// 卡片间隙距离
 	@border-space: 1.4vw;
 	// 悬浮动画放大参数
-	@scale-number: 1.1;
+	@scale-number: 1.15;
 	// 悬浮动画经过时间
 	@scale-time: 0.6s;
 
@@ -80,13 +80,14 @@
 		line-height: 3vw;
 		font-size: 1.3vw;
 		font-weight: 900;
+		border-radius: 0.6vw;
 
 		a {
 			color: @text-color;
 			text-decoration: none;
 		}
-		
-		a:hover{
+
+		a:hover {
 			color: @border-color;
 		}
 	}
