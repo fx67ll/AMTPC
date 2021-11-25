@@ -8,7 +8,7 @@
 				<div class="item scale"></div>
 			</div>
 			<div class="bottom">
-				<div class="item scale"></div>
+				<div class="item scale"><a href="https://fx67ll.com" target="_blank">fx67ll.com</a></div>
 				<div class="item">
 					<div class="card scale"></div>
 					<div class="card scale"></div>
@@ -53,9 +53,9 @@
 
 <style lang="less" scoped="scoped">
 	// 卡片文字颜色
-	@text-color: #aaaaff;
+	@text-color: #ffff7f;
 	// 卡片边框颜色
-	@border-color: #2ECC71;
+	@border-color: #ffffff;
 	// 卡片边框宽度
 	@border-width: 0.23vw;
 	// 卡片间隙距离
@@ -66,9 +66,10 @@
 	@scale-time: 0.6s;
 
 
-	.bg-img {
+	#bg-img {
 		background-repeat: no-repeat;
 		background-size: 100%;
+		background-image: url(../assets/image/slamdunk.jpg);
 	}
 
 	.scale {
@@ -81,6 +82,8 @@
 		font-size: 1.3vw;
 		font-weight: 900;
 		border-radius: 0.6vw;
+		background-color: #2ECC71;
+		opacity: 0.8;
 
 		a {
 			color: @text-color;
@@ -107,7 +110,7 @@
 		.three-mask {
 			width: 100%;
 			height: 100%;
-			filter: blur(0.2vw);
+			filter: blur(0.3vw);
 			position: absolute;
 			top: 0;
 			z-index: 0;
@@ -147,6 +150,8 @@
 
 				.item:nth-child(1) {
 					height: 50%;
+					line-height: 7.4vw;
+					font-size: 2.1vw;
 				}
 
 				.item:nth-child(2) {
