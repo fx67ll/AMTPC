@@ -99,8 +99,9 @@
 			},
 			// 获取随机背景图
 			getRandomBackGroundImg() {
+				console.log(1);
 				// document.getElementById("bg-img").style.backgroundImage = "url(https://api.mtyqx.cn/api/random.php)";
-				_.each(document.getElementsByClassName("bg-img-empty"), function(item, key) {
+				_.each(document.getElementsByClassName("scale"), function(item, key) {
 					item.style.backgroundImage = "url(https://api.mtyqx.cn/api/random.php)";
 				})
 			},
@@ -121,9 +122,9 @@
 	// 卡片边框颜色
 	@border-color: #FFFFFF;
 	// 卡片文字颜色
-	@text-color: #FFFF7F;
+	@text-color: #000000; // #FFFF7F
 	// 卡片外链颜色
-	@a-color: #FFFF7F;
+	@a-color: #000000;
 	// 天气卡片颜色
 	@weather-color: #989898;
 	// 卡片边框宽度
@@ -220,19 +221,20 @@
 
 				.item:nth-child(1) {
 					background-color: @weather-color;
-					color: @border-color;
-					
-					.weather-box{
+					// color: @border-color;
+					color: @text-color;
+
+					.weather-box {
 						width: 60%;
 						margin: 0 auto;
 						position: relative;
 						top: 3vw;
-						
+
 						.weather-img {
 							width: 5vw;
 						}
-						
-						span{
+
+						span {
 							display: block;
 							font-size: 2vw;
 							font-weight: 500;
@@ -325,7 +327,8 @@
 				position: relative;
 				top:~"calc(-100% - 3vw - @{border-space})";
 				left: 5vw;
-				color: @border-color;
+				// color: @border-color;
+				color: @text-color;
 
 				span {
 					font-weight: 500;
