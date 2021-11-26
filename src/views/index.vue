@@ -59,7 +59,8 @@
 		},
 		mounted() {
 			this.getRandomBackGroundImg();
-			this.getPosition();
+			// this.getPosition();
+			this.getWeather("南京");
 		},
 		methods: {
 			getWeather(location) {
