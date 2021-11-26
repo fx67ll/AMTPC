@@ -3,7 +3,7 @@
 		<div id="bg-img" class="three-mask"></div>
 		<div class="three-layout">
 			<div class="top">
-				<div class="item scale"></div>
+				<div class="item scale bg-img-empty"></div>
 				<div class="item scale" @click="goNext('medical')">简易医疗模型实时处理演示</div>
 				<div class="item scale">
 					<a href="https://www.ez13.top/#/hellothree" target="_blank">学习示例一</a>
@@ -14,11 +14,11 @@
 			<div class="bottom">
 				<div class="item scale"><a href="https://fx67ll.com" target="_blank">fx67ll.com</a></div>
 				<div class="item">
-					<div class="card scale"></div>
-					<div class="card scale"></div>
+					<div class="card scale bg-img-empty"></div>
+					<div class="card scale bg-img-empty"></div>
 				</div>
 				<div class="item">
-					<div class="card scale"></div>
+					<div class="card scale bg-img-empty"></div>
 					<div class="card scale">
 						<a href="https://fx67ll.xyz" target="_blank">fx67ll.xyz</a>
 					</div>
@@ -49,6 +49,9 @@
 		methods: {
 			getBackGroundImg() {
 				// document.getElementById("bg-img").style.backgroundImage = "url(https://api.mtyqx.cn/api/random.php)";
+				_.each(document.getElementsByClassName("bg-img-empty"), function(item, key) {
+					item.style.backgroundImage = "url(https://api.mtyqx.cn/api/random.php)";
+				})
 			},
 			goNext(path) {
 				let routeUrl = this.$router.resolve({
@@ -79,6 +82,10 @@
 		background-repeat: no-repeat;
 		background-size: 100%;
 		background-image: url(../assets/image/slamdunk.jpg);
+	}
+	
+	.bg-img-empty{
+		background-repeat: no-repeat;
 	}
 
 	.scale {
@@ -145,7 +152,7 @@
 					height: 100%;
 					border: @border-width solid @border-color;
 				}
-				
+
 				.item:nth-child(2) {
 					width: 50%;
 				}
@@ -157,14 +164,15 @@
 					font-size: 2vw;
 					font-weight: 500;
 				}
-				
+
 				.item:nth-child(3) {
-					a{
+					a {
 						display: block;
 						font-size: 1.5vw;
 						font-weight: 500;
 					}
-					a:nth-child(1){
+
+					a:nth-child(1) {
 						margin-top: 3.1vw;
 					}
 				}
