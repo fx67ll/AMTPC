@@ -160,7 +160,7 @@
 
 			.top {
 				.item:nth-child(2) {
-					line-height: 13vw;
+					line-height: 14.6vw;
 					font-size: 2vw;
 					font-weight: 500;
 				}
