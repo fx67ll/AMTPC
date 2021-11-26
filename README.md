@@ -7,6 +7,7 @@ All My Threejs Projects Collection
 * 添加简易的天气预报  
 
 ## 0.2.1.20211126  
+* 更换favicon.ico
 * 主界面设计完成，风格和颜色设计暂时比较满意  
 * ***待处理*** 页脚组件待搬移至`fx67llVueUI`项目中发布  
 * 暂时不考虑返回了，就采用新网页的方式  
