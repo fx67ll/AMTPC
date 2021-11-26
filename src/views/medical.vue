@@ -238,17 +238,13 @@
 			<el-button v-if="!isShowPanel" icon="el-icon-thumb" circle @click="turnPanel()"></el-button>
 			<el-button v-if="isShowPanel" icon="el-icon-coordinate" circle @click="turnPanel()"></el-button>
 		</div>
-		<div class="fx67ll-footer">
-			Designed & Powered by
-			<a href="https://fx67ll.com" target="_blank">fx67ll</a>
-			&#12288; Copyright© 2018-{{ this.year }}&#12288;
-			<a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank">皖ICP备18017174号-1</a>
-		</div>
+		<fx67ll-footer />
 	</div>
 </template>
 
 <script>
 import loadingProgress from '@c/loading-progress/index.vue';
+import fx67llFooter from '@c/fx67ll-footer/index.vue';
 
 import * as THREE from 'three/build/three.module.js';
 import Stats from 'three/examples/jsm/libs/stats.module.js';
@@ -257,16 +253,14 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
 
 import _ from 'underscore';
-import moment from 'moment';
 export default {
 	name: 'medical',
 	components: {
-		loadingProgress
+		loadingProgress,
+		fx67llFooter
 	},
 	data() {
 		return {
-			// footer
-			year: moment().format('YYYY'),
 			// 相机对象
 			camera: null,
 			// 场景对象

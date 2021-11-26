@@ -5,7 +5,10 @@
 			<div class="top">
 				<div class="item scale"></div>
 				<div class="item scale" @click="goNext('medical')">简易医疗模型实时处理演示</div>
-				<div class="item scale"></div>
+				<div class="item scale">
+					<a href="https://www.ez13.top/#/testthree" target="_blank">学习示例一</a>
+					<a href="https://www.ez13.top/#/testthree-FBX" target="_blank">学习示例二</a>
+				</div>
 			</div>
 			<div class="bottom">
 				<div class="item scale"><a href="https://fx67ll.com" target="_blank">fx67ll.com</a></div>
@@ -20,15 +23,20 @@
 					</div>
 				</div>
 			</div>
-			<div class="title scale">fx67ll's Three.js Projects</div>
+			<div class="title scale">fx67ll's Three.js <span>作品合集</span></div>
 		</div>
+		<fx67ll-footer fontColor="#ffffff"></fx67ll-footer>
 	</div>
 </template>
 
 <script>
+	import fx67llFooter from '@c/fx67ll-footer/index.vue';
 	import _ from 'underscore';
 	export default {
 		name: "index",
+		components: {
+			fx67llFooter
+		},
 		data() {
 			return {
 
@@ -136,12 +144,28 @@
 					height: 100%;
 					border: @border-width solid @border-color;
 				}
-
+				
 				.item:nth-child(2) {
 					width: 50%;
+				}
+			}
+
+			.top {
+				.item:nth-child(2) {
 					line-height: 13vw;
 					font-size: 2vw;
 					font-weight: 500;
+				}
+				
+				.item:nth-child(3) {
+					a{
+						display: block;
+						font-size: 1.5vw;
+						font-weight: 500;
+					}
+					a:nth-child(1){
+						margin-top: 3.9vw;
+					}
 				}
 			}
 
@@ -150,7 +174,7 @@
 
 				.item:nth-child(1) {
 					height: 50%;
-					line-height: 7.4vw;
+					line-height: 7.8vw;
 					font-size: 2.1vw;
 				}
 
@@ -197,6 +221,7 @@
 						width: 65%;
 						height:~"calc(30% - @{border-space}/2)";
 						margin-top:~"calc(@{border-space}/2)";
+						line-height: 2.8vw;
 					}
 				}
 			}
@@ -209,6 +234,10 @@
 				position: relative;
 				top:~"calc(-100% - 3vw - @{border-space})";
 				left: 5vw;
+
+				span {
+					font-weight: 500;
+				}
 			}
 		}
 	}
