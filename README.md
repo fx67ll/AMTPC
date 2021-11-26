@@ -3,6 +3,9 @@ All My Threejs Projects Collection
 
 欢迎参观 [three.fx67ll.com](http://three.fx67ll.com 'fx67ll's Three.js 作品合集的展示网站')  
 
+## 0.2.2.20211127  
+* 添加简易的天气预报  
+
 ## 0.2.1.20211126  
 * 主界面设计完成，风格和颜色设计暂时比较满意  
 * ***待处理*** 页脚组件待搬移至`fx67llVueUI`项目中发布  

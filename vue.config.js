@@ -61,6 +61,13 @@ module.exports = {
 				pathRewrite: {
 					['^' + process.env.VUE_APP_BASE_API]: ''
 				}
+			},
+			[process.env.VUE_APP_WEATHER_API]: {
+				target: `https://api.seniverse.com/v3/weather/now.json`,
+				changeOrigin: true,
+				pathRewrite: {
+					['^' + process.env.VUE_APP_WEATHER_API]: ''
+				}
 			}
 		},
 		// disableHostCheck: true
