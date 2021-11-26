@@ -6,8 +6,9 @@
 				<div class="item scale"></div>
 				<div class="item scale" @click="goNext('medical')">简易医疗模型实时处理演示</div>
 				<div class="item scale">
-					<a href="https://www.ez13.top/#/testthree" target="_blank">学习示例一</a>
-					<a href="https://www.ez13.top/#/testthree-FBX" target="_blank">学习示例二</a>
+					<a href="https://www.ez13.top/#/hellothree" target="_blank">学习示例一</a>
+					<a href="https://www.ez13.top/#/testthree" target="_blank">学习示例二</a>
+					<a href="https://www.ez13.top/#/testthree-FBX" target="_blank">学习示例三</a>
 				</div>
 			</div>
 			<div class="bottom">
@@ -164,7 +165,7 @@
 						font-weight: 500;
 					}
 					a:nth-child(1){
-						margin-top: 3.9vw;
+						margin-top: 3.1vw;
 					}
 				}
 			}
