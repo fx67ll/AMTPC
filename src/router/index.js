@@ -22,12 +22,17 @@ export const fx67llRoutes = [
 	{
 		path: '/medical',
 		name: 'medical',
-		component: () => import('@v/medical.vue') //医疗模型
+		component: () => import('@v/project/medical.vue') //医疗模型
 	},
 	{
 		path: '/medical/back',
 		name: 'medical/back',
-		component: () => import('@v/medical-back.vue') //医疗模型备份
+		component: () => import('@v/back/medical-back.vue') //医疗模型备份
+	},
+	{
+		path: '/cube',
+		name: 'cube',
+		component: () => import('@v/project/cube.vue') //魔方模型
 	},
 ]
 
