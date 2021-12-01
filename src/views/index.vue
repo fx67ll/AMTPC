@@ -19,7 +19,7 @@
 				</div>
 			</div>
 			<div class="bottom">
-				<div class="item scale"><a href="https://fx67ll.com" target="_blank">fx67ll.com</a></div>
+				<div class="item scale" @click="goNext('cube')">魔方小游戏</div>
 				<div class="item">
 					<div class="card scale bg-img-empty"></div>
 					<div class="card scale bg-img-empty"></div>
@@ -268,7 +268,8 @@
 				.item:nth-child(1) {
 					height: 50%;
 					line-height: 7.8vw;
-					font-size: 2.1vw;
+					font-size: 1.9vw;
+					font-weight: 500;
 				}
 
 				.item:nth-child(2) {

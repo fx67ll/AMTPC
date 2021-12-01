@@ -206,7 +206,7 @@
 	import fx67llFooter from '@c/fx67ll-footer/index.vue';
 
 	import * as THREE from 'three/build/three.module.js';
-	import Stats from 'three/examples/jsm/libs/sstats.module.js';
+	import Stats from 'three/examples/jsm/libs/stats.module.js';
 
 	import {
 		OrbitControls
@@ -848,5 +848,5 @@
 </script>
 
 <style lang="less" scoped="scoped">
-	@import '@a/styles/index.less';
+	@import '@a/styles/project/medical.less';
 </style>
