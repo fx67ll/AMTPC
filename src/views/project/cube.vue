@@ -108,8 +108,11 @@
 
 				// 创建相机对象
 				this.camera = new THREE.PerspectiveCamera(45, this.width / this.height, 1, 1000);
-				this.camera.position.set(200, 400, 600);
+				// 设置相机位置在黄色证明，距离600
+				this.camera.position.set(0, 0, 600);
+				// 设置相机在正方向
 				this.camera.up.set(0, 1, 0);
+				// 设置相机对准中心原点
 				this.camera.lookAt(new THREE.Vector3(0, 0, 0));
 
 				// 创建场景对象
@@ -342,7 +345,6 @@
 				// 判断是否有碰撞光线穿过的元素
 				if (this.intersect) {
 					// 判断是否在旋转中以及是否有碰撞光线触发位置
-					// console.log(this.isRotating, this.startPoint);
 					if (!this.isRotating && this.startPoint) {
 						// 碰撞光线触发元素的位置
 						this.movePoint = this.intersect.point;
@@ -387,6 +389,7 @@
 			},
 			// 魔方操作结束
 			stopCube() {
+				console.log(1)
 				this.intersect = null;
 				this.startPoint = null;
 			},
@@ -413,7 +416,6 @@
 				let intersectArr = this.raycaster.intersectObjects(this.scene.children);
 				if (intersectArr.length) {
 					// 这里用到了透明正方体的属性
-					console.log(intersectArr[0].object.cubeType,intersectArr)
 					if (intersectArr[0].object.cubeType === 'coverCube') {
 						this.intersect = intersectArr[1];
 						this.normalize = intersectArr[0].face.normal;
@@ -761,13 +763,12 @@
 				let self = this;
 				_.each(el, function(item, key) {
 					_.each(self.cubeOriginArr, function(obj, index) {
-						console.log(self.cubeParmas.len)
-						// if (Math.abs(item.position.x - obj.x) <= (self.cubeParmas.len / 2) &&
-						// 	Math.abs(item.position.y - obj.y) <= (self.cubeParams.len / 2) &&
-						// 	Math.abs(item.position.z - obj.z) <= (self.cubeParams.len / 2)
-						// ) {
-						// 	item.cubeIndex = obj.cubeIndex;
-						// }
+						if (Math.abs(item.position.x - obj.x) <= (self.cubeParmas.len / 2) &&
+							Math.abs(item.position.y - obj.y) <= (self.cubeParams.len / 2) &&
+							Math.abs(item.position.z - obj.z) <= (self.cubeParams.len / 2)
+						) {
+							item.cubeIndex = obj.cubeIndex;
+						}
 					});
 				});
 			},
