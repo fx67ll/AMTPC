@@ -1,7 +1,10 @@
 # AMTPC
 All My Threejs Projects Collection  
 
-欢迎参观 [three.fx67ll.com](http://three.fx67ll.com 'fx67ll's Three.js 作品合集的展示网站')  
+欢迎参观 [three.fx67ll.com](http://three.fx67ll.com "fx67ll's Three.js 作品合集的展示网站")  
+
+## 0.2.4.20211201
+* 推进魔方小游戏（未完成，并且有重大bug）  
 
 ## 0.2.3.20211201
 * 添加新的项目魔方小游戏（未完成）  
