@@ -129,10 +129,12 @@
 		},
 		mounted() {
 			this.init();
-			// 系统统一提示
-			this.showOperationTips();
-			// 本页面特殊提示
-			this.showCubeOperationTips();
+			if(window.innerWidth >= 1020){
+				// 系统统一提示
+				this.showOperationTips();
+				// 本页面特殊提示
+				this.showCubeOperationTips();
+			}
 		},
 		methods: {
 			// 魔方操作提示

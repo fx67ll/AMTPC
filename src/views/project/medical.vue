@@ -374,8 +374,10 @@
 		},
 		mounted() {
 			this.modelInit();
-			// 系统统一提示
-			this.showOperationTips();
+			if(window.innerWidth >= 1020){
+				// 系统统一提示
+				this.showOperationTips();
+			}
 		},
 		methods: {
 			// 测试提示

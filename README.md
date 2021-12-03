@@ -3,6 +3,9 @@ All My Threejs Projects Collection
 
 欢迎参观 [three.fx67ll.com](http://three.fx67ll.com "fx67ll's Three.js 作品合集的展示网站")  
 
+## 0.2.6.20211204
+* 屏幕宽度小于1020px关闭提示，卧槽不能每个页面都写啊，后续一定要找个办法搞定找个问题
+
 ## 0.2.5.20211203
 * 修复已知重大bug，完成魔方小游戏基础旋转功能  
 * 添加魔方操作的特有提示  
