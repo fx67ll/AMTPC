@@ -14,11 +14,6 @@ Router.prototype.push = function push(location) {
 import store from '@/store/index.js'
 
 export const fx67llRoutes = [
-	// {
-	// 	path: '/',
-	// 	name: 'cube',
-	// 	component: () => import('@v/project/cube.vue')
-	// },
 	{
 		path: '/',
 		name: 'index',
