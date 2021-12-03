@@ -99,7 +99,6 @@
 			},
 			// 获取随机背景图
 			getRandomBackGroundImg() {
-				console.log(1);
 				// document.getElementById("bg-img").style.backgroundImage = "url(https://api.mtyqx.cn/api/random.php)";
 				_.each(document.getElementsByClassName("scale"), function(item, key) {
 					item.style.backgroundImage = "url(https://api.mtyqx.cn/api/random.php)";
