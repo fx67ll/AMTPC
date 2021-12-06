@@ -139,6 +139,9 @@
 				this.showCubeOperationTips();
 			} else {
 				this.isMobileDevice = true;
+				this.$message.success('正在打乱魔方，请稍后还原 (๑•̀ㅂ•́)و✧');
+				this.randomCount = 30;
+				this.randomCube();
 			}
 		},
 		methods: {
