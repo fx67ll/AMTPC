@@ -139,6 +139,8 @@
 				this.showCubeOperationTips();
 			} else {
 				this.isMobileDevice = true;
+				
+				// 移动端添加魔方打乱方法
 				this.$message.success('正在打乱魔方，请稍后还原 (๑•̀ㅂ•́)و✧');
 				this.randomCount = 30;
 				this.randomCube();
