@@ -1,51 +1,74 @@
 <template>
 	<div class="three-box">
-		<div id="bg-img" class="three-mask"></div>
-		<div class="three-layout">
-			<div class="top">
-				<div class="item scale">
-					<!-- <img class="weather-img" :src="getImg()"> -->
-					<!-- {{ this.weatherText }} -->
-					<div class="weather-box">
-						<img class="weather-img" :src="getImg(this.weatherCode)">
-						<span>{{ this.weatherText }}</span>
+		<div class="three-box-pc" v-show="!isMobileDevice">
+			<div id="bg-img" class="three-mask"></div>
+			<div class="three-layout">
+				<div class="top">
+					<div class="item scale">
+						<!-- <img class="weather-img" :src="getImg()"> -->
+						<!-- {{ this.weatherText }} -->
+						<div class="weather-box">
+							<img class="weather-img" :src="getImg(this.weatherCode)">
+							<span>{{ this.weatherText }}</span>
+						</div>
+					</div>
+					<div class="item scale" @click="goNext('medical')">简易医疗模型实时处理演示</div>
+					<div class="item scale">
+						<a href="https://www.ez13.top/#/hellothree" target="_blank">3D文字</a>
+						<a href="https://www.ez13.top/#/testthree" target="_blank">Miku舞台表演</a>
+						<a href="https://www.ez13.top/#/testthree-FBX" target="_blank">3D人体舞蹈</a>
 					</div>
 				</div>
-				<div class="item scale" @click="goNext('medical')">简易医疗模型实时处理演示</div>
-				<div class="item scale">
-					<a href="https://www.ez13.top/#/hellothree" target="_blank">学习示例一</a>
-					<a href="https://www.ez13.top/#/testthree" target="_blank">学习示例二</a>
-					<a href="https://www.ez13.top/#/testthree-FBX" target="_blank">学习示例三</a>
-				</div>
-			</div>
-			<div class="bottom">
-				<div class="item scale" @click="goNext('cube')">魔方小游戏</div>
-				<div class="item">
-					<div class="card scale bg-img-empty"></div>
-					<div class="card scale bg-img-empty"></div>
-				</div>
-				<div class="item">
-					<div class="card scale bg-img-empty"></div>
-					<div class="card scale">
-						<a href="https://fx67ll.xyz" target="_blank">fx67ll.xyz</a>
+				<div class="bottom">
+					<div class="item scale" @click="goNext('cube')">魔方小游戏</div>
+					<div class="item">
+						<div class="card scale bg-img-empty"></div>
+						<div class="card scale bg-img-empty"></div>
+					</div>
+					<div class="item">
+						<div class="card scale bg-img-empty"></div>
+						<div class="card scale">
+							<a href="https://fx67ll.xyz" target="_blank">fx67ll.xyz</a>
+						</div>
 					</div>
 				</div>
+				<div class="title scale" @click="linktoFx67ll()">fx67ll's Three.js <span>作品合集</span></div>
 			</div>
-			<div class="title scale">fx67ll's Three.js <span>作品合集</span></div>
+			<fx67ll-footer fontColor="#ffffff"></fx67ll-footer>
 		</div>
-		<fx67ll-footer fontColor="#ffffff"></fx67ll-footer>
+		<vueCanvasNest :config="nestConfig" :el="'#vue-canvas-nest'" v-if="isLoadingCompleted"></vueCanvasNest>
+		<div id="vue-canvas-nest" class="three-box-mobile" v-show="isMobileDevice">
+			<div class="fx67ll-title"><span @click="linktoFx67ll()">fx67ll's Three.js <span>作品合集</span></span></div>
+			<div class="fx67ll-link">
+				<div class="fx67ll-link-item">
+					<span><a target="_blank" href="https://ez13.top/#/hellothree">3D文字</a></span>
+				</div>
+				<div class="fx67ll-link-item">
+					<span><a target="_blank" href="https://ez13.top/#/testthree">Miku舞台表演</a></span>
+				</div>
+				<div class="fx67ll-link-item">
+					<span><a target="_blank" href="https://ez13.top/#/testthree-FBX">3D人体舞蹈</a></span>
+				</div>
+				<div class="fx67ll-link-item"><router-link tag="a" target="_blank" to="/medical">简易医疗模型实时处理演示</router-link></div>
+				<div class="fx67ll-link-item"><router-link tag="a" target="_blank" to="/cube">魔方小游戏</router-link></div>
+			</div>
+			<fx67ll-footer />
+		</div>
 	</div>
 </template>
 
 <script>
 	import fx67llFooter from "@c/fx67ll-footer/index.vue";
+	import vueCanvasNest from 'vue-canvas-nest';
+	
 	import _ from "underscore";
 	import axios from "axios";
 
 	export default {
 		name: "index",
 		components: {
-			fx67llFooter
+			fx67llFooter,
+			vueCanvasNest
 		},
 		data() {
 			return {
@@ -54,15 +77,65 @@
 				// 当前位置的天气信息代码
 				weatherCode: "99",
 				// 当前位置的天气信息
-				weatherText: "暂无",
+				weatherText: "暂无数据",
+				// 移动端标识
+				isMobileDevice: false,
+				// 添加背景插件的配置
+				nestConfig: {
+					color: 'rgb(186, 186, 186)', // the canvas line color, default: '255,0,0'; the color is (R,G,B)
+					opacity: 0.7, // the opacity of line (0~1), default: 0.7
+					count: 99, // the number of lines, default: 99
+					zIndex: -1 // the index of z space, default: -1
+				},
+				time: 0,
+				isLoadingCompleted: false
 			}
 		},
 		mounted() {
+			// 获取随机背景图
 			this.getRandomBackGroundImg();
+			
+			// 获取位置信息，暂时关闭，防止浏览器不兼容
 			// this.getPosition();
+			
+			// 获取天气信息
 			this.getWeather("南京");
+			
+			// 移动端适配
+			if (window.innerWidth >= this.$store.state.adaptationInnerWidth) {
+				this.isMobileDevice = false;
+			} else {
+				this.isMobileDevice = true;
+			}
+			
+			// 1000-960之间的话背景图片下面会有空白条
+			if (window.innerWidth <= this.$store.state.adaptationInnerWidth + 40) {
+				document.getElementById("bg-img").style.backgroundSize = "100% 100%";
+			}
+			
+			let self = this;
+			let loadingTimer = setTimeout(function() {
+				self.isLoadingCompleted = true;
+				clearTimeout(loadingTimer);
+			}, 100);
+			this.showSeconds(1);
 		},
 		methods: {
+			showSeconds(time) {
+				let self = this;
+				let consoleTimer = setTimeout(function() {
+					if (!self.isLoadingCompleted) {
+						self.showSeconds(time + 1);
+					} else {
+						clearTimeout(consoleTimer);
+					}
+				}, 100);
+			},
+			// 跳转到个人博客
+			linktoFx67ll() {
+				window.open('https://fx67ll.xyz');
+			},
+			// 获取天气信息 https://seniverse.yuque.com/books/share/e52aa43f-8fe9-4ffa-860d-96c0f3cf1c49/nyiu3t
 			getWeather(location) {
 				axios.get(
 						`${process.env.VUE_APP_WEATHER_API}?key=SZzSZewGNnCp43FAb&location=${location}&language=zh-Hans&unit=c`
@@ -73,6 +146,7 @@
 						this.weatherText = res.data.results[0].now.text;
 					});
 			},
+			// 获取当前天气代码对应的天气图标
 			getImg(code) {
 				return require(`@a/images/weather/${code}.png`);
 			},
@@ -177,161 +251,210 @@
 	.three-box {
 		width: 100%;
 		height: 100%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
 
-		.three-mask {
+		.three-box-pc {
 			width: 100%;
 			height: 100%;
-			filter: blur(0.3vw);
-			position: absolute;
-			top: 0;
-			z-index: 0;
-		}
+			display: flex;
+			justify-content: center;
+			align-items: center;
 
-		.three-layout {
-			width: 60vw;
-			height: 32vw;
-			margin: 0 auto;
-			z-index: 1;
-			position: relative;
-			top: 1vw;
-
-			.top,
-			.bottom {
+			.three-mask {
 				width: 100%;
-				height:~"calc(50% - @{border-space}/2)";
-				display: flex;
-				justify-content: space-between;
-
-				.item {
-					width:~"calc(25% - @{border-space})";
-					height: 100%;
-					border: @border-width solid @border-color;
-				}
-
-				.item:nth-child(2) {
-					width: 50%;
-				}
+				height: 100%;
+				filter: blur(0.3vw);
+				position: absolute;
+				top: 0;
+				z-index: 0;
 			}
 
-			.top {
+			.three-layout {
+				width: 60vw;
+				height: 32vw;
+				margin: 0 auto;
+				z-index: 1;
+				position: relative;
+				top: 1vw;
 
-				.item:nth-child(1) {
-					background-color: @weather-color;
-					// color: @border-color;
-					color: @text-color;
+				.top,
+				.bottom {
+					width: 100%;
+					height:~"calc(50% - @{border-space}/2)";
+					display: flex;
+					justify-content: space-between;
 
-					.weather-box {
-						width: 60%;
-						margin: 0 auto;
-						position: relative;
-						top: 3vw;
+					.item {
+						width:~"calc(25% - @{border-space})";
+						height: 100%;
+						border: @border-width solid @border-color;
+					}
 
-						.weather-img {
-							width: 5vw;
-						}
-
-						span {
-							display: block;
-							font-size: 2vw;
-							font-weight: 500;
-							line-height: 3vw;
-						}
+					.item:nth-child(2) {
+						width: 50%;
 					}
 				}
 
-				.item:nth-child(2) {
-					line-height: 14.6vw;
-					font-size: 2vw;
-					font-weight: 500;
-				}
+				.top {
 
-				.item:nth-child(3) {
-					a {
-						display: block;
-						font-size: 1.5vw;
+					.item:nth-child(1) {
+						background-color: @weather-color;
+						// color: @border-color;
+						color: @text-color;
+
+						.weather-box {
+							width: 60%;
+							margin: 0 auto;
+							position: relative;
+							top: 3vw;
+
+							.weather-img {
+								width: 5vw;
+							}
+
+							span {
+								display: block;
+								font-size: 2vw;
+								font-weight: 500;
+								line-height: 3vw;
+							}
+						}
+					}
+
+					.item:nth-child(2) {
+						line-height: 14.6vw;
+						font-size: 2vw;
 						font-weight: 500;
 					}
 
-					a:nth-child(1) {
-						margin-top: 3.1vw;
+					.item:nth-child(3) {
+						a {
+							display: block;
+							font-size: 1.5vw;
+							font-weight: 500;
+						}
+
+						a:nth-child(1) {
+							margin-top: 3.1vw;
+						}
 					}
 				}
-			}
 
-			.bottom {
-				margin-top: @border-space;
+				.bottom {
+					margin-top: @border-space;
 
-				.item:nth-child(1) {
-					height: 50%;
-					line-height: 7.8vw;
-					font-size: 1.9vw;
-					font-weight: 500;
-				}
-
-				.item:nth-child(2) {
-					display: flex;
-					justify-content: space-between;
-					border: none;
-
-					.card {
-						border: @border-width solid @border-color;
+					.item:nth-child(1) {
+						height: 50%;
+						line-height: 7.8vw;
+						font-size: 1.9vw;
+						font-weight: 500;
 					}
 
-					.card:first-child {
-						width:~"calc(70% - @{border-space}/2)";
-						height: 90%;
+					.item:nth-child(2) {
+						display: flex;
+						justify-content: space-between;
+						border: none;
+
+						.card {
+							border: @border-width solid @border-color;
+						}
+
+						.card:first-child {
+							width:~"calc(70% - @{border-space}/2)";
+							height: 90%;
+							position: relative;
+							right: @border-width;
+						}
+
+						.card:last-child {
+							width:~"calc(30% - @{border-space}/2)";
+							height: 76%;
+							position: relative;
+							left: @border-width;
+						}
+					}
+
+					.item:nth-child(3) {
+						height: 76%;
+						border: @border-width solid transparent;
 						position: relative;
 						right: @border-width;
-					}
 
-					.card:last-child {
-						width:~"calc(30% - @{border-space}/2)";
-						height: 76%;
-						position: relative;
-						left: @border-width;
+						.card {
+							border: @border-width solid @border-color;
+						}
+
+						.card:first-child {
+							width: 100%;
+							height:~"calc(70% - @{border-space}/2)";
+						}
+
+						.card:last-child {
+							width: 65%;
+							height:~"calc(30% - @{border-space}/2)";
+							margin-top:~"calc(@{border-space}/2)";
+							line-height: 2.8vw;
+						}
 					}
 				}
 
-				.item:nth-child(3) {
-					height: 76%;
-					border: @border-width solid transparent;
+				.title {
+					width: 15vw;
+					height: 3vw;
+					padding: 0 2vw;
+					border: @border-width solid @border-color;
 					position: relative;
-					right: @border-width;
+					top:~"calc(-100% - 3vw - @{border-space})";
+					left: 5vw;
+					// color: @border-color;
+					color: @text-color;
 
-					.card {
-						border: @border-width solid @border-color;
+					span {
+						font-weight: 500;
 					}
+				}
+			}
+		}
 
-					.card:first-child {
-						width: 100%;
-						height:~"calc(70% - @{border-space}/2)";
-					}
+		.three-box-mobile {
+			width: 100%;
+			height: 100%;
 
-					.card:last-child {
-						width: 65%;
-						height:~"calc(30% - @{border-space}/2)";
-						margin-top:~"calc(@{border-space}/2)";
-						line-height: 2.8vw;
+			.fx67ll-title {
+				width: 100%;
+				padding: 46px 0 26px 0;
+				text-align: center;
+
+				span {
+					display: inline-block;
+					font-size: 28px;
+					
+					span{
+						font-size: 26px;
 					}
 				}
 			}
 
-			.title {
-				width: 15vw;
-				height: 3vw;
-				padding: 0 2vw;
-				border: @border-width solid @border-color;
-				position: relative;
-				top:~"calc(-100% - 3vw - @{border-space})";
-				left: 5vw;
-				// color: @border-color;
-				color: @text-color;
+			.fx67ll-link {
+				max-height: calc(~'100% - 293px');
+				overflow: auto;
+				padding: 0 100px;
+				margin: 50px 0;
 
-				span {
-					font-weight: 500;
+				.fx67ll-link-item {
+					width: 100%;
+					margin-bottom: 25px;
+					text-align: center;
+
+					a {
+						display: inline-block;
+						font-size: 24px;
+						text-decoration: none;
+					}
+
+					a:hover {
+						color: @green;
+					}
+
 				}
 			}
 		}

@@ -1,11 +1,11 @@
 <template>
 	<div class='cube-box'>
 		<div id='cube-container' class='three-box'></div>
-		<div class='button-panel'>
+		<div class='button-panel' v-show='!isMobileDevice'>
 			<el-input-number v-model='randomCount' :disabled='isProgress || isNeedReset' />
 			<el-button class='random-buttom' icon='el-icon-thumb' @click='randomCube()' :disabled='isNeedReset'>打乱魔方
 			</el-button>
-			<span class="random-span" v-show='isNeedReset'>{{ recordTextTime }}</span>
+			<span class='random-span' v-show='isNeedReset'>{{ recordTextTime }}</span>
 			<el-button class='random-buttom' :icon='recordIcon' @click='randomTimeRecord()'>{{ recordText }}</el-button>
 			<el-button class='random-buttom' icon='el-icon-timer' @click='randomTimeReset()' v-show='isNeedReset'>重新计时
 			</el-button>
@@ -124,16 +124,21 @@
 				// 总计用时
 				recordTimeTotal: 0,
 				// 复原魔方的计时器对象
-				recordTimer: null
+				recordTimer: null,
+				// 移动端标识
+				isMobileDevice: false
 			}
 		},
 		mounted() {
 			this.init();
-			if(window.innerWidth >= 1020){
-				// 系统统一提示
-				this.showOperationTips();
-				// 本页面特殊提示
+			// 系统统一提示
+			this.showOperationTips();
+			// 本页面特殊提示
+			if (window.innerWidth >= this.$store.state.adaptationInnerWidth) {
+				this.isMobileDevice = false;
 				this.showCubeOperationTips();
+			} else {
+				this.isMobileDevice = true;
 			}
 		},
 		methods: {
@@ -225,7 +230,7 @@
 				if (!this.isProgress) {
 					if (!this.isPause) {
 						// 显示计时文字
-						this.recordTimeStart = moment().format("YYYY-MM-DD HH:mm:ss");
+						this.recordTimeStart = moment().format('YYYY-MM-DD HH:mm:ss');
 
 						// 区分提示
 						if (this.recordTimeLast === 0) {
@@ -368,9 +373,9 @@
 				this.renderer.domElement.addEventListener('mousemove', self.moveCube, false);
 				this.renderer.domElement.addEventListener('pointerup', self.stopCube, false);
 				//监听触摸事件，暂时不开放移动端显示
-				// this.renderer.domElement.addEventListener('touchstart', self.startCube, false);
-				// this.renderer.domElement.addEventListener('touchmove', self.moveCube, false);
-				// this.renderer.domElement.addEventListener('touchend', self.stopCube, false);
+				this.renderer.domElement.addEventListener('touchstart', self.startCube, false);
+				this.renderer.domElement.addEventListener('touchmove', self.moveCube, false);
+				this.renderer.domElement.addEventListener('touchend', self.stopCube, false);
 			},
 			// 创建xyz坐标轴
 			initAxis() {
@@ -658,8 +663,9 @@
 							self.normalize = intersectArr[1].face.normal;
 						} catch (e) {
 							//TODO handle the exception
-							console.log(intersectArr.length);
+							// console.log(intersectArr.length);
 							console.log(e);
+							console.error('非常抱歉！这是暂未解决的bug，请刷新页面后重新操作！');
 						}
 					}
 				}

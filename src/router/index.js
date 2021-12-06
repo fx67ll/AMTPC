@@ -25,11 +25,6 @@ export const fx67llRoutes = [
 		component: () => import('@v/project/medical.vue') //医疗模型
 	},
 	{
-		path: '/medical/back',
-		name: 'medical/back',
-		component: () => import('@v/back/medical-back.vue') //医疗模型备份
-	},
-	{
 		path: '/cube',
 		name: 'cube',
 		component: () => import('@v/project/cube.vue') //魔方模型
@@ -37,7 +32,7 @@ export const fx67llRoutes = [
 ]
 
 const router = new Router({
-	mode: 'hash', // history模式，去掉url中的#
+	mode: 'history', // history模式，去掉url中的#
 	scrollBehavior: () => ({
 		y: 0
 	}),

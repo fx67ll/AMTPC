@@ -3,7 +3,7 @@
 		<loading-progress :progress="modelLoadingText" :isFinished="modelLoading"></loading-progress>
 		<!-- <loading-progress :progress="modelLoadingText" v-if="modelLoading"></loading-progress> -->
 		<div id="model-container" class="three-box"></div>
-		<div class="test-box" v-if="!isShowPanel">
+		<div class="test-box" v-if="!isShowPanel && !isMobileDevice">
 			<div class="tool-box">
 				<div class="tool-item-box" style="justify-content: flex-start;">
 					<span class="tool-item-title">查看声门：</span>
@@ -79,7 +79,7 @@
 				</el-card>
 			</div>
 		</div>
-		<div class="panel-box" v-if="!isCheckGlottis && !isShowPanel">
+		<div class="panel-box" v-if="!isCheckGlottis && !isShowPanel && !isMobileDevice">
 			<!-- 因为加了侧边操作栏的滚动条，这个loading组件对于隐藏部分的内容无法遮罩到，所以暂时弃用 -->
 			<!-- <div
 			class="panel-box"
@@ -184,16 +184,18 @@
 				</div>
 				<div class="tool-item-box tool-item-btnbox">
 					<el-button :type="isShowHuman ? 'primary' : 'info'" class="tool-item-btn" @click="visHuman()">
-						{{ isShowHumanText }}</el-button>
+						{{ isShowHumanText }}
+					</el-button>
 					<!-- <el-button :type="isShowThroat ? 'primary' : 'info'" class="tool-item-btn" @click="visThroat()">{{ isShowThroatText }}</el-button> -->
 					<el-button :type="isShowVertebrae ? 'primary' : 'info'" class="tool-item-btn"
 						@click="visVertebrae()">{{ isShowVertebraeText }}</el-button>
 					<el-button :type="isShowAdam ? 'primary' : 'info'" class="tool-item-btn" @click="visAdam()">
-						{{ isShowAdamText }}</el-button>
+						{{ isShowAdamText }}
+					</el-button>
 				</div>
 			</div>
 		</div>
-		<div class="panel-showbtn">
+		<div class="panel-showbtn" v-if="!isMobileDevice">
 			<el-button v-if="!isShowPanel" icon="el-icon-thumb" circle @click="turnPanel()"></el-button>
 			<el-button v-if="isShowPanel" icon="el-icon-coordinate" circle @click="turnPanel()"></el-button>
 		</div>
@@ -368,15 +370,19 @@
 				modelLoading: false,
 				// 模型加载进度提示
 				modelLoadingText: '0%',
-				// 是否显示右侧面板
-				isShowPanel: false
+				// 是否显示面板
+				isShowPanel: false,
+				// 移动端标识
+				isMobileDevice: false
 			};
 		},
 		mounted() {
 			this.modelInit();
-			if(window.innerWidth >= 1020){
-				// 系统统一提示
-				this.showOperationTips();
+			this.showOperationTips();
+			if (window.innerWidth >= this.$store.state.adaptationInnerWidth) {
+				this.isMobileDevice = false;
+			} else {
+				this.isMobileDevice = true;
 			}
 		},
 		methods: {
