@@ -130,18 +130,25 @@
 			}
 		},
 		mounted() {
+			// 魔方系统初始化
 			this.init();
 			// 系统统一提示
 			this.showOperationTips();
-			// 本页面特殊提示
+
+
 			if (window.innerWidth >= this.$store.state.adaptationInnerWidth) {
 				this.isMobileDevice = false;
+				// 本页面特殊提示
 				this.showCubeOperationTips();
 			} else {
 				this.isMobileDevice = true;
-				
+
 				// 移动端添加魔方打乱方法
-				this.$message.success('正在打乱魔方，请稍后还原 (๑•̀ㅂ•́)و✧');
+				this.$message({
+					message: '正在打乱魔方，请稍后还原 (๑•̀ㅂ•́)و✧',
+					type: 'success',
+					offset: 70
+				});
 				this.randomCount = 30;
 				this.randomCube();
 			}
@@ -337,8 +344,12 @@
 
 				// 创建相机对象
 				this.camera = new THREE.PerspectiveCamera(45, this.width / this.height, 1, 1000);
-				// 设置相机位置在黄色证明，距离600
-				this.camera.position.set(200, 400, 400);
+				// 设置相机位置
+				if (window.innerWidth >= this.$store.state.adaptationInnerWidth) {
+					this.camera.position.set(400, 400, 400);
+				} else {
+					this.camera.position.set(400, 300, 700);
+				}
 				// 设置相机在正方向
 				this.camera.up.set(0, 1, 0);
 				// 设置相机对准中心原点
