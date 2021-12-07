@@ -1,7 +1,7 @@
 <template>
 	<div class="model-box">
-		<loading-progress :progressNum="modelLoadingText" :isFinished="!modelLoading"></loading-progress>
-		<!-- <loading-progress :progress="modelLoadingText" v-if="modelLoading"></loading-progress> -->
+		<loading-progress :progressNum="modelLoadingText" :isFinished="!modelLoadingFinished"></loading-progress>
+		<!-- <loading-progress :progress="modelLoadingText" v-if="modelLoadingFinished"></loading-progress> -->
 		<div id="model-container" class="three-box"></div>
 		<div class="test-box" v-if="!isShowPanel && !isMobileDevice">
 			<div class="tool-box">
@@ -360,7 +360,7 @@
 				// 查看声门后各种透明度参数，顺序是气管，舌头，舌骨，喉结
 				checkOpacityValue: [0.5, 1, 1, 1],
 				// 模型是否加载完成
-				modelLoading: false,
+				modelLoadingFinished: false,
 				// 模型加载进度提示
 				modelLoadingText: 0,
 				// 是否显示面板
@@ -755,8 +755,6 @@
 				grid.material.transparent = true;
 				self.scene.add(grid);
 
-				// 开始加载模型
-				this.modelLoading = true;
 				// 使用FBXLoader加载模型
 				self.fbxloader.load(
 					self.modelUrl,
@@ -797,10 +795,10 @@
 						// self.test();
 					},
 					function(xhr) {
-						console.log('加载完成的百分比' + parseInt((xhr.loaded / xhr.total) * 100) + '%');
+						// console.log('加载完成的百分比' + parseInt((xhr.loaded / xhr.total) * 100) + '%');
 						self.modelLoadingText = parseInt((xhr.loaded / xhr.total) * 100);
 						if (self.modelLoadingText === 100) {
-							self.modelLoading = false;
+							self.modelLoadingFinished = true;
 						}
 					}
 				);

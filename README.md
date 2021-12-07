@@ -3,6 +3,10 @@ All My Threejs Projects Collection
 
 欢迎参观 [three.fx67ll.com](http://three.fx67ll.com "fx67ll's Three.js 作品合集的展示网站")  
 
+
+## 0.3.2.20211208
+* 修复进度条显示异常的问题  
+
 ## 0.3.1.20211207
 * 开始使用自己编写的`fx67ll-vue-ui`组件库，替换原项目内组件，提高代码通用性  
 * ***待处理*** 魔方小游戏部分bug待解决，首页部分bug待处理  
