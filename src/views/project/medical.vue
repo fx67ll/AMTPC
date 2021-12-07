@@ -797,9 +797,9 @@
 						// self.test();
 					},
 					function(xhr) {
-						// console.log('加载完成的百分比' + parseInt((xhr.loaded / xhr.total) * 100) + '%');
+						console.log('加载完成的百分比' + parseInt((xhr.loaded / xhr.total) * 100) + '%');
 						self.modelLoadingText = parseInt((xhr.loaded / xhr.total) * 100);
-						if ((xhr.loaded / xhr.total) * 100 === 100) {
+						if (self.modelLoadingText === 100) {
 							self.modelLoading = false;
 						}
 					}
