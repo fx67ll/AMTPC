@@ -15,8 +15,6 @@
 </template>
 
 <script>
-	// 页脚组件
-	import fx67llFooter from '@c/fx67ll-footer/index.vue';
 
 	// Threejs主模块
 	import * as THREE from 'three/build/three.module.js';
@@ -34,9 +32,6 @@
 
 	export default {
 		name: 'cube',
-		components: {
-			fx67llFooter
-		},
 		data() {
 			return {
 				// 舞台宽度

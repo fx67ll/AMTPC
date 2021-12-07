@@ -58,7 +58,6 @@
 </template>
 
 <script>
-	import fx67llFooter from "@c/fx67ll-footer/index.vue";
 	import vueCanvasNest from 'vue-canvas-nest';
 	
 	import _ from "underscore";
@@ -67,7 +66,6 @@
 	export default {
 		name: "index",
 		components: {
-			fx67llFooter,
 			vueCanvasNest
 		},
 		data() {

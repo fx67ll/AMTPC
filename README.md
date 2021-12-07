@@ -3,6 +3,10 @@ All My Threejs Projects Collection
 
 欢迎参观 [three.fx67ll.com](http://three.fx67ll.com "fx67ll's Three.js 作品合集的展示网站")  
 
+## 0.3.1.20211207
+* 开始使用自己编写的`fx67ll-vue-ui`组件库，替换原项目内组件，提高代码通用性  
+* ***待处理*** 魔方小游戏部分bug待解决，首页部分bug待处理  
+
 ## 0.3.0.20211206
 * 设置全局宽度变量，适配移动端，小于一定宽度自动关闭操作面板以及操作提示，大于则自动开启  
 

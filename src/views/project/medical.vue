@@ -1,6 +1,6 @@
 <template>
 	<div class="model-box">
-		<loading-progress :progress="modelLoadingText" :isFinished="modelLoading"></loading-progress>
+		<loading-progress :progressNum="modelLoadingText" :isFinished="!modelLoading"></loading-progress>
 		<!-- <loading-progress :progress="modelLoadingText" v-if="modelLoading"></loading-progress> -->
 		<div id="model-container" class="three-box"></div>
 		<div class="test-box" v-if="!isShowPanel && !isMobileDevice">
@@ -204,9 +204,6 @@
 </template>
 
 <script>
-	import loadingProgress from '@c/loading-progress/index.vue';
-	import fx67llFooter from '@c/fx67ll-footer/index.vue';
-
 	import * as THREE from 'three/build/three.module.js';
 	import Stats from 'three/examples/jsm/libs/stats.module.js';
 
@@ -220,10 +217,6 @@
 	import _ from 'underscore';
 	export default {
 		name: 'medical',
-		components: {
-			loadingProgress,
-			fx67llFooter
-		},
 		data() {
 			return {
 				// 相机对象
@@ -369,7 +362,7 @@
 				// 模型是否加载完成
 				modelLoading: false,
 				// 模型加载进度提示
-				modelLoadingText: '0%',
+				modelLoadingText: 0,
 				// 是否显示面板
 				isShowPanel: false,
 				// 移动端标识
@@ -805,8 +798,8 @@
 					},
 					function(xhr) {
 						// console.log('加载完成的百分比' + parseInt((xhr.loaded / xhr.total) * 100) + '%');
-						self.modelLoadingText = parseInt((xhr.loaded / xhr.total) * 100) + '%';
-						if ((xhr.loaded / xhr.total) * 100 + '%' === '100%') {
+						self.modelLoadingText = parseInt((xhr.loaded / xhr.total) * 100);
+						if ((xhr.loaded / xhr.total) * 100 === 100) {
 							self.modelLoading = false;
 						}
 					}

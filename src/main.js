@@ -12,6 +12,9 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
+import fx67llVueUI from 'fx67ll-vue-ui';
+Vue.use(fx67llVueUI)
+
 // 每次加载之后添加统一操作提示
 Vue.prototype.showOperationTips = function(msg) {
 	if (window.innerWidth >= this.$store.state.adaptationInnerWidth) {

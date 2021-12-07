@@ -1,3 +1,5 @@
+<!-- 旧版医疗模型演示项目代码备份 -->
+
 <template>
 	<div class="model-box">
 		<div id="model-container" class="three-box"></div>
