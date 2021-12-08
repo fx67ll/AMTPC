@@ -306,6 +306,7 @@
 						background-color: @weather-color;
 						// color: @border-color;
 						color: @text-color;
+						background-size: cover;
 
 						.weather-box {
 							width: 60%;
