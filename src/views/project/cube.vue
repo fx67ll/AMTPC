@@ -133,7 +133,11 @@
 
 
 			if (window.innerWidth >= this.$store.state.adaptationInnerWidth) {
+				
+				// 非移动端直接添加监听事件，移动端在随机处理完魔方之后再添加监听事件
 				this.isMobileDevice = false;
+				this.addCubeEvent();
+				
 				// 本页面特殊提示
 				this.showCubeOperationTips();
 			} else {
@@ -183,9 +187,10 @@
 				if (this.randomCount) {
 					if (!this.isProgress) {
 
-						// 随机旋转过程中关闭主动魔方旋转监听
+						// 随机旋转过程中关闭主动魔方旋转监听，旧版处理方式  
+						// 现在处理方式是移动端和非移动端分开添加事件监听的时机  
 						this.isProgress = true;
-						this.removeCubeEvent();
+						// this.removeCubeEvent();
 
 						this.randomTimer = setInterval(function() {
 							self.randomRotate();
@@ -405,8 +410,6 @@
 
 				// 执行动画渲染
 				this.animate();
-
-				this.addCubeEvent();
 
 				// let secTi = date.getTime();
 				// console.log(secTi);
