@@ -15,7 +15,6 @@
 </template>
 
 <script>
-
 	// Threejs主模块
 	import * as THREE from 'three/build/three.module.js';
 	// Threejs监测器模块
@@ -125,6 +124,8 @@
 			}
 		},
 		mounted() {
+			let self = this;
+			
 			// 魔方系统初始化
 			this.init();
 			// 系统统一提示
@@ -136,16 +137,22 @@
 				// 本页面特殊提示
 				this.showCubeOperationTips();
 			} else {
+				let initTime = 500;
 				this.isMobileDevice = true;
 
 				// 移动端添加魔方打乱方法
 				this.$message({
-					message: '正在打乱魔方，请稍后还原 (๑•̀ㅂ•́)و✧',
+					message: '正在打乱魔方，请稍后还原哦 (๑•̀ㅂ•́)و✧',
 					type: 'success',
-					offset: 70
+					offset: 70,
+					duration: 6000 + initTime
 				});
+
+				// 主动随机旋转魔方
 				this.randomCount = 30;
-				this.randomCube();
+				setTimeout(function() {
+					self.randomCube();
+				}, initTime);
 			}
 		},
 		methods: {
@@ -175,7 +182,10 @@
 				// 如果正在循环过程中操作无效
 				if (this.randomCount) {
 					if (!this.isProgress) {
+
+						// 随机旋转过程中关闭主动魔方旋转监听
 						this.isProgress = true;
+						this.removeCubeEvent();
 
 						this.randomTimer = setInterval(function() {
 							self.randomRotate();
@@ -186,7 +196,21 @@
 							clearInterval(self.randomTimer);
 							self.randomTimer = null;
 
+							// 随机选装完成后开启主动魔方旋转监听
 							self.isProgress = false;
+							self.addCubeEvent();
+
+							// 打乱完成后的提示
+							if (window.innerWidth >= self.$store.state.adaptationInnerWidth) {
+								self.$message.success('打乱完成咯~ 请开始还原魔方吧 ～(￣▽￣～)');
+							} else {
+								self.$message({
+									message: '打乱完成咯~ 请开始还原魔方吧 ～(￣▽￣～)',
+									type: 'success',
+									offset: 70
+								});
+							}
+
 							// 动画时间+间隔时间，所以乘以二
 						}, (self.rotateSpeed * self.randomCount * 2));
 					} else {
@@ -314,6 +338,10 @@
 			},
 			// Threejs初始化
 			init() {
+				// let date = new Date();
+				// let firTi = date.getTime();
+				// console.log(firTi);
+
 				let self = this;
 
 				// 画布高度
@@ -378,15 +406,35 @@
 				// 执行动画渲染
 				this.animate();
 
+				this.addCubeEvent();
+
+				// let secTi = date.getTime();
+				// console.log(secTi);
+				// console.log('init用时：' + (firTi - secTi));
+			},
+			// 添加监听事件
+			addCubeEvent() {
 				//监听鼠标事件，mousedown和mouseup在vue中失效，必须使用pointerdown和pointerup
 				// https://blog.csdn.net/zps925458125/article/details/113309657
-				this.renderer.domElement.addEventListener('pointerdown', self.startCube, false);
-				this.renderer.domElement.addEventListener('mousemove', self.moveCube, false);
-				this.renderer.domElement.addEventListener('pointerup', self.stopCube, false);
+				this.renderer.domElement.addEventListener('pointerdown', this.startCube, false);
+				this.renderer.domElement.addEventListener('mousemove', this.moveCube, false);
+				this.renderer.domElement.addEventListener('pointerup', this.stopCube, false);
 				//监听触摸事件，暂时不开放移动端显示
-				this.renderer.domElement.addEventListener('touchstart', self.startCube, false);
-				this.renderer.domElement.addEventListener('touchmove', self.moveCube, false);
-				this.renderer.domElement.addEventListener('touchend', self.stopCube, false);
+				this.renderer.domElement.addEventListener('touchstart', this.startCube, false);
+				this.renderer.domElement.addEventListener('touchmove', this.moveCube, false);
+				this.renderer.domElement.addEventListener('touchend', this.stopCube, false);
+			},
+			// 清除监听事件
+			removeCubeEvent() {
+				//监听鼠标事件，mousedown和mouseup在vue中失效，必须使用pointerdown和pointerup
+				// https://blog.csdn.net/zps925458125/article/details/113309657
+				this.renderer.domElement.removeEventListener('pointerdown', this.startCube);
+				this.renderer.domElement.removeEventListener('mousemove', this.moveCube);
+				this.renderer.domElement.removeEventListener('pointerup', this.stopCube);
+				//监听触摸事件，暂时不开放移动端显示
+				this.renderer.domElement.removeEventListener('touchstart', this.startCube);
+				this.renderer.domElement.removeEventListener('touchmove', this.moveCube);
+				this.renderer.domElement.removeEventListener('touchend', this.stopCube);
 			},
 			// 创建xyz坐标轴
 			initAxis() {

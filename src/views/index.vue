@@ -1,7 +1,7 @@
 <template>
 	<div class="three-box">
 		<div class="three-box-pc" v-if="!isMobileDevice">
-			<div id="bg-img" class="three-mask"></div>
+			<div id="index-bg-img" class="three-mask"></div>
 			<div class="three-layout">
 				<div class="top">
 					<div class="item scale">
@@ -22,11 +22,11 @@
 				<div class="bottom">
 					<div class="item scale" @click="goNext('cube')">魔方小游戏</div>
 					<div class="item">
-						<div class="card scale bg-img-empty"></div>
-						<div class="card scale bg-img-empty"></div>
+						<div class="card scale card-bg-img-empty"></div>
+						<div class="card scale card-bg-img-empty"></div>
 					</div>
 					<div class="item">
-						<div class="card scale bg-img-empty"></div>
+						<div class="card scale card-bg-img-empty"></div>
 						<div class="card scale">
 							<a href="https://fx67ll.xyz" target="_blank">fx67ll.xyz</a>
 						</div>
@@ -94,26 +94,29 @@
 			}
 		},
 		mounted() {
-			// 获取随机背景图
-			this.getRandomBackGroundImg();
-
-			// 获取位置信息，暂时关闭，防止浏览器不兼容
-			// this.getPosition();
-
-			// 获取天气信息
-			this.getWeather("南京");
-
 			// 移动端适配
 			if (window.innerWidth >= this.$store.state.adaptationInnerWidth) {
+				// 非移动端标识
 				this.isMobileDevice = false;
+				
+				// 获取随机背景图
+				this.getRandomBackGroundImg();
+				
+				// 获取位置信息，暂时关闭，防止浏览器不兼容
+				// this.getPosition();
+				
+				// 获取天气信息
+				this.getWeather("南京");
 			} else {
+				// 移动端标识
 				this.isMobileDevice = true;
 			}
 
-			// 1000-960之间的话背景图片下面会有空白条
-			if (window.innerWidth <= this.$store.state.adaptationInnerWidth + 40) {
-				document.getElementById("bg-img").style.backgroundSize = "100% 100%";
-			}
+			// 部分长宽比的浏览器背景图片下面会有空白条，做了一定适配，但是仅限初次加载，所以也没什么卵用，直接用cover就好了
+			// slamdunk.jpg 长宽比 720/533
+			// if (window.innerWidth / window.innerHeight <= 720 / 533) {
+			// 	document.getElementById("index-bg-img").style.backgroundSize = "100% 100%";
+			// }
 
 			let self = this;
 			let loadingTimer = setTimeout(function() {
@@ -175,10 +178,10 @@
 			},
 			// 获取随机背景图
 			getRandomBackGroundImg() {
-				// document.getElementById("bg-img").style.backgroundImage = "url(https://api.mtyqx.cn/api/random.php)";
+				// document.getElementById("index-bg-img").style.backgroundImage = "url(https://api.mtyqx.cn/api/random.php)";
 				_.each(document.getElementsByClassName("scale"), function(item, key) {
 					item.style.backgroundImage = "url(https://api.mtyqx.cn/api/random.php)";
-				})
+				});
 			},
 			// 页面跳转
 			goNext(path) {
@@ -212,13 +215,14 @@
 	@scale-time: 0.6s;
 
 
-	#bg-img {
+	#index-bg-img {
 		background-repeat: no-repeat;
-		background-size: 100%;
+		// background-size: 100% auto;
+		background-size: cover;
 		background-image: url("~@a/images/slamdunk.jpg");
 	}
 
-	.bg-img-empty {
+	.card-bg-img-empty {
 		background-size: auto 150%;
 	}
 
