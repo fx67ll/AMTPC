@@ -1,6 +1,6 @@
 <template>
 	<div class="model-box">
-		<loading-progress :progressNum="modelLoadingText" :isFinished="!modelLoadingFinished"></loading-progress>
+		<loading-progress :progressNum="modelLoadingText" :isFinished="modelLoadingFinished"></loading-progress>
 		<!-- <loading-progress :progress="modelLoadingText" v-if="modelLoadingFinished"></loading-progress> -->
 		<div id="model-container" class="three-box"></div>
 		<div class="test-box" v-if="!isShowPanel && !isMobileDevice">
@@ -9,7 +9,7 @@
 					<span class="tool-item-title">查看声门：</span>
 					<el-button @click="checkGlottis()">{{ checkGlottisText }}</el-button>
 				</div>
-				<div v-show="isCheckGlottis">
+				<div v-if="isCheckGlottis">
 					<div class="tool-item-box">
 						<span class="tool-item-title">气管透明：</span>
 						<el-slider class="tool-item-slider" v-model="checkOpacityValue[0]" :min="0" :max="1"
@@ -359,7 +359,7 @@
 				loadingBgc: 'rgba(0,0,0,0.5)',
 				// 查看声门后各种透明度参数，顺序是气管，舌头，舌骨，喉结
 				checkOpacityValue: [0.5, 1, 1, 1],
-				// 模型是否加载完成
+				// 模型是否正在加载
 				modelLoadingFinished: false,
 				// 模型加载进度提示
 				modelLoadingText: 0,

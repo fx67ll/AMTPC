@@ -1,13 +1,13 @@
 <template>
 	<div class='cube-box'>
 		<div id='cube-container' class='three-box'></div>
-		<div class='button-panel' v-show='!isMobileDevice'>
+		<div class='button-panel' v-if='!isMobileDevice'>
 			<el-input-number v-model='randomCount' :disabled='isProgress || isNeedReset' />
 			<el-button class='random-buttom' icon='el-icon-thumb' @click='randomCube()' :disabled='isNeedReset'>打乱魔方
 			</el-button>
-			<span class='random-span' v-show='isNeedReset'>{{ recordTextTime }}</span>
+			<span class='random-span' v-if='isNeedReset'>{{ recordTextTime }}</span>
 			<el-button class='random-buttom' :icon='recordIcon' @click='randomTimeRecord()'>{{ recordText }}</el-button>
-			<el-button class='random-buttom' icon='el-icon-timer' @click='randomTimeReset()' v-show='isNeedReset'>重新计时
+			<el-button class='random-buttom' icon='el-icon-timer' @click='randomTimeReset()' v-if='isNeedReset'>重新计时
 			</el-button>
 		</div>
 		<fx67ll-footer />

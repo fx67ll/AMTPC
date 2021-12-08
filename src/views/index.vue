@@ -1,6 +1,6 @@
 <template>
 	<div class="three-box">
-		<div class="three-box-pc" v-show="!isMobileDevice">
+		<div class="three-box-pc" v-if="!isMobileDevice">
 			<div id="bg-img" class="three-mask"></div>
 			<div class="three-layout">
 				<div class="top">
@@ -14,9 +14,9 @@
 					</div>
 					<div class="item scale" @click="goNext('medical')">简易医疗模型实时处理演示</div>
 					<div class="item scale">
-						<a href="https://www.ez13.top/#/hellothree" target="_blank">3D文字</a>
-						<a href="https://www.ez13.top/#/testthree" target="_blank">Miku舞台表演</a>
-						<a href="https://www.ez13.top/#/testthree-FBX" target="_blank">3D人体舞蹈</a>
+						<a href="https://www.ez13.top/#/hellothree" target="_blank"><span>3D</span>文字</a>
+						<a href="https://www.ez13.top/#/testthree" target="_blank"><span>Miku</span>舞台表演</a>
+						<a href="https://www.ez13.top/#/testthree-FBX" target="_blank"><span>3D</span>人体舞蹈</a>
 					</div>
 				</div>
 				<div class="bottom">
@@ -37,7 +37,7 @@
 			<fx67ll-footer fontColor="#ffffff"></fx67ll-footer>
 		</div>
 		<vueCanvasNest :config="nestConfig" :el="'#vue-canvas-nest'" v-if="isLoadingCompleted"></vueCanvasNest>
-		<div id="vue-canvas-nest" class="three-box-mobile" v-show="isMobileDevice">
+		<div id="vue-canvas-nest" class="three-box-mobile" v-if="isMobileDevice">
 			<div class="fx67ll-title"><span @click="linktoFx67ll()">fx67ll's Three.js <span>作品合集</span></span></div>
 			<div class="fx67ll-link">
 				<div class="fx67ll-link-item">
@@ -49,8 +49,12 @@
 				<div class="fx67ll-link-item">
 					<span><a target="_blank" href="https://ez13.top/#/testthree-FBX">3D人体舞蹈</a></span>
 				</div>
-				<div class="fx67ll-link-item"><router-link tag="a" target="_blank" to="/medical">简易医疗模型实时处理演示</router-link></div>
-				<div class="fx67ll-link-item"><router-link tag="a" target="_blank" to="/cube">魔方小游戏</router-link></div>
+				<div class="fx67ll-link-item">
+					<router-link tag="a" target="_blank" to="/medical">简易医疗模型实时处理演示</router-link>
+				</div>
+				<div class="fx67ll-link-item">
+					<router-link tag="a" target="_blank" to="/cube">魔方小游戏</router-link>
+				</div>
 			</div>
 			<fx67ll-footer />
 		</div>
@@ -59,7 +63,7 @@
 
 <script>
 	import vueCanvasNest from 'vue-canvas-nest';
-	
+
 	import _ from "underscore";
 	import axios from "axios";
 
@@ -92,25 +96,25 @@
 		mounted() {
 			// 获取随机背景图
 			this.getRandomBackGroundImg();
-			
+
 			// 获取位置信息，暂时关闭，防止浏览器不兼容
 			// this.getPosition();
-			
+
 			// 获取天气信息
 			this.getWeather("南京");
-			
+
 			// 移动端适配
 			if (window.innerWidth >= this.$store.state.adaptationInnerWidth) {
 				this.isMobileDevice = false;
 			} else {
 				this.isMobileDevice = true;
 			}
-			
+
 			// 1000-960之间的话背景图片下面会有空白条
 			if (window.innerWidth <= this.$store.state.adaptationInnerWidth + 40) {
 				document.getElementById("bg-img").style.backgroundSize = "100% 100%";
 			}
-			
+
 			let self = this;
 			let loadingTimer = setTimeout(function() {
 				self.isLoadingCompleted = true;
@@ -320,15 +324,19 @@
 
 					.item:nth-child(2) {
 						line-height: 14.6vw;
-						font-size: 2vw;
+						font-size: 2.2vw;
 						font-weight: 500;
 					}
 
 					.item:nth-child(3) {
 						a {
 							display: block;
-							font-size: 1.5vw;
+							font-size: 1.6vw;
 							font-weight: 500;
+
+							span {
+								font-weight: 900;
+							}
 						}
 
 						a:nth-child(1) {
@@ -343,7 +351,7 @@
 					.item:nth-child(1) {
 						height: 50%;
 						line-height: 7.8vw;
-						font-size: 1.9vw;
+						font-size: 2vw;
 						font-weight: 500;
 					}
 
@@ -425,8 +433,8 @@
 				span {
 					display: inline-block;
 					font-size: 28px;
-					
-					span{
+
+					span {
 						font-size: 26px;
 					}
 				}
