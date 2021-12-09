@@ -187,10 +187,9 @@
 				if (this.randomCount) {
 					if (!this.isProgress) {
 
-						// 随机旋转过程中关闭主动魔方旋转监听，旧版处理方式  
-						// 现在处理方式是移动端和非移动端分开添加事件监听的时机  
+						// 随机旋转过程中关闭主动魔方旋转监听
 						this.isProgress = true;
-						// this.removeCubeEvent();
+						this.removeCubeEvent();
 
 						this.randomTimer = setInterval(function() {
 							self.randomRotate();
