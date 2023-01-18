@@ -3,6 +3,9 @@ All My Threejs Projects Collection
 
 欢迎参观 [three.fx67ll.com](http://three.fx67ll.com "fx67ll's Three.js 作品合集的展示网站")  
 
+## 0.3.3.20230118
+* 替换失效的随机图api，并修改url加载方式，方便后期继续维护  
+
 ## 0.3.2.20211208
 * 修复进度条显示异常的问题  
 * 删除不必要中文字体包文件  

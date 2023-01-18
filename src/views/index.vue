@@ -85,6 +85,8 @@ export default {
 	},
 	data() {
 		return {
+			// 渲染的随机图url
+			randomImgUrl: 'https://api.ixiaowai.cn/api/api.php',
 			// 当前位置信息
 			location: '',
 			// 当前位置的天气信息代码
@@ -105,6 +107,7 @@ export default {
 		};
 	},
 	mounted() {
+		const self = this;
 		// 移动端适配
 		if (window.innerWidth >= this.$store.state.adaptationInnerWidth) {
 			// 非移动端标识
@@ -113,7 +116,7 @@ export default {
 			// 获取随机背景图，求职期间暂时关闭，仅填充部分空格子
 			// this.getRandomBackGroundImg();
 			_.each(document.getElementsByClassName('card-bg-img-empty'), function(item, key) {
-				item.style.backgroundImage = 'url(https://api.mtyqx.cn/api/random.php)';
+				item.style.backgroundImage = `url(${self.randomImgUrl})`;
 			});
 
 			// 获取位置信息，暂时关闭，防止浏览器不兼容
@@ -132,7 +135,6 @@ export default {
 		// 	document.getElementById("index-bg-img").style.backgroundSize = "100% 100%";
 		// }
 
-		let self = this;
 		let loadingTimer = setTimeout(function() {
 			self.isLoadingCompleted = true;
 			clearTimeout(loadingTimer);
@@ -189,9 +191,10 @@ export default {
 		},
 		// 获取随机背景图
 		getRandomBackGroundImg() {
-			// document.getElementById("index-bg-img").style.backgroundImage = "url(https://api.mtyqx.cn/api/random.php)";
+			const self = this;
+			// document.getElementById("index-bg-img").style.backgroundImage = `url(${self.randomImgUrl})`;
 			_.each(document.getElementsByClassName('scale'), function(item, key) {
-				item.style.backgroundImage = 'url(https://api.mtyqx.cn/api/random.php)';
+				item.style.backgroundImage = `url(${self.randomImgUrl})`;
 			});
 		},
 		// 页面跳转
