@@ -99,7 +99,7 @@ export default {
 			nestConfig: {
 				color: 'rgb(186, 186, 186)', // the canvas line color, default: '255,0,0'; the color is (R,G,B)
 				opacity: 0.7, // the opacity of line (0~1), default: 0.7
-				count: 44, // the number of lines, default: 99
+				count: 33, // the number of lines, default: 99
 				zIndex: -1 // the index of z space, default: -1
 			},
 			time: 0,
