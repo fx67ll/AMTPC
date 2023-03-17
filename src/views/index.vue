@@ -55,6 +55,8 @@
 				</span>
 			</div>
 			<div class="fx67ll-link">
+				<div class="fx67ll-link-item"><router-link tag="a" target="_blank" to="/cube">魔方小游戏</router-link></div>
+				<div class="fx67ll-link-item"><router-link tag="a" target="_blank" to="/medical">简易医疗模型实时处理演示</router-link></div>
 				<div class="fx67ll-link-item">
 					<span><a target="_blank" href="https://ez13.top/#/hellothree">3D文字</a></span>
 				</div>
@@ -64,8 +66,6 @@
 				<div class="fx67ll-link-item">
 					<span><a target="_blank" href="https://ez13.top/#/testthree-FBX">3D人体舞蹈</a></span>
 				</div>
-				<div class="fx67ll-link-item"><router-link tag="a" target="_blank" to="/medical">简易医疗模型实时处理演示</router-link></div>
-				<div class="fx67ll-link-item"><router-link tag="a" target="_blank" to="/cube">魔方小游戏</router-link></div>
 			</div>
 			<fx67ll-footer />
 		</div>
@@ -99,7 +99,7 @@ export default {
 			nestConfig: {
 				color: 'rgb(186, 186, 186)', // the canvas line color, default: '255,0,0'; the color is (R,G,B)
 				opacity: 0.7, // the opacity of line (0~1), default: 0.7
-				count: 33, // the number of lines, default: 99
+				count: 22, // the number of lines, default: 99
 				zIndex: -1 // the index of z space, default: -1
 			},
 			time: 0,
