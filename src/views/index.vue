@@ -39,7 +39,7 @@
 						<div class="card scale"><a href="https://fx67ll.xyz" target="_blank">fx67ll.xyz</a></div>
 					</div>
 				</div>
-				<div class="title scale" @click="linktoFx67ll()">
+				<div class="title scale" @click="linktoFx67llCom()">
 					fx67ll's Three.js
 					<span>作品合集</span>
 				</div>
@@ -49,7 +49,7 @@
 		<vueCanvasNest :config="nestConfig" :el="'#vue-canvas-nest'" v-if="isLoadingCompleted"></vueCanvasNest>
 		<div id="vue-canvas-nest" class="three-box-mobile" v-if="isMobileDevice">
 			<div class="fx67ll-title">
-				<span @click="linktoFx67ll()">
+				<span @click="linktoFx67llBlog()">
 					fx67ll's Three.js
 					<span>作品合集</span>
 				</span>
@@ -99,7 +99,7 @@ export default {
 			nestConfig: {
 				color: 'rgb(186, 186, 186)', // the canvas line color, default: '255,0,0'; the color is (R,G,B)
 				opacity: 0.7, // the opacity of line (0~1), default: 0.7
-				count: 99, // the number of lines, default: 99
+				count: 44, // the number of lines, default: 99
 				zIndex: -1 // the index of z space, default: -1
 			},
 			time: 0,
@@ -152,8 +152,12 @@ export default {
 				}
 			}, 100);
 		},
+		// 跳转到个人主页
+		linktoFx67llCom() {
+			window.open('https://fx67ll.com');
+		},
 		// 跳转到个人博客
-		linktoFx67ll() {
+		linktoFx67llBlog() {
 			window.open('https://fx67ll.xyz');
 		},
 		// 获取天气信息 https://seniverse.yuque.com/books/share/e52aa43f-8fe9-4ffa-860d-96c0f3cf1c49/nyiu3t

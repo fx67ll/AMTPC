@@ -13,8 +13,7 @@ Router.prototype.push = function push(location) {
 
 import store from '@/store/index.js'
 
-export const fx67llRoutes = [
-	{
+export const fx67llRoutes = [{
 		path: '/',
 		name: 'index',
 		component: () => import('@v/index.vue') //首页
@@ -29,6 +28,15 @@ export const fx67llRoutes = [
 		name: 'cube',
 		component: () => import('@v/project/cube.vue') //魔方模型
 	},
+	{
+		path: '/404',
+		name: '404',
+		component: () => import('@v/404.vue') //404
+	},
+	{
+		path: '*', //不存在的地址则重定向页面地址
+		redirect: '/404'
+	}
 ]
 
 const router = new Router({

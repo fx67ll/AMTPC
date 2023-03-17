@@ -3,6 +3,12 @@ All My Threejs Projects Collection
 
 欢迎参观 [three.fx67ll.com](http://three.fx67ll.com "fx67ll's Three.js 作品合集的展示网站")  
 
+## 0.4.0.20230317
+* 准备添加更多的新示例  
+* 修改路由`hash模式`url中有`#`的方式  
+* 启用https访问，拒绝http警告！  
+* 统一404页面，补齐网站访问体验  
+
 ## 0.3.3.20230118
 * 替换失效的随机图api，并修改url加载方式，方便后期继续维护  
 
