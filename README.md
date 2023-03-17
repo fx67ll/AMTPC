@@ -8,6 +8,7 @@ All My Threejs Projects Collection
 * 修改路由`hash模式`url中有`#`的方式  
 * 启用https访问，拒绝http警告！  
 * 统一404页面，补齐网站访问体验  
+* 补全git忽略文件
 
 ## 0.3.3.20230118
 * 替换失效的随机图api，并修改url加载方式，方便后期继续维护  
