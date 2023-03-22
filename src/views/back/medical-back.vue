@@ -249,7 +249,7 @@ export default {
 			self.scene.add(grid);
 
 			// 使用FBXLoader加载模型
-			self.fbxloader.load('models/Human-002.fbx', function(object) {
+			self.fbxloader.load('models/human/Human-002.fbx', function(object) {
 				self.mixer = new THREE.AnimationMixer(object);
 
 				// console.log(object.children[0].geometry.morphAttributes);

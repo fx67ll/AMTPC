@@ -9,9 +9,13 @@
 	</head>
 	<body>
 		<noscript>
-			<strong>We're sorry but default doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+			<strong>We're sorry but default doesn't work properly without JavaScript enabled. Please enable it to
+				continue.</strong>
 		</noscript>
 		<div id="app"></div>
 		<!-- built files will be auto injected -->
+
+		<!-- Threejs 测试案例需要的额外js依赖，在App.vue页面存储到state中解决Ammo只能加载一次的问题 -->
+		<script src="/models/miku/ammo/ammo.wasm.js"></script>
 	</body>
 </html>
