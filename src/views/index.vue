@@ -147,10 +147,10 @@ export default {
 				grabCursor: true, // 该选项给Swiper 使用者提供小小的贴心应用，设置为true 时，鼠标覆盖Swiper 时指针会变成手掌形状，拖动时指针会变成抓手形状。（根据浏览器形状有所不同）
 				loop: false, // 设置为 true 则开启循环(loop)模式。loop模式：会在原本slide 前后复制若干个slide (默认一个)并在合适的时候切换，让Swiper看起来像是循环的。
 				// // 设置为 true 启动自动切换，并使用默认的切换设置。
-				// autoplay: {
-				// 	delay: 3333, // 自动切换的时间间隔，单位ms
-				// 	disableOnInteraction: false // 用户操作swiper之后，是否禁止autoplay。默认为true：停止。如果设置为false，用户操作swiper之后自动切换不会停止，每次都会重新启动autoplay。
-				// },
+				autoplay: {
+					delay: 11111, // 自动切换的时间间隔，单位ms
+					disableOnInteraction: false // 用户操作swiper之后，是否禁止autoplay。默认为true：停止。如果设置为false，用户操作swiper之后自动切换不会停止，每次都会重新启动autoplay。
+				},
 				// 使用分页器导航。分页器可使用小圆点样式（默认）、分式样式或进度条样式。
 				pagination: {
 					el: '.swiper-pagination',
