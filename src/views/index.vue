@@ -3,46 +3,77 @@
 		<div class="three-box-pc" v-if="!isMobileDevice">
 			<div id="index-bg-img" class="three-mask"></div>
 			<div class="three-layout">
-				<div class="top">
-					<div class="item scale">
-						<!-- <img class="weather-img" :src="getImg()"> -->
-						<!-- {{ this.weatherText }} -->
-						<div class="weather-box">
-							<img class="weather-img" :src="getImg(this.weatherCode)" />
-							<span>{{ this.weatherText }}</span>
+				<swiper class="swiper" :options="swiperOptions">
+					<swiper-slide class="swiper-slide">
+						<div class="top">
+							<div class="item scale weather">
+								<div class="weather-box">
+									<img class="weather-img" :src="getImg(this.weatherCode)" />
+									<span>{{ this.weatherText }}</span>
+								</div>
+							</div>
+							<div class="item scale" @click="goNext('medical')">简易医疗模型实时处理演示</div>
+							<div class="item scale">
+								<a href="#" @click.prevent="goNext('three-hello')">
+									<span>3D</span>
+									文字
+								</a>
+								<a href="#" @click.prevent="goNext('three-miku')">
+									<span>Miku</span>
+									舞台表演
+								</a>
+								<a href="#" @click.prevent="goNext('three-fbx')">
+									<span>3D</span>
+									人体舞蹈
+								</a>
+							</div>
 						</div>
-					</div>
-					<div class="item scale" @click="goNext('medical')">简易医疗模型实时处理演示</div>
-					<div class="item scale">
-						<a href="https://www.ez13.top/#/hellothree" target="_blank">
-							<span>3D</span>
-							文字
-						</a>
-						<a href="https://www.ez13.top/#/testthree" target="_blank">
-							<span>Miku</span>
-							舞台表演
-						</a>
-						<a href="https://www.ez13.top/#/testthree-FBX" target="_blank">
-							<span>3D</span>
-							人体舞蹈
-						</a>
-					</div>
-				</div>
-				<div class="bottom">
-					<div class="item scale" @click="goNext('cube')">魔方小游戏</div>
-					<div class="item">
-						<div class="card scale card-bg-img-empty"></div>
-						<div class="card scale card-bg-img-empty"></div>
-					</div>
-					<div class="item">
-						<div class="card scale card-bg-img-empty"></div>
-						<div class="card scale"><a href="https://fx67ll.xyz" target="_blank">fx67ll.xyz</a></div>
-					</div>
-				</div>
-				<div class="title scale" @click="linktoFx67llCom()">
-					fx67ll's Three.js
-					<span>作品合集</span>
-				</div>
+						<div class="bottom">
+							<div class="item scale" @click="goNext('cube')">魔方小游戏</div>
+							<div class="item">
+								<div class="card scale card-bg-img-empty"></div>
+								<div class="card scale card-bg-img-empty"></div>
+							</div>
+							<div class="item">
+								<div class="card scale card-bg-img-empty"></div>
+								<div class="card scale"><a href="https://fx67ll.xyz" target="_blank">fx67ll.xyz</a></div>
+							</div>
+						</div>
+						<div class="title scale" @click="linktoFx67llCom()">
+							fx67ll's Three.js
+							<span>作品合集</span>
+						</div>
+					</swiper-slide>
+					<swiper-slide class="swiper-slide">
+						<div
+							class="top ani"
+							:swiper-animate-effect="swiperAniConfig.swiperAnimateEffect"
+							:swiper-animate-duration="swiperAniConfig.swiperAnimateDuration"
+							:swiper-animate-delay="swiperAniConfig.swiperAnimateDelay"
+						>
+							<div class="item scale card-bg-img-empty"></div>
+							<div class="item scale">更多示例敬请期待</div>
+							<div class="item scale card-bg-img-empty"></div>
+						</div>
+						<div
+							class="bottom ani"
+							:swiper-animate-effect="swiperAniConfig.swiperAnimateEffect"
+							:swiper-animate-duration="swiperAniConfig.swiperAnimateDuration"
+							:swiper-animate-delay="swiperAniConfig.swiperAnimateDelay"
+						>
+							<div class="item scale card-bg-img-empty"></div>
+							<div class="item">
+								<div class="card scale card-bg-img-empty"></div>
+								<div class="card scale card-bg-img-empty"></div>
+							</div>
+							<div class="item">
+								<div class="card scale card-bg-img-empty"></div>
+								<div class="card scale card-bg-img-empty"></div>
+							</div>
+						</div>
+					</swiper-slide>
+					<div class="swiper-pagination" slot="pagination"></div>
+				</swiper>
 			</div>
 			<fx67ll-footer fontColor="#ffffff"></fx67ll-footer>
 		</div>
@@ -74,6 +105,8 @@
 
 <script>
 import vueCanvasNest from 'vue-canvas-nest';
+import { swiper, swiperSlide } from 'vue-awesome-swiper';
+import 'swiper/dist/css/swiper.css';
 
 import _ from 'underscore';
 import axios from 'axios';
@@ -81,9 +114,12 @@ import axios from 'axios';
 export default {
 	name: 'index',
 	components: {
-		vueCanvasNest
+		vueCanvasNest,
+		swiper,
+		swiperSlide
 	},
 	data() {
+		let self = this;
 		return {
 			// 渲染的随机图url
 			randomImgUrl: 'https://api.ixiaowai.cn/api/api.php',
@@ -102,8 +138,44 @@ export default {
 				count: 22, // the number of lines, default: 99
 				zIndex: -1 // the index of z space, default: -1
 			},
-			time: 0,
-			isLoadingCompleted: false
+			// 背景插件加载flag
+			isLoadingCompleted: false,
+			// Swiper 属性
+			swiperOptions: {
+				initialSlide: 0, // 设定初始化时slide的索引。Swiper默认初始化时显示第一个slide，如果想在初始化时直接显示其他slide，可以做此设置。
+				speed: 200, // 切换速度，即slider自动滑动开始到结束的时间（单位ms），也是触摸滑动时释放至贴合的时间。
+				grabCursor: true, // 该选项给Swiper 使用者提供小小的贴心应用，设置为true 时，鼠标覆盖Swiper 时指针会变成手掌形状，拖动时指针会变成抓手形状。（根据浏览器形状有所不同）
+				loop: false, // 设置为 true 则开启循环(loop)模式。loop模式：会在原本slide 前后复制若干个slide (默认一个)并在合适的时候切换，让Swiper看起来像是循环的。
+				// // 设置为 true 启动自动切换，并使用默认的切换设置。
+				// autoplay: {
+				// 	delay: 3333, // 自动切换的时间间隔，单位ms
+				// 	disableOnInteraction: false // 用户操作swiper之后，是否禁止autoplay。默认为true：停止。如果设置为false，用户操作swiper之后自动切换不会停止，每次都会重新启动autoplay。
+				// },
+				// 使用分页器导航。分页器可使用小圆点样式（默认）、分式样式或进度条样式。
+				pagination: {
+					el: '.swiper-pagination',
+					type: 'fraction'
+				},
+				// 事件监听
+				on: {
+					// 事件函数，初始化后执行。
+					init: function() {
+						self.$swiperAnimateCache(this); // 隐藏动画元素
+						self.$swiperAnimate(this); // 初始化完成开始动画
+					},
+					// 事件函数。在当前Slide切换到另一个Slide时执行(activeIndex发生改变)，一般是在点击控制组件、释放滑动的时间点。
+					slideChange: function() {
+						self.$swiperAnimate(this); // 每个slide切换结束时也运行当前slide动画
+						// self.slides.eq(this.activeIndex).find('.ani').removeClass('ani'); // 动画只展现一次，去除ani类名
+					},
+				}
+			},
+			// Swiper 动画配置
+			swiperAniConfig: {
+				swiperAnimateEffect: 'fadeInUp', // 动画效果
+				swiperAnimateDuration: '0.5s', // 动画持续时间
+				swiperAnimateDelay: '0.3s' // 动画延迟时间
+			}
 		};
 	},
 	mounted() {
@@ -213,5 +285,5 @@ export default {
 </script>
 
 <style lang="less" scoped="scoped">
-@import '@a/styles/index.less';
+@import '@a/styles/index/index.less';
 </style>

@@ -3,6 +3,15 @@ All My Threejs Projects Collection
 
 欢迎参观 [three.fx67ll.com](http://three.fx67ll.com "fx67ll's Three.js 作品合集的展示网站")  
 
+## 0.4.x.202303xx
+* 添加新的示例  
+
+## 0.4.1.20230322
+* 添加`swiper.js`和`animate.css`插件用于拓展首页显示区域  
+	+ 参考站点[swiper中文网](https://www.swiper.com.cn/api/start/new.html)  
+	+ 参考站点[vue-awesome-swiper](https://v1.github.surmon.me/vue-awesome-swiper/)  
+* fx67llVueTool的官方示例迁移过来（~~原先部署在*ez13.top*站点上~~）  
+
 ## 0.4.0.20230317
 * 准备添加更多的新示例  
 * 修改路由`hash模式`url中有`#`的方式  

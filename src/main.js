@@ -13,7 +13,20 @@ import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
 import fx67llVueUI from 'fx67ll-vue-ui';
-Vue.use(fx67llVueUI)
+Vue.use(fx67llVueUI);
+
+import {
+	swiperAnimateCache,
+	swiperAnimate,
+	clearSwiperAnimate
+} from "@/assets/js/swiper.animate1.0.3.min.js"
+import animated from 'animate.css';
+Vue.use(animated);
+
+// 挂载swiper animate动画事件插件
+Vue.prototype.$swiperAnimateCache = swiperAnimateCache;
+Vue.prototype.$swiperAnimate = swiperAnimate;
+Vue.prototype.$clearSwiperAnimate = clearSwiperAnimate;
 
 // 每次加载之后添加统一操作提示
 Vue.prototype.showOperationTips = function(msg) {

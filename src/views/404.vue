@@ -44,7 +44,7 @@ export default {
 </script>
 
 <style lang="less" scoped="scoped">
-@import '@a/styles/404.less';
+@import '@a/styles/index/404.less';
 .fx67ll-footer {
 	width: 100%;
 	padding: 20px 0;

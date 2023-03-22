@@ -16,17 +16,30 @@ import store from '@/store/index.js'
 export const fx67llRoutes = [{
 		path: '/',
 		name: 'index',
-		component: () => import('@v/index.vue') //首页
-	},
-	{
+		component: () => import('@v/index.vue') // 首页
+	}, {
 		path: '/medical',
 		name: 'medical',
-		component: () => import('@v/project/medical.vue') //医疗模型
+		component: () => import('@v/project/medical.vue') // 医疗模型
 	},
 	{
 		path: '/cube',
 		name: 'cube',
-		component: () => import('@v/project/cube.vue') //魔方模型
+		component: () => import('@v/project/cube.vue') // 魔方模型
+	}, {
+		path: '/three-hello',
+		name: 'threeHello',
+		component: () => import('@v/demo/three-hello.vue') // Threejs 官方示例 Hello World
+	},
+	{
+		path: '/three-miku',
+		name: 'threeMiku',
+		component: () => import('@v/demo/three-miku.vue') // Threejs 官方示例 Miku MMD 加载
+	},
+	{
+		path: '/three-fbx',
+		name: 'threeFBX',
+		component: () => import('@v/demo/three-fbx.vue') // Threejs 官方示例 FBX 加载
 	},
 	{
 		path: '/404',
