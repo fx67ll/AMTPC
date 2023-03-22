@@ -89,13 +89,28 @@
 				<div class="fx67ll-link-item"><router-link tag="a" target="_blank" to="/cube">魔方小游戏</router-link></div>
 				<div class="fx67ll-link-item"><router-link tag="a" target="_blank" to="/medical">简易医疗模型实时处理演示</router-link></div>
 				<div class="fx67ll-link-item">
-					<span><a target="_blank" href="https://ez13.top/#/hellothree">3D文字</a></span>
+					<span>
+						<a href="#" @click.prevent="goNext('three-hello')">
+							<span>3D</span>
+							文字
+						</a>
+					</span>
 				</div>
 				<div class="fx67ll-link-item">
-					<span><a target="_blank" href="https://ez13.top/#/testthree">Miku舞台表演</a></span>
+					<span>
+						<a href="#" @click.prevent="goNext('three-miku')">
+							<span>Miku</span>
+							舞台表演
+						</a>
+					</span>
 				</div>
 				<div class="fx67ll-link-item">
-					<span><a target="_blank" href="https://ez13.top/#/testthree-FBX">3D人体舞蹈</a></span>
+					<span>
+						<a href="#" @click.prevent="goNext('three-fbx')">
+							<span>3D</span>
+							人体舞蹈
+						</a>
+					</span>
 				</div>
 			</div>
 			<fx67ll-footer />
@@ -167,7 +182,7 @@ export default {
 					slideChange: function() {
 						self.$swiperAnimate(this); // 每个slide切换结束时也运行当前slide动画
 						// self.slides.eq(this.activeIndex).find('.ani').removeClass('ani'); // 动画只展现一次，去除ani类名
-					},
+					}
 				}
 			},
 			// Swiper 动画配置
