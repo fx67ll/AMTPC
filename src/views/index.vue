@@ -4,8 +4,13 @@
 			<div id="index-bg-img" class="three-mask"></div>
 			<div class="three-layout">
 				<swiper class="swiper" :options="swiperOptions">
-					<swiper-slide class="swiper-slide">
-						<div class="top">
+					<swiper-slide class="swiper-slide swiper-slide-s">
+						<div
+							class="top ani"
+							:swiper-animate-effect="swiperAniConfigS.swiperAnimateEffect"
+							:swiper-animate-duration="swiperAniConfigS.swiperAnimateDuration"
+							:swiper-animate-delay="swiperAniConfigS.swiperAnimateDelay"
+						>
 							<div class="item scale weather">
 								<div class="weather-box">
 									<img class="weather-img" :src="getImg(this.weatherCode)" />
@@ -28,7 +33,12 @@
 								</a>
 							</div>
 						</div>
-						<div class="bottom">
+						<div
+							class="bottom ani"
+							:swiper-animate-effect="swiperAniConfigS.swiperAnimateEffect"
+							:swiper-animate-duration="swiperAniConfigS.swiperAnimateDuration"
+							:swiper-animate-delay="swiperAniConfigS.swiperAnimateDelay"
+						>
 							<div class="item scale" @click="goNext('cube')">魔方小游戏</div>
 							<div class="item">
 								<div class="card scale card-bg-img-empty"></div>
@@ -39,17 +49,56 @@
 								<div class="card scale"><a href="https://fx67ll.xyz" target="_blank">fx67ll.xyz</a></div>
 							</div>
 						</div>
-						<div class="title scale" @click="linktoFx67llCom()">
+						<div
+							class="title scale ani"
+							:swiper-animate-effect="swiperAniConfigS.swiperAnimateEffect"
+							:swiper-animate-duration="swiperAniConfigS.swiperAnimateDuration"
+							:swiper-animate-delay="swiperAniConfigS.swiperAnimateDelay"
+						>
 							fx67ll's Three.js
 							<span>作品合集</span>
 						</div>
 					</swiper-slide>
-					<swiper-slide class="swiper-slide">
+					<swiper-slide class="swiper-slide swiper-slide-a">
 						<div
 							class="top ani"
-							:swiper-animate-effect="swiperAniConfig.swiperAnimateEffect"
-							:swiper-animate-duration="swiperAniConfig.swiperAnimateDuration"
-							:swiper-animate-delay="swiperAniConfig.swiperAnimateDelay"
+							:swiper-animate-effect="swiperAniConfigA.swiperAnimateEffect"
+							:swiper-animate-duration="swiperAniConfigA.swiperAnimateDuration"
+							:swiper-animate-delay="swiperAniConfigA.swiperAnimateDelay"
+						>
+							<div class="item scale card-bg-img-empty"></div>
+							<div class="item scale">
+								<span>Animated Mesh Lines</span>
+								<span>示例合集</span>
+							</div>
+							<div class="item scale" @click="goNext('fx67ll-Animated-Mesh-Lines', 'energy')">闪电能量</div>
+						</div>
+						<div
+							class="bottom ani"
+							:swiper-animate-effect="swiperAniConfigA.swiperAnimateEffect"
+							:swiper-animate-duration="swiperAniConfigA.swiperAnimateDuration"
+							:swiper-animate-delay="swiperAniConfigA.swiperAnimateDelay"
+						>
+							<div class="item scale" @click="goNext('fx67ll-Animated-Mesh-Lines', 'shootingStars')">流星雨</div>
+							<div class="item">
+								<div class="card scale" @click="goNext('fx67ll-Animated-Mesh-Lines', 'borealSky')">
+									<span>宇宙星河</span>
+									<span>时空穿梭</span>
+								</div>
+								<div class="card scale" @click="goNext('fx67ll-Animated-Mesh-Lines', 'colors')">色彩</div>
+							</div>
+							<div class="item">
+								<div class="card scale" @click="goNext('fx67ll-Animated-Mesh-Lines', 'confetti')">五彩纸屑</div>
+								<div class="card scale"><a href="https://node.fx67ll.com" target="_blank">node.fx67ll</a></div>
+							</div>
+						</div>
+					</swiper-slide>
+					<swiper-slide class="swiper-slide swiper-slide-b">
+						<div
+							class="top ani"
+							:swiper-animate-effect="swiperAniConfigB.swiperAnimateEffect"
+							:swiper-animate-duration="swiperAniConfigB.swiperAnimateDuration"
+							:swiper-animate-delay="swiperAniConfigB.swiperAnimateDelay"
 						>
 							<div class="item scale card-bg-img-empty"></div>
 							<div class="item scale">更多示例敬请期待</div>
@@ -57,9 +106,9 @@
 						</div>
 						<div
 							class="bottom ani"
-							:swiper-animate-effect="swiperAniConfig.swiperAnimateEffect"
-							:swiper-animate-duration="swiperAniConfig.swiperAnimateDuration"
-							:swiper-animate-delay="swiperAniConfig.swiperAnimateDelay"
+							:swiper-animate-effect="swiperAniConfigB.swiperAnimateEffect"
+							:swiper-animate-duration="swiperAniConfigB.swiperAnimateDuration"
+							:swiper-animate-delay="swiperAniConfigB.swiperAnimateDelay"
 						>
 							<div class="item scale card-bg-img-empty"></div>
 							<div class="item">
@@ -68,7 +117,7 @@
 							</div>
 							<div class="item">
 								<div class="card scale card-bg-img-empty"></div>
-								<div class="card scale card-bg-img-empty"></div>
+								<div class="card scale"><a href="https://uni.fx67ll.com" target="_blank">uni.fx67ll</a></div>
 							</div>
 						</div>
 					</swiper-slide>
@@ -77,7 +126,7 @@
 			</div>
 			<fx67ll-footer fontColor="#ffffff"></fx67ll-footer>
 		</div>
-		<vueCanvasNest :config="nestConfig" :el="'#vue-canvas-nest'" v-if="isLoadingCompleted"></vueCanvasNest>
+		<vueCanvasNest :config="nestConfig" :el="'#vue-canvas-nest'" v-if="isLoadingCompleted && isMobileDevice"></vueCanvasNest>
 		<div id="vue-canvas-nest" class="three-box-mobile" v-if="isMobileDevice">
 			<div class="fx67ll-title">
 				<span @click="linktoFx67llBlog()">
@@ -163,7 +212,7 @@ export default {
 				loop: false, // 设置为 true 则开启循环(loop)模式。loop模式：会在原本slide 前后复制若干个slide (默认一个)并在合适的时候切换，让Swiper看起来像是循环的。
 				// // 设置为 true 启动自动切换，并使用默认的切换设置。
 				autoplay: {
-					delay: 11111, // 自动切换的时间间隔，单位ms
+					delay: 23333, // 自动切换的时间间隔，单位ms
 					disableOnInteraction: false // 用户操作swiper之后，是否禁止autoplay。默认为true：停止。如果设置为false，用户操作swiper之后自动切换不会停止，每次都会重新启动autoplay。
 				},
 				// 使用分页器导航。分页器可使用小圆点样式（默认）、分式样式或进度条样式。
@@ -186,9 +235,19 @@ export default {
 				}
 			},
 			// Swiper 动画配置
-			swiperAniConfig: {
+			swiperAniConfigS: {
+				swiperAnimateEffect: 'rubberBand', // 动画效果
+				swiperAnimateDuration: '1s', // 动画持续时间
+				swiperAnimateDelay: '0s' // 动画延迟时间
+			},
+			swiperAniConfigA: {
 				swiperAnimateEffect: 'fadeInUp', // 动画效果
 				swiperAnimateDuration: '0.5s', // 动画持续时间
+				swiperAnimateDelay: '0.3s' // 动画延迟时间
+			},
+			swiperAniConfigB: {
+				swiperAnimateEffect: 'flipInY', // 动画效果
+				swiperAnimateDuration: '1s', // 动画持续时间
 				swiperAnimateDelay: '0.3s' // 动画延迟时间
 			}
 		};
@@ -289,9 +348,12 @@ export default {
 			});
 		},
 		// 页面跳转
-		goNext(path) {
+		goNext(path, fileName) {
 			let routeUrl = this.$router.resolve({
-				path: path
+				path: path,
+				query: {
+					fileName: fileName
+				}
 			});
 			window.open(routeUrl.href, '_blank');
 		}

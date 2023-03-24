@@ -40,6 +40,10 @@ export const fx67llRoutes = [{
 		path: '/three-fbx',
 		name: 'threeFBX',
 		component: () => import('@v/demo/three-fbx.vue') // Threejs 官方示例 FBX 加载
+	}, {
+		path: '/fx67ll-Animated-Mesh-Lines',
+		name: 'fx67ll-Animated-Mesh-Lines',
+		component: () => import('@v/frame/frame.vue') // 魔方模型
 	},
 	{
 		path: '/404',

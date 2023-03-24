@@ -19,7 +19,7 @@
 // 标题高度
 @titleHeight: 3vw;
 // 因为添加swiper插件导致两侧需要预留一定空白来处理悬浮放大被遮盖的问题
-@contentAsidePadding: 2vw;
+@contentAsidePadding: 10vw;
 // 为底部分页器或滚动条插件预留的空间
 @forSwiperBottom: 3vw;
 
@@ -285,16 +285,73 @@
 .swiper {
 	position: relative;
 	top: -(@titleHeight * 2);
-}
+	.swiper-slide {
+		height: calc(32vw + (@titleHeight * 2) + @forSwiperBottom);
+		box-sizing: border-box;
+		padding: (@titleHeight * 2) @contentAsidePadding @forSwiperBottom @contentAsidePadding;
+	}
+	.swiper-pagination-fraction,
+	.swiper-pagination-custom,
+	.swiper-container-horizontal > .swiper-pagination-bullets {
+		color: #fff;
+	}
+	.swiper-slide-a {
+		.top {
+			.item:nth-child(2) {
+				span {
+					width: 100%;
+					display: block;
+					position: relative;
+					top: 4.2vw;
+				}
+				span:nth-child(1) {
+					line-height: 3vw;
+					font-weight: 900 !important;
+				}
+				span:nth-child(2) {
+					font-size: 2.6vw;
+					line-height: 4.4vw;
+				}
+			}
 
-.swiper-slide {
-	height: calc(32vw + (@titleHeight * 2) + @forSwiperBottom);
-	box-sizing: border-box;
-	padding: (@titleHeight * 2) @contentAsidePadding @forSwiperBottom @contentAsidePadding;
-}
+			.item:nth-child(3) {
+				font-size: 2.2vw;
+				font-weight: 500;
+				line-height: 15.2vw;
+			}
+		}
 
-.swiper-pagination-fraction,
-.swiper-pagination-custom,
-.swiper-container-horizontal > .swiper-pagination-bullets {
-	color: #fff;
+		.bottom {
+			.item:nth-child(2) {
+				.card:nth-child(1) {
+					font-size: 2.8vw;
+					font-weight: 400;
+					span {
+						width: 100%;
+						display: block;
+						position: relative;
+						top: 3.4vw;
+					}
+					span:nth-child(1) {
+						line-height: 3vw;
+					}
+					span:nth-child(2) {
+						line-height: 4.4vw;
+					}
+				}
+				.card:nth-child(2) {
+					font-size: 1.8vw;
+					font-weight: 400;
+					line-height: 11vw;
+				}
+			}
+			.item:nth-child(3) {
+				.card:nth-child(1) {
+					font-size: 1.9vw;
+					font-weight: 500;
+					line-height: 7.5vw;
+				}
+			}
+		}
+	}
 }

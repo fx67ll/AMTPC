@@ -3,12 +3,21 @@ All My Threejs Projects Collection
 
 欢迎参观 [three.fx67ll.com](http://three.fx67ll.com "fx67ll's Three.js 作品合集的展示网站")  
 
-## 0.4.x.202303xx
+## 0.x.x.202303xx
 * 添加新的示例  
+
+## 0.5.0.20230324
+* 添加示例：闪电能量  
+* 添加示例：流星雨  
+* 添加示例：宇宙星河，时空穿梭  
+* 添加示例：色彩  
+* 添加示例：五彩纸屑  
+* 切换动效优化  
 
 ## 0.4.1.20230322
 * 添加`swiper.js`和`animate.css`插件用于拓展首页显示区域  
 	+ 参考站点[swiper中文网](https://www.swiper.com.cn/api/start/new.html)  
+	+ 参考站点[swiper动画效果](https://www.swiper.com.cn/usage/animate/index.html)  
 	+ 参考站点[vue-awesome-swiper](https://v1.github.surmon.me/vue-awesome-swiper/)  
 * fx67llVueTool的官方示例迁移过来（~~原先部署在*ez13.top*站点上~~）  
 
