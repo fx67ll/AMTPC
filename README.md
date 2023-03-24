@@ -4,7 +4,9 @@ All My Threejs Projects Collection
 欢迎参观 [three.fx67ll.com](http://three.fx67ll.com "fx67ll's Three.js 作品合集的展示网站")  
 
 ## 0.x.x.202303xx
-* 添加新的示例  
+* 添加新的示例，可以学习魔改官方示例  
+* 学习一点游戏的示例，是否要不要入unity3d的坑？ 
+* 配合lbw处理楼房模型和车模型之类的动效展示  
 
 ## 0.5.0.20230324
 * 添加示例：闪电能量  
