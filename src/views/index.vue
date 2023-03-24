@@ -161,6 +161,21 @@
 						</a>
 					</span>
 				</div>
+				<div class="fx67ll-link-item">
+					<router-link tag="a" target="_blank" :to="{ path: '/fx67ll-Animated-Mesh-Lines', query: { fileName: 'energy' } }">运动能量</router-link>
+				</div>
+				<div class="fx67ll-link-item">
+					<router-link tag="a" target="_blank" :to="{ path: '/fx67ll-Animated-Mesh-Lines', query: { fileName: 'shootingStars' } }">流星雨</router-link>
+				</div>
+				<div class="fx67ll-link-item">
+					<router-link tag="a" target="_blank" :to="{ path: '/fx67ll-Animated-Mesh-Lines', query: { fileName: 'borealSky' } }">宇宙星河</router-link>
+				</div>
+				<div class="fx67ll-link-item">
+					<router-link tag="a" target="_blank" :to="{ path: '/fx67ll-Animated-Mesh-Lines', query: { fileName: 'colors' } }">色彩</router-link>
+				</div>
+				<div class="fx67ll-link-item">
+					<router-link tag="a" target="_blank" :to="{ path: '/fx67ll-Animated-Mesh-Lines', query: { fileName: 'confetti' } }">五彩纸屑</router-link>
+				</div>
 			</div>
 			<fx67ll-footer />
 		</div>
