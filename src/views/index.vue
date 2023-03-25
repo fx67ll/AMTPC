@@ -225,11 +225,13 @@ export default {
 				speed: 200, // 切换速度，即slider自动滑动开始到结束的时间（单位ms），也是触摸滑动时释放至贴合的时间。
 				grabCursor: true, // 该选项给Swiper 使用者提供小小的贴心应用，设置为true 时，鼠标覆盖Swiper 时指针会变成手掌形状，拖动时指针会变成抓手形状。（根据浏览器形状有所不同）
 				loop: false, // 设置为 true 则开启循环(loop)模式。loop模式：会在原本slide 前后复制若干个slide (默认一个)并在合适的时候切换，让Swiper看起来像是循环的。
-				// // 设置为 true 启动自动切换，并使用默认的切换设置。
+				// 设置为 true 启动自动切换，并使用默认的切换设置。
 				autoplay: {
 					delay: 23333, // 自动切换的时间间隔，单位ms
 					disableOnInteraction: false // 用户操作swiper之后，是否禁止autoplay。默认为true：停止。如果设置为false，用户操作swiper之后自动切换不会停止，每次都会重新启动autoplay。
 				},
+				// 开启鼠标滚轮控制Swiper切换。可设置鼠标选项，或true使用默认值。
+				mousewheel: true,
 				// 使用分页器导航。分页器可使用小圆点样式（默认）、分式样式或进度条样式。
 				pagination: {
 					el: '.swiper-pagination',
@@ -256,12 +258,12 @@ export default {
 				swiperAnimateDelay: '0s' // 动画延迟时间
 			},
 			swiperAniConfigA: {
-				swiperAnimateEffect: 'fadeInUp', // 动画效果
-				swiperAnimateDuration: '0.5s', // 动画持续时间
+				swiperAnimateEffect: 'flipInY', // 动画效果
+				swiperAnimateDuration: '1s', // 动画持续时间
 				swiperAnimateDelay: '0.3s' // 动画延迟时间
 			},
 			swiperAniConfigB: {
-				swiperAnimateEffect: 'flipInY', // 动画效果
+				swiperAnimateEffect: 'lightSpeedIn', // 动画效果
 				swiperAnimateDuration: '1s', // 动画持续时间
 				swiperAnimateDelay: '0.3s' // 动画延迟时间
 			}
