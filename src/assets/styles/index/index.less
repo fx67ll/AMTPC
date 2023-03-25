@@ -239,10 +239,12 @@
 	.three-box-mobile {
 		width: 100%;
 		height: 100%;
-
+		
+		@linkTitleMarginTop: 30px;
+		@linkTitleMarginBottom: 20px;
 		.fx67ll-title {
 			width: 100%;
-			padding: 35px 0 20px 0;
+			padding: @linkTitleMarginTop 0 @linkTitleMarginBottom 0;
 			text-align: center;
 
 			span {
@@ -255,17 +257,18 @@
 			}
 		}
 
-		@linkMarginTop: 0;
-		@linkMarginBottom: 25px;
+		@linkItemMarginTop: 0;
+		@linkItemMarginBottom: 20px;
 		.fx67ll-link {
-			max-height: calc(~'100% - 81px - 108px - @{linkMarginTop} - @{linkMarginBottom}');
+			max-height: calc(~'100% - @{linkTitleMarginTop} - @{linkTitleMarginBottom} - 138px - @{linkItemMarginTop} - @{linkItemMarginBottom}');
+			border: 1px solid red;
 			overflow: auto;
 			padding: 0 50px;
-			margin: @linkMarginTop 0 @linkMarginBottom 0;
+			margin: @linkItemMarginTop 0 @linkItemMarginBottom 0;
 
 			.fx67ll-link-item {
 				width: 100%;
-				margin-bottom: 6px;
+				margin-bottom: 8px;
 				text-align: center;
 
 				a {
