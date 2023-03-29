@@ -236,6 +236,7 @@
 		}
 	}
 
+	@textOpacity: 0.7;
 	.three-box-mobile {
 		width: 100%;
 		height: 100%;
@@ -243,16 +244,17 @@
 		@linkTitleMarginTop: 25px;
 		@linkTitleMarginBottom: 15px;
 		.fx67ll-title {
-			width: 100%;
 			padding: @linkTitleMarginTop 0 @linkTitleMarginBottom 0;
 			text-align: center;
+			color: @green;
+			opacity: @textOpacity;
 
 			span {
 				display: inline-block;
-				font-size: 28px;
+				font-size: 32px;
 
 				span {
-					font-size: 26px;
+					font-size: 28px;
 				}
 			}
 		}
@@ -274,6 +276,8 @@
 					display: inline-block;
 					font-size: 24px;
 					text-decoration: none;
+					color: @red;
+					opacity: @textOpacity;
 				}
 
 				a:hover {
