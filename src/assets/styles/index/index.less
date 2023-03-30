@@ -242,7 +242,7 @@
 		height: 100%;
 
 		@linkTitleMarginTop: 25px;
-		@linkTitleMarginBottom: 15px;
+		@linkTitleMarginBottom: 10px;
 		.fx67ll-title {
 			padding: @linkTitleMarginTop 0 @linkTitleMarginBottom 0;
 			text-align: center;
@@ -262,15 +262,16 @@
 		@linkItemMarginTop: 0;
 		@linkItemMarginBottom: 25px;
 		.fx67ll-link {
-			max-height: calc(~'100% - @{linkTitleMarginTop} - @{linkTitleMarginBottom} - 145px - @{linkItemMarginTop} - @{linkItemMarginBottom}');
+			max-height: calc(~'100% - @{linkTitleMarginTop} - @{linkTitleMarginBottom} - 150px - @{linkItemMarginTop} - @{linkItemMarginBottom}');
 			overflow: auto;
 			padding: 0 30px;
 			margin: @linkItemMarginTop 0 @linkItemMarginBottom 0;
 
 			.fx67ll-link-item {
 				width: 100%;
-				margin-bottom: 1px;
+				margin-bottom: 4px;
 				text-align: center;
+				// border: 1px solid red;
 
 				a {
 					display: inline-block;
