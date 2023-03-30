@@ -1,5 +1,9 @@
 <template>
-	<div class="three"><canvas id="three_canvas"></canvas></div>
+	<div class="three">
+		<loading-progress :progressNum="modelLoadingText" :isFinished="modelLoadingFinished"></loading-progress>
+		<canvas id="three_canvas"></canvas>
+		<fx67ll-footer />
+	</div>
 </template>
 
 <script>
@@ -13,20 +17,26 @@ import { MMDAnimationHelper } from 'three/examples/jsm/animation/MMDAnimationHel
 export default {
 	name: 'threeMiku',
 	data() {
-		return {};
+		return {
+			// 模型是否正在加载
+			modelLoadingFinished: false,
+			// 模型加载进度提示
+			modelLoadingText: 0
+		};
 	},
 	mounted() {
 		this.initThree();
 	},
 	methods: {
 		initThree() {
+			let self = this;
 			let stats;
 
 			let mesh, camera, scene, renderer, effect;
 			let helper, ikHelper, physicsHelper;
 
 			const clock = new THREE.Clock();
-			
+
 			// Ammo是Bullet Physics的js版本，主要用于实时碰撞检测和多物理场仿真
 			// 现在的问题是引入这个js之后Ammo只加载一次，第二次进入函数会失效
 			this.$store.state.Ammo.then(function(AmmoLib) {
@@ -81,9 +91,17 @@ export default {
 				// model
 
 				function onProgress(xhr) {
-					if (xhr.lengthComputable) {
-						const percentComplete = (xhr.loaded / xhr.total) * 100;
-						console.log(Math.round(percentComplete, 2) + '% downloaded');
+					// if (xhr.lengthComputable) {
+					// 	const percentComplete = (xhr.loaded / xhr.total) * 100;
+					// 	console.log(Math.round(percentComplete, 2) + '% downloaded');
+					// 	// self.modelLoadingText = Math.round(percentComplete, 2);
+					// 	// if (self.modelLoadingText === 100) {
+					// 	// 	self.modelLoadingFinished = true;
+					// 	// }
+					// }
+					self.modelLoadingText = parseInt((xhr.loaded / xhr.total) * 100);
+					if (self.modelLoadingText === 100) {
+						self.modelLoadingFinished = true;
 					}
 				}
 
