@@ -408,12 +408,6 @@ export default {
 			this.isMobileDevice = false;
 		} else {
 			this.isMobileDevice = true;
-			this.$message({
-				showClose: true,
-				message: '移动端仅支持查看，暂不支持操作！',
-				type: 'warning',
-				duration: 2000
-			});
 		}
 	},
 	methods: {
@@ -840,6 +834,15 @@ export default {
 					self.modelLoadingText = parseInt((xhr.loaded / xhr.total) * 100);
 					if (self.modelLoadingText === 100) {
 						self.modelLoadingFinished = true;
+						if (self.isMobileDevice) {
+							self.$message({
+								showClose: true,
+								message: '移动端仅支持查看，暂不支持其他操作~',
+								type: 'warning',
+								duration: 9999,
+								offset: 100
+							});
+						}
 					}
 				}
 			);
