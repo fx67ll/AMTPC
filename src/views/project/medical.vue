@@ -840,7 +840,7 @@ export default {
 								message: '移动端仅支持查看，暂不支持其他操作~',
 								type: 'warning',
 								duration: 9999,
-								offset: 100
+								offset: 55
 							});
 						}
 					}
