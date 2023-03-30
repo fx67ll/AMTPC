@@ -101,7 +101,7 @@ export default {
 					// }
 					if (xhr.currentTarget.responseURL.split('.')[1] === 'pmd') {
 						self.modelLoadingText = parseInt((xhr.loaded / xhr.total) * 50);
-					} else if (xhr.currentTarget.responseURL.split('.')[1] === 'vmd') {
+					} else {
 						self.modelLoadingText = parseInt((xhr.loaded / xhr.total) * 50) + 50;
 						if (self.modelLoadingText === 100) {
 							self.modelLoadingFinished = true;
