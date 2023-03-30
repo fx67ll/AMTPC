@@ -408,6 +408,12 @@ export default {
 			this.isMobileDevice = false;
 		} else {
 			this.isMobileDevice = true;
+			this.$message({
+				showClose: true,
+				message: '移动端仅支持查看，暂不支持操作！',
+				type: 'warning',
+				duration: 2000
+			});
 		}
 	},
 	methods: {
