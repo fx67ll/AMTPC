@@ -99,13 +99,14 @@ export default {
 					// 	// 	self.modelLoadingFinished = true;
 					// 	// }
 					// }
-					if (xhr.currentTarget.responseURL.split('.')[1] === 'pmd') {
-						self.modelLoadingText = parseInt((xhr.loaded / xhr.total) * 50);
-					} else {
-						self.modelLoadingText = parseInt((xhr.loaded / xhr.total) * 50) + 50;
-						if (self.modelLoadingText === 100) {
-							self.modelLoadingFinished = true;
+					if (self.modelLoadingText !== 100) {
+						if (xhr.currentTarget.responseURL.split('.')[1] === 'pmd') {
+							self.modelLoadingText = parseInt((xhr.loaded / xhr.total) * 50);
+						} else {
+							self.modelLoadingText = parseInt((xhr.loaded / xhr.total) * 50) + 50;
 						}
+					} else {
+						self.modelLoadingFinished = true;
 					}
 				}
 
