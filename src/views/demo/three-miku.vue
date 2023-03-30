@@ -99,6 +99,12 @@ export default {
 					// 	// 	self.modelLoadingFinished = true;
 					// 	// }
 					// }
+					this.$message({
+						showClose: true,
+						message: `${xhr.currentTarget.responseURL.split('.')[1]}, ${parseInt(xhr.loaded / xhr.total)}`,
+						type: 'warning',
+						duration: 2000
+					});
 					if (self.modelLoadingText !== 100) {
 						if (xhr.currentTarget.responseURL.split('.')[1] === 'pmd') {
 							self.modelLoadingText = parseInt((xhr.loaded / xhr.total) * 50);
