@@ -201,7 +201,7 @@ export default {
 		let self = this;
 		return {
 			// 渲染的随机图url
-			randomImgUrl: 'https://api.ixiaowai.cn/api/api.php',
+			randomImgUrl: 'https://api.likepoems.com/img/pc',
 			// 当前位置信息
 			location: '',
 			// 当前位置的天气信息代码
@@ -277,10 +277,7 @@ export default {
 			this.isMobileDevice = false;
 
 			// 获取随机背景图，求职期间暂时关闭，仅填充部分空格子
-			// this.getRandomBackGroundImg();
-			_.each(document.getElementsByClassName('card-bg-img-empty'), function(item, key) {
-				item.style.backgroundImage = `url(${self.randomImgUrl})`;
-			});
+			this.getRandomBackGroundImg();
 
 			// 获取位置信息，暂时关闭，防止浏览器不兼容
 			// this.getPosition();
@@ -359,9 +356,21 @@ export default {
 		// 获取随机背景图
 		getRandomBackGroundImg() {
 			const self = this;
+			// 页面背景
 			// document.getElementById("index-bg-img").style.backgroundImage = `url(${self.randomImgUrl})`;
-			_.each(document.getElementsByClassName('scale'), function(item, key) {
-				item.style.backgroundImage = `url(${self.randomImgUrl})`;
+
+			// 所有方块背景
+			// _.each(document.getElementsByClassName('scale'), function(item, key) {
+			// 	item.style.backgroundImage = `url(${self.randomImgUrl})`;
+			// });
+
+			// 空白区域
+			_.each(document.getElementsByClassName('card-bg-img-empty'), function(item, key) {
+				if (self.randomImgUrl) {
+					item.style.backgroundImage = `url(${self.randomImgUrl})`;
+				} else {
+					item.style.backgroundImage = `url(${require('@a/images/defaultBackgroundImage.jpg')})`;
+				}
 			});
 		},
 		// 页面跳转
