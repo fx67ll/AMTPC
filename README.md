@@ -9,7 +9,7 @@ All My Threejs Projects Collection
 * 配合lbw处理楼房模型和车模型之类的动效展示  
 
 ## 0.5.5.20230413
-* 优化移动端`fx67ll-footer`显示效果  
+* 优化`fx67ll-footer`移动端显示效果
 
 ## 0.5.4.20230402
 * 添加默认背景图用于随机图API失效的情况  
