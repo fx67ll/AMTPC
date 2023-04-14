@@ -1,5 +1,5 @@
 <template>
-	<loading-progress :progressNum="progressNum" :isFinished="false" :styleType="styleType"></loading-progress>
+	<loading-progress :progressNum="progressNum" :isFinished="false" :styleType="styleType" :bgColor="bgColor"></loading-progress>
 </template>
 
 <script>
@@ -11,13 +11,15 @@
 		data() {
 			return {
 				timer: null,
+				progressNum: 0,
 				styleType: 'striped',
-				progressNum: 0
+				bgColor: '#2c303a',
 			};
 		},
 		mounted() {
 			this.setProgressnumber(true, 0);
 			this.styleType = getUrlQueryString('styleType');
+			this.bgColor = getUrlQueryString('bgColor');
 		},
 		beforeDestroy() {
 			clearTimeout(this.timer);
