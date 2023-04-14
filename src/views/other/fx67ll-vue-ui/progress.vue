@@ -14,13 +14,14 @@
 				progressNum: 0,
 				styleType: 'striped',
 				bgColor: '#2c303a',
+				isShowText: true,
 			};
 		},
 		mounted() {
 			this.setProgressnumber(true, 0);
-			this.styleType = getUrlQueryString('styleType');
-			this.bgColor = getUrlQueryString('bgColor');
-			this.isShowText = JSON.parse(getUrlQueryString('isShowText'));
+			this.styleType = getUrlQueryString('styleType') || 'striped';
+			this.bgColor = getUrlQueryString('bgColor') || '#2c303a';
+			this.isShowText = JSON.parse(getUrlQueryString('isShowText')) || true;
 		},
 		beforeDestroy() {
 			clearTimeout(this.timer);
