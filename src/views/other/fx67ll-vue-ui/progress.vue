@@ -1,5 +1,5 @@
 <template>
-	<loading-progress :progressNum="progressNum" :isFinished="false" :styleType="styleType" :bgColor="bgColor"></loading-progress>
+	<loading-progress :progressNum="progressNum" :isFinished="false" :styleType="styleType" :bgColor="bgColor" :isShowText="isShowText"></loading-progress>
 </template>
 
 <script>
@@ -20,6 +20,7 @@
 			this.setProgressnumber(true, 0);
 			this.styleType = getUrlQueryString('styleType');
 			this.bgColor = getUrlQueryString('bgColor');
+			this.isShowText = JSON.parse(getUrlQueryString('isShowText'));
 		},
 		beforeDestroy() {
 			clearTimeout(this.timer);
