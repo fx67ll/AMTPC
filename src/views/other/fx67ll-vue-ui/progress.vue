@@ -21,7 +21,7 @@
 			this.setProgressnumber(true, 0);
 			this.styleType = getUrlQueryString('styleType') || 'striped';
 			this.bgColor = getUrlQueryString('bgColor') || '#2c303a';
-			this.isShowText = JSON.parse(getUrlQueryString('isShowText')) || true;
+			this.isShowText = getUrlQueryString('isShowText') ? JSON.parse(getUrlQueryString('isShowText')) : true;
 		},
 		beforeDestroy() {
 			clearTimeout(this.timer);
