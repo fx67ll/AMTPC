@@ -40,7 +40,8 @@ module.exports = {
 				'@': resolve('src'),
 				'@a': resolve('src/assets'),
 				'@v': resolve('src/views'),
-				'@c': resolve('src/components')
+				'@c': resolve('src/components'),
+				'@u': resolve('src/utils'),
 			}
 		}
 	},

@@ -8,6 +8,9 @@ All My Threejs Projects Collection
 * 学习一点游戏的示例，是否要不要入unity3d的坑？ 
 * 配合lbw处理楼房模型和车模型之类的动效展示  
 
+## 0.5.6.20230414  
+* 添加`fx67ll-Vue-UI`组件库进度条页面组件的在线示例  
+
 ## 0.5.5.20230413
 * 优化`fx67ll-footer`移动端显示效果
 

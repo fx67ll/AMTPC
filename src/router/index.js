@@ -17,7 +17,8 @@ export const fx67llRoutes = [{
 		path: '/',
 		name: 'index',
 		component: () => import('@v/index.vue') // 首页
-	}, {
+	},
+	{
 		path: '/medical',
 		name: 'medical',
 		component: () => import('@v/project/medical.vue') // 医疗模型
@@ -26,7 +27,8 @@ export const fx67llRoutes = [{
 		path: '/cube',
 		name: 'cube',
 		component: () => import('@v/project/cube.vue') // 魔方模型
-	}, {
+	}, 
+	{
 		path: '/three-hello',
 		name: 'threeHello',
 		component: () => import('@v/demo/three-hello.vue') // Threejs 官方示例 Hello World
@@ -40,10 +42,16 @@ export const fx67llRoutes = [{
 		path: '/three-fbx',
 		name: 'threeFBX',
 		component: () => import('@v/demo/three-fbx.vue') // Threejs 官方示例 FBX 加载
-	}, {
+	},
+	{
 		path: '/fx67ll-Animated-Mesh-Lines',
 		name: 'fx67ll-Animated-Mesh-Lines',
 		component: () => import('@v/frame/frame.vue') // 魔方模型
+	},
+	{
+		path: '/fx67ll-vue-ui-progress',
+		name: 'fx67llVueUIProgress',
+		component: () => import('@v/other/fx67ll-vue-ui/progress.vue') // fx67ll Vue UI 组件库进度条演示
 	},
 	{
 		path: '/404',
