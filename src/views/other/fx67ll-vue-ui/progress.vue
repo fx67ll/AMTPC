@@ -15,7 +15,7 @@
 				styleType: 'striped',
 				bgColor: '#2c303a',
 				isShowText: true,
-				deadLine: 2333,
+				deadLine: 888,
 			};
 		},
 		mounted() {
@@ -23,9 +23,6 @@
 			this.styleType = getUrlQueryString('styleType') || 'striped';
 			this.bgColor = getUrlQueryString('bgColor') || '#2c303a';
 			this.isShowText = getUrlQueryString('isShowText') ? JSON.parse(getUrlQueryString('isShowText')) : true;
-			if (window.innerWidth < this.$store.state.adaptationInnerWidth) {
-				this.deadLine = 233;
-			}
 		},
 		beforeDestroy() {
 			clearTimeout(this.timer);
