@@ -27,7 +27,7 @@ export const fx67llRoutes = [{
 		path: '/cube',
 		name: 'cube',
 		component: () => import('@v/project/cube.vue') // 魔方模型
-	}, 
+	},
 	{
 		path: '/three-hello',
 		name: 'threeHello',
@@ -49,8 +49,13 @@ export const fx67llRoutes = [{
 		component: () => import('@v/frame/frame.vue') // 魔方模型
 	},
 	{
+		path: '/fx67ll-vue-ui-index',
+		name: 'fx67llVueUiIndex',
+		component: () => import('@v/other/index-for-fvu-mobile.vue') // 为了适配fx67ll Vue UI 组件库移动端演示
+	},
+	{
 		path: '/fx67ll-vue-ui-progress',
-		name: 'fx67llVueUIProgress',
+		name: 'fx67llVueUiProgress',
 		component: () => import('@v/other/fx67ll-vue-ui/progress.vue') // fx67ll Vue UI 组件库进度条演示
 	},
 	{

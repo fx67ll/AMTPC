@@ -15,6 +15,7 @@
 				styleType: 'striped',
 				bgColor: '#2c303a',
 				isShowText: true,
+				deadLine: 2333,
 			};
 		},
 		mounted() {
@@ -22,6 +23,9 @@
 			this.styleType = getUrlQueryString('styleType') || 'striped';
 			this.bgColor = getUrlQueryString('bgColor') || '#2c303a';
 			this.isShowText = getUrlQueryString('isShowText') ? JSON.parse(getUrlQueryString('isShowText')) : true;
+			if (window.innerWidth < this.$store.state.adaptationInnerWidth) {
+				this.deadLine = 233;
+			}
 		},
 		beforeDestroy() {
 			clearTimeout(this.timer);
@@ -30,7 +34,6 @@
 		methods: {
 			setProgressnumber(isFirst, nextNumber) {
 				const self = this;
-				const deadLine = 2333;
 				const randomTempNum = Math.random() * (1 - 0) + 0;
 				if (isFirst) {
 					this.progressNum = nextNumber;
@@ -39,8 +42,8 @@
 					}, 1);
 				} else {
 					nextNumber += randomTempNum;
-					this.progressNum = Math.floor((nextNumber / deadLine) * 100);
-					if (nextNumber > deadLine) {
+					this.progressNum = Math.floor((nextNumber / this.deadLine) * 100);
+					if (nextNumber > this.deadLine) {
 						this.timer = setTimeout(() => {
 							self.setProgressnumber(true, 0);
 						}, 1);
