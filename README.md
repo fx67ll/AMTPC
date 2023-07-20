@@ -10,7 +10,8 @@ All My Threejs Projects Collection
 
 ## 0.5.9.20230720
 * 更新`fx67ll-Vue-UI`组件库版本到最新版 `npm install fx67ll-vue-ui@latest --save`  
-* 添加`fx67ll-Vue-UI`组件库随机马赛克头像组件的在线示例
+* 添加`fx67ll-Vue-UI`组件库随机马赛克头像组件的在线示例  
+* 新增首页资源加载动画  
 
 ## 0.5.8.20230628  
 * 优化首页背景图
