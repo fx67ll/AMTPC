@@ -1,6 +1,6 @@
 {
 	"name": "AMTPC",
-	"version": "0.5.4",
+	"version": "0.5.9",
 	"description": "fx67ll's Three.js Projects",
 	"private": true,
 	"scripts": {
@@ -13,7 +13,7 @@
 		"core-js": "^2.6.5",
 		"crypto": "^1.0.1",
 		"element-ui": "^2.14.1",
-		"fx67ll-vue-ui": "^0.3.6",
+		"fx67ll-vue-ui": "^0.4.0",
 		"less": "^3.12.2",
 		"less-loader": "^7.0.1",
 		"moment": "^2.28.0",

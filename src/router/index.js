@@ -59,6 +59,11 @@ export const fx67llRoutes = [{
 		component: () => import('@v/other/fx67ll-vue-ui/progress.vue') // fx67ll Vue UI 组件库进度条演示
 	},
 	{
+		path: '/fx67ll-vue-ui-avatar',
+		name: 'fx67llVueUiAvatar',
+		component: () => import('@v/other/fx67ll-vue-ui/avatar.vue') // fx67ll Vue UI 组件库随机马赛克头像演示
+	},
+	{
 		path: '/404',
 		name: '404',
 		component: () => import('@v/404.vue') //404

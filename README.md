@@ -8,6 +8,10 @@ All My Threejs Projects Collection
 * 学习一点游戏的示例，是否要不要入unity3d的坑？ 
 * 配合lbw处理楼房模型和车模型之类的动效展示  
 
+## 0.5.9.20230720
+* 更新`fx67ll-Vue-UI`组件库版本到最新版 `npm install fx67ll-vue-ui@latest --save`  
+* 添加`fx67ll-Vue-UI`组件库随机马赛克头像组件的在线示例
+
 ## 0.5.8.20230628  
 * 优化首页背景图
 
