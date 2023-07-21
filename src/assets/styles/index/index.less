@@ -22,6 +22,11 @@
 @contentAsidePadding: 10vw;
 // 为底部分页器或滚动条插件预留的空间
 @forSwiperBottom: 3vw;
+// 卡片中外链文字的颜色和背景色，参考站点：https://ant.design/docs/spec/colors-cn
+@link-color: #000000;
+@link-bg-color: #ffc069;
+// 卡片中标题文字的颜色，参考站点：https://ant.design/docs/spec/colors-cn
+@title-color: #feffe6;
 
 #index-bg-img {
 	background-repeat: no-repeat;
@@ -32,6 +37,14 @@
 
 .card-bg-img-empty {
 	background-size: auto 150%;
+}
+
+.card-title-no-link {
+	color: @title-color !important;
+
+	&:hover {
+		color: @title-color !important;
+	}
 }
 
 .scale {
@@ -64,6 +77,13 @@
 
 .weather {
 	background-color: @weather-color;
+}
+
+.link {
+	background-color: @link-bg-color;
+	a {
+		color: @link-color;
+	}
 }
 
 .three-box {
@@ -219,7 +239,7 @@
 			}
 
 			.title {
-				width: 15vw;
+				width: 17vw;
 				height: @titleHeight;
 				padding: 0 2vw;
 				border: @border-width solid @border-color;
@@ -227,9 +247,12 @@
 				top: ~'calc(-100% - @{titleHeight} - @{border-space})';
 				left: 5vw;
 				// color: @border-color;
-				color: @text-color;
+				// color: @text-color;
+				color: @title-color;
+				opacity: 0.9;
 
 				span {
+					font-size: 1.4vw;
 					font-weight: 500;
 				}
 			}
@@ -356,6 +379,53 @@
 				.card:nth-child(1) {
 					font-size: 1.9vw;
 					font-weight: 500;
+					line-height: 7.5vw;
+				}
+			}
+		}
+	}
+	.swiper-slide-b {
+		.card-bg-img-empty {
+			a {
+				color: #2ecc71;
+				font-weight: 900 !important;
+				&:hover {
+					color: #000000;
+				}
+			}
+		}
+		.top {
+			.item:nth-child(2) {
+				span {
+					width: 100%;
+					display: block;
+					position: relative;
+					top: 4.2vw;
+					line-height: 3vw;
+					font-weight: 900 !important;
+				}
+			}
+
+			.item:nth-child(3) {
+				font-size: 2.5vw;
+				line-height: 3vw;
+			}
+		}
+
+		.bottom {
+			.item:nth-child(2) {
+				.card:nth-child(1) {
+					font-size: 2.5vw;
+					line-height: 13.5vw;
+				}
+				.card:nth-child(2) {
+					font-size: 2vw;
+					line-height: 12vw;
+				}
+			}
+			.item:nth-child(3) {
+				.card:nth-child(1) {
+					font-size: 1.9vw;
 					line-height: 7.5vw;
 				}
 			}
