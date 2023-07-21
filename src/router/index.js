@@ -54,6 +54,11 @@ export const fx67llRoutes = [{
 		component: () => import('@v/other/index-for-fvu-mobile.vue') // 为了适配fx67ll Vue UI 组件库移动端演示
 	},
 	{
+		path: '/fx67ll-vue-ui-footer',
+		name: 'fx67llVueUiFooter',
+		component: () => import('@v/other/fx67ll-vue-ui/footer.vue') // fx67ll Vue UI 组件库网站页脚展示
+	},
+	{
 		path: '/fx67ll-vue-ui-progress',
 		name: 'fx67llVueUiProgress',
 		component: () => import('@v/other/fx67ll-vue-ui/progress.vue') // fx67ll Vue UI 组件库进度条演示

@@ -8,6 +8,9 @@ All My Threejs Projects Collection
 * 学习一点游戏的示例，是否要不要入unity3d的坑？ 
 * 配合lbw处理楼房模型和车模型之类的动效展示  
 
+## 0.5.10.20230721  
+* 优化`fx67ll-Vue-UI`组件库**网站页脚组件**的在线示例
+
 ## 0.5.9.20230720
 * 更新`fx67ll-Vue-UI`组件库版本到最新版 `npm install fx67ll-vue-ui@latest --save`  
 * 添加`fx67ll-Vue-UI`组件库随机马赛克头像组件的在线示例  
@@ -20,10 +23,10 @@ All My Threejs Projects Collection
 * 适配部分`fx67ll-Vue-UI`组件库移动端显示效果  
 
 ## 0.5.6.20230414  
-* 添加`fx67ll-Vue-UI`组件库进度条页面组件的在线示例  
+* 添加`fx67ll-Vue-UI`组件库**进度条组件**的在线示例  
 
 ## 0.5.5.20230413
-* 优化`fx67ll-footer`移动端显示效果
+* 优化`fx67ll-Vue-UI`组件库**网站页脚组件**的在线示例
 
 ## 0.5.4.20230402
 * 添加默认背景图用于随机图API失效的情况  
@@ -33,7 +36,7 @@ All My Threejs Projects Collection
 * 完善官方示例加载动画  
 
 ## 0.5.2.20230329
-* 优化移动端首页显示效果   
+* 添加`fx67ll-Vue-UI`组件库**网站页脚组件**的在线示例   
 
 ## 0.5.1.20230326
 * 优化移动端访问体验 
