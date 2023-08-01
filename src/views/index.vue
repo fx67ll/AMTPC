@@ -88,30 +88,25 @@
 							:swiper-animate-delay="swiperAniConfigB.swiperAnimateDelay">
 							<div class="item scale card-bg-img-empty"></div>
 							<div class="item scale card-title-no-link">个人作品友情链接</div>
-							<div class="item scale card-bg-img-empty">
+							<div class="item scale link">
+								<a href="https://nav.fx67ll.com" target="_blank">nav.fx67ll.com</a>
 								<a href="https://uni.fx67ll.com" target="_blank">uni.fx67ll.com</a>
 								<a href="https://map.fx67ll.com" target="_blank">map.fx67ll.com</a>
 								<a href="https://node.fx67ll.com" target="_blank">node.fx67ll.com</a>
+								<a href="https://vip.fx67ll.com" target="_blank">vip.fx67ll.com</a>
+								<a href="https://vue-ui.fx67ll.com" target="_blank">vue-ui.fx67ll.com</a>
 							</div>
 						</div>
 						<div class="bottom ani" :swiper-animate-effect="swiperAniConfigB.swiperAnimateEffect"
 							:swiper-animate-duration="swiperAniConfigB.swiperAnimateDuration"
 							:swiper-animate-delay="swiperAniConfigB.swiperAnimateDelay">
-							<div class="item scale card-bg-img-empty">
-								<a href="https://vue-ui.fx67ll.com" target="_blank">vue-ui</a>
+							<div class="item scale card-bg-img-empty"></div>
+							<div class="item">
+								<div class="card scale card-bg-img-empty"></div>
+								<div class="card scale card-bg-img-empty"></div>
 							</div>
 							<div class="item">
-								<div class="card scale card-bg-img-empty">
-									<a href="https://vip.fx67ll.com" target="_blank">vip.fx67ll.com</a>
-								</div>
-								<div class="card scale card-bg-img-empty">
-									<a href="http://404.fx67ll.com" target="_blank">404</a>
-								</div>
-							</div>
-							<div class="item">
-								<div class="card scale card-bg-img-empty">
-									<a href="https://nav.fx67ll.com" target="_blank">nav.fx67ll.com</a>
-								</div>
+								<div class="card scale card-bg-img-empty"></div>
 								<div class="card scale link">
 									<a href="https://fx67ll.xyz" target="_blank">fx67ll.xyz</a>
 								</div>
@@ -228,7 +223,7 @@
 				isLoadingCompleted: false,
 				// Swiper 属性
 				swiperOptions: {
-					initialSlide: 0, // 设定初始化时slide的索引。Swiper默认初始化时显示第一个slide，如果想在初始化时直接显示其他slide，可以做此设置。
+					initialSlide: 2, // 设定初始化时slide的索引。Swiper默认初始化时显示第一个slide，如果想在初始化时直接显示其他slide，可以做此设置。
 					speed: 200, // 切换速度，即slider自动滑动开始到结束的时间（单位ms），也是触摸滑动时释放至贴合的时间。
 					grabCursor: true, // 该选项给Swiper 使用者提供小小的贴心应用，设置为true 时，鼠标覆盖Swiper 时指针会变成手掌形状，拖动时指针会变成抓手形状。（根据浏览器形状有所不同）
 					loop: false, // 设置为 true 则开启循环(loop)模式。loop模式：会在原本slide 前后复制若干个slide (默认一个)并在合适的时候切换，让Swiper看起来像是循环的。
