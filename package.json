@@ -32,5 +32,17 @@
 		"@vue/cli-plugin-babel": "^3.8.0",
 		"@vue/cli-service": "^3.8.0",
 		"vue-template-compiler": "^2.6.10"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/fx67ll/AMTPC"
+	},
+	"keywords": [
+		"fx67ll",
+		"fx67ll.com",
+		"three.fx67ll.com",
+		"three.js",
+	],
+	"author": "fx67ll@github.com",
+	"license": "MIT"
 }
