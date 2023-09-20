@@ -93,7 +93,6 @@
 								<a href="https://uni.fx67ll.com" target="_blank">uni.fx67ll.com</a>
 								<a href="https://map.fx67ll.com" target="_blank">map.fx67ll.com</a>
 								<a href="https://node.fx67ll.com" target="_blank">node.fx67ll.com</a>
-								<a href="https://vip.fx67ll.com" target="_blank">vip.fx67ll.com</a>
 								<a href="https://vue-ui.fx67ll.com" target="_blank">vue-ui.fx67ll.com</a>
 							</div>
 						</div>
@@ -102,7 +101,14 @@
 							:swiper-animate-delay="swiperAniConfigB.swiperAnimateDelay">
 							<div class="item scale card-bg-img-empty"></div>
 							<div class="item">
-								<div class="card scale card-bg-img-empty"></div>
+								<div class="card scale link">
+									<span>
+										<a href="https://fx67ll.vip" target="_blank">fx67ll.vip</a>
+									</span>
+									<span>
+										<a href="https://vip.fx67ll.com" target="_blank">vip.fx67ll.com</a>
+									</span>
+								</div>
 								<div class="card scale card-bg-img-empty"></div>
 							</div>
 							<div class="item">
