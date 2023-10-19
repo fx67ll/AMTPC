@@ -89,7 +89,6 @@
 							<div class="item scale card-bg-img-empty"></div>
 							<div class="item scale card-title-no-link">个人作品友情链接</div>
 							<div class="item scale link">
-								<a href="https://nav.fx67ll.com" target="_blank">nav.fx67ll.com</a>
 								<a href="https://uni.fx67ll.com" target="_blank">uni.fx67ll.com</a>
 								<a href="https://map.fx67ll.com" target="_blank">map.fx67ll.com</a>
 								<a href="https://node.fx67ll.com" target="_blank">node.fx67ll.com</a>
@@ -112,7 +111,9 @@
 								<div class="card scale card-bg-img-empty"></div>
 							</div>
 							<div class="item">
-								<div class="card scale card-bg-img-empty"></div>
+								<div class="card scale link">
+									<a href="https://nav.fx67ll.com" target="_blank">nav.fx67ll.com</a>
+								</div>
 								<div class="card scale link">
 									<a href="https://fx67ll.xyz" target="_blank">fx67ll.xyz</a>
 								</div>
