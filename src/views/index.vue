@@ -210,10 +210,7 @@
 			let self = this;
 			return {
 				// 渲染的随机图url
-				// randomImgUrl: 'https://vip.fx67ll.com/vip-api/getRandomAvatar',
-				// randomImgUrl: 'https://api.paugram.com/wallpaper/',
-				// randomImgUrl: 'https://api.likepoems.com/img/pc',
-				randomImgUrl: 'https://api.r10086.com/樱道随机图片api接口.php?图片系列=动漫综合13',
+				randomImgUrl: 'https://vip.fx67ll.com/vip-api/getRandomImage?imgUrlSuffix=/forThree',
 				// 当前位置信息
 				location: '',
 				// 当前位置的天气信息代码
