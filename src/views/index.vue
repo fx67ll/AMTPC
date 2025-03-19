@@ -101,8 +101,11 @@
 							<div class="item scale card-bg-img-empty"></div>
 							<div class="item">
 								<div class="card scale link">
-									<span>
+									<!-- <span>
 										<a href="https://fx67ll.vip" target="_blank">fx67ll.vip</a>
+									</span> -->
+									<span>
+										<a href="https://life.fx67ll.com" target="_blank">life.fx67ll.com</a>
 									</span>
 									<span>
 										<a href="https://vip.fx67ll.com" target="_blank">vip.fx67ll.com</a>
