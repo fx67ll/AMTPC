@@ -3,10 +3,13 @@ All My Threejs Projects Collection
 
 欢迎参观 [three.fx67ll.com](http://three.fx67ll.com "fx67ll's Three.js 作品合集的展示网站")  
 
-## 0.x.x.2023xxxx
+## 0.x.x.202xxxxx
 * 添加新的示例，可以学习魔改官方示例  
 * 学习一点游戏的示例，是否要不要入unity3d的坑？ 
 * 配合lbw处理楼房模型和车模型之类的动效展示  
+
+## 0.5.14.20250731
+* 适配没有内存执行构建的jenkins应用  
 
 ## 0.5.13.20240402  
 * 切换为个人的随机图API，第三方过于不稳定  

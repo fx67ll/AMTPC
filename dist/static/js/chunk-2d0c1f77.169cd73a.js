@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0c1f77"],{"47fd":function(n,e,l){"use strict";l.r(e);var o=function(){var n=this,e=n._self._c;return e("div",[e("fx67ll-footer")],1)},t=[],u={name:"fx67llVueUIFooter"},c=u,f=l("2877"),r=Object(f["a"])(c,o,t,!1,null,null,null);e["default"]=r.exports}}]);
