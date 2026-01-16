@@ -1,7 +1,7 @@
 // 卡片背景颜色
-@background-color: #2ECC71;
+@background-color: #2ecc71;
 // 卡片边框颜色
-@border-color: #FFFFFF;
+@border-color: #ffffff;
 // 卡片文字颜色
 @text-color: #000000; // #FFFF7F
 // 卡片外链颜色
@@ -29,425 +29,447 @@
 @title-color: #feffe6;
 
 #index-bg-img {
-	background-repeat: no-repeat;
-	// background-size: 100% auto;
-	background-size: cover;
-	background-image: url('~@a/images/slamdunk-compress.jpg');
+  background-repeat: no-repeat;
+  // background-size: 100% auto;
+  background-size: cover;
+  background-image: url('~@a/images/slamdunk-compress.jpg');
 }
 
 .card-bg-img-empty {
-	background-size: auto 150%;
+  background-size: auto 150%;
 }
 
 .card-title-no-link {
-	color: @title-color !important;
+  color: @title-color !important;
 
-	&:hover {
-		color: @title-color !important;
-	}
+  &:hover {
+    color: @title-color !important;
+  }
 }
 
 .scale {
-	transform: scale(1, 1);
-	transition: transform @scale-time;
-	cursor: pointer;
-	color: @text-color;
-	text-align: center;
-	line-height: 3vw;
-	font-size: 1.3vw;
-	font-weight: 900;
-	border-radius: 0.6vw;
-	background-color: @background-color;
-	opacity: 0.8;
+  transform: scale(1, 1);
+  transition: transform @scale-time;
+  cursor: pointer;
+  color: @text-color;
+  text-align: center;
+  line-height: 3vw;
+  font-size: 1.3vw;
+  font-weight: 900;
+  border-radius: 0.6vw;
+  background-color: @background-color;
+  opacity: 0.8;
 
-	a {
-		color: @a-color;
-		text-decoration: none;
-	}
+  a {
+    color: @a-color;
+    text-decoration: none;
+  }
 
-	a:hover {
-		color: @border-color;
-	}
+  a:hover {
+    color: @border-color;
+  }
 }
 
 .scale:hover {
-	color: @border-color;
-	transform: scale(@scale-number, @scale-number);
+  color: @border-color;
+  transform: scale(@scale-number, @scale-number);
 }
 
 .weather {
-	background-color: @weather-color;
+  background-color: @weather-color;
 }
 
 .link {
-	background-color: @link-bg-color;
-	a {
-		color: @link-color;
-	}
+  background-color: @link-bg-color;
+  a {
+    color: @link-color;
+  }
 }
 
 .three-box {
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
 
-	.three-box-pc {
-		width: 100%;
-		height: 100%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
+  .three-box-pc {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-		.three-mask {
-			width: 100%;
-			height: 100%;
-			filter: blur(0.3vw);
-			position: absolute;
-			top: 0;
-			z-index: 0;
-		}
+    .three-mask {
+      width: 100%;
+      height: 100%;
+      filter: blur(0.3vw);
+      position: absolute;
+      top: 0;
+      z-index: 0;
+    }
 
-		.three-layout {
-			width: calc(60vw + (@contentAsidePadding * 2));
-			height: 32vw;
-			margin: 0 auto;
-			z-index: 1;
-			position: relative;
-			top: 1vw;
+    .three-layout {
+      width: calc(60vw + (@contentAsidePadding * 2));
+      height: 32vw;
+      margin: 0 auto;
+      z-index: 1;
+      position: relative;
+      top: 1vw;
 
-			.top,
-			.bottom {
-				width: 100%;
-				height: ~'calc(50% - @{border-space}/2)';
-				display: flex;
-				justify-content: space-between;
+      .top,
+      .bottom {
+        width: 100%;
+        height: ~'calc(50% - @{border-space}/2)';
+        display: flex;
+        justify-content: space-between;
 
-				.item {
-					width: ~'calc(25% - @{border-space})';
-					height: 100%;
-					border: @border-width solid @border-color;
-				}
+        .item {
+          width: ~'calc(25% - @{border-space})';
+          height: 100%;
+          border: @border-width solid @border-color;
+        }
 
-				.item:nth-child(2) {
-					width: 50%;
-				}
-			}
+        .item:nth-child(2) {
+          width: 50%;
+        }
+      }
 
-			.top {
-				.item:nth-child(1) {
-					color: @border-color;
-					color: @text-color;
-					background-size: cover;
+      .top {
+        .item:nth-child(1) {
+          color: @border-color;
+          color: @text-color;
+          background-size: cover;
 
-					.weather-box {
-						width: 60%;
-						margin: 0 auto;
-						position: relative;
-						top: 3vw;
+          .weather-box {
+            width: 60%;
+            margin: 0 auto;
+            position: relative;
+            top: 3vw;
 
-						.weather-img {
-							width: 5vw;
-						}
+            .weather-img {
+              width: 5vw;
+            }
 
-						span {
-							display: block;
-							font-size: 2vw;
-							font-weight: 500;
-							line-height: 3vw;
-						}
-					}
-				}
+            span {
+              display: block;
+              font-size: 2vw;
+              font-weight: 500;
+              line-height: 3vw;
+            }
+          }
+        }
 
-				.item:nth-child(2) {
-					line-height: 14.6vw;
-					font-size: 2.2vw;
-					font-weight: 500;
-				}
+        .item:nth-child(2) {
+          line-height: 14.6vw;
+          font-size: 2.2vw;
+          font-weight: 500;
+        }
 
-				.item:nth-child(3) {
-					a {
-						display: block;
-						font-size: 1.6vw;
-						font-weight: 500;
+        .item:nth-child(3) {
+          a {
+            display: block;
+            font-size: 1.6vw;
+            font-weight: 500;
 
-						span {
-							font-weight: 900;
-						}
-					}
+            span {
+              font-weight: 900;
+            }
+          }
 
-					a:nth-child(1) {
-						margin-top: 3.1vw;
-					}
-				}
-			}
+          a:nth-child(1) {
+            margin-top: 3.1vw;
+          }
+        }
+      }
 
-			.bottom {
-				margin-top: @border-space;
+      .bottom {
+        margin-top: @border-space;
 
-				.item:nth-child(1) {
-					height: 50%;
-					line-height: 7.8vw;
-					font-size: 2vw;
-					font-weight: 500;
-				}
+        .item:nth-child(1) {
+          height: 50%;
+          line-height: 7.8vw;
+          font-size: 2vw;
+          font-weight: 500;
+        }
 
-				.item:nth-child(2) {
-					display: flex;
-					justify-content: space-between;
-					border: none;
+        .item:nth-child(2) {
+          display: flex;
+          justify-content: space-between;
+          border: none;
 
-					.card {
-						border: @border-width solid @border-color;
-					}
+          .card {
+            border: @border-width solid @border-color;
+          }
 
-					.card:first-child {
-						width: ~'calc(70% - @{border-space}/2)';
-						height: 90%;
-						position: relative;
-						right: @border-width;
-					}
+          .card:first-child {
+            width: ~'calc(70% - @{border-space}/2)';
+            height: 90%;
+            position: relative;
+            right: @border-width;
+          }
 
-					.card:last-child {
-						width: ~'calc(30% - @{border-space}/2)';
-						height: 76%;
-						position: relative;
-						left: @border-width;
-					}
-				}
+          // .card:last-child {
+          // 	width: ~'calc(30% - @{border-space}/2)';
+          // 	height: 76%;
+          // 	position: relative;
+          // 	left: @border-width;
+          // }
 
-				.item:nth-child(3) {
-					height: 76%;
-					border: @border-width solid transparent;
-					position: relative;
-					right: @border-width;
+          .card:last-child {
+            width: ~'calc(30% - @{border-space}/2)';
+            height: 76%;
+            position: relative;
+            left: @border-width;
 
-					.card {
-						border: @border-width solid @border-color;
-					}
+            /* 核心：文字垂直竖排 + 居中配置 */
+            writing-mode: vertical-rl; /* 文字垂直排列（从右到左，一行一个字） */
+            text-orientation: upright; /* 文字正立显示（避免旋转90度） */
+            text-align: center; /* 水平居中（垂直排列时，水平对应上下方向） */
 
-					.card:first-child {
-						width: 100%;
-						height: ~'calc(70% - @{border-space}/2)';
-					}
+            /* 若内部有文字容器，用弹性盒确保完全居中 */
+            display: flex;
+            align-items: center; /* 垂直排列时，align-items 控制左右居中 */
+            justify-content: center; /* 垂直排列时，justify-content 控制上下居中 */
 
-					.card:last-child {
-						width: 65%;
-						height: ~'calc(30% - @{border-space}/2)';
-						margin-top: ~'calc(@{border-space}/2)';
-						line-height: 2.8vw;
-					}
-				}
-			}
+            /* 可选：优化文字间距、样式 */
+            letter-spacing: 0.5vw; /* 字与字之间的间距 */
+            font-size: 2vw;
+            font-weight: 500;
+          }
+        }
 
-			.title {
-				width: 17vw;
-				height: @titleHeight;
-				padding: 0 2vw;
-				border: @border-width solid @border-color;
-				position: relative;
-				top: ~'calc(-100% - @{titleHeight} - @{border-space})';
-				left: 5vw;
-				// color: @border-color;
-				// color: @text-color;
-				color: @title-color;
-				opacity: 0.9;
+        .item:nth-child(3) {
+          height: 76%;
+          border: @border-width solid transparent;
+          position: relative;
+          right: @border-width;
 
-				span {
-					font-size: 1.4vw;
-					font-weight: 500;
-				}
-			}
-		}
-	}
+          .card {
+            border: @border-width solid @border-color;
+          }
 
-	@textOpacity: 0.7;
-	.three-box-mobile {
-		width: 100%;
-		height: 100%;
+          .card:first-child {
+            width: 100%;
+            height: ~'calc(70% - @{border-space}/2)';
+          }
 
-		@linkTitleMarginTop: 25px;
-		@linkTitleMarginBottom: 15px;
-		.fx67ll-title {
-			padding: @linkTitleMarginTop 0 @linkTitleMarginBottom 0;
-			text-align: center;
-			color: @green;
-			opacity: @textOpacity;
+          .card:last-child {
+            width: 65%;
+            height: ~'calc(30% - @{border-space}/2)';
+            margin-top: ~'calc(@{border-space}/2)';
+            line-height: 2.8vw;
+          }
+        }
+      }
 
-			span {
-				display: inline-block;
-				font-size: 32px;
+      .title {
+        width: 17vw;
+        height: @titleHeight;
+        padding: 0 2vw;
+        border: @border-width solid @border-color;
+        position: relative;
+        top: ~'calc(-100% - @{titleHeight} - @{border-space})';
+        left: 5vw;
+        // color: @border-color;
+        // color: @text-color;
+        color: @title-color;
+        opacity: 0.9;
 
-				span {
-					font-size: 28px;
-				}
-			}
-		}
+        span {
+          font-size: 1.4vw;
+          font-weight: 500;
+        }
+      }
+    }
+  }
 
-		.fx67ll-link {
-			height: calc(~'100% - 200px');
-			overflow: auto;
-			padding: 0 30px;
+  @textOpacity: 0.7;
+  .three-box-mobile {
+    width: 100%;
+    height: 100%;
 
-			.fx67ll-link-item {
-				width: 100%;
-				margin-bottom: 4px;
-				text-align: center;
+    @linkTitleMarginTop: 25px;
+    @linkTitleMarginBottom: 15px;
+    .fx67ll-title {
+      padding: @linkTitleMarginTop 0 @linkTitleMarginBottom 0;
+      text-align: center;
+      color: @green;
+      opacity: @textOpacity;
 
-				a {
-					display: inline-block;
-					font-size: 24px;
-					text-decoration: none;
-					color: @red;
-					opacity: @textOpacity;
-				}
+      span {
+        display: inline-block;
+        font-size: 32px;
 
-				a:hover {
-					color: @green;
-				}
-			}
-		}
+        span {
+          font-size: 28px;
+        }
+      }
+    }
 
-		.fx67ll-footer {
-			font-size: 12px;
-		}
-	}
+    .fx67ll-link {
+      height: calc(~'100% - 200px');
+      overflow: auto;
+      padding: 0 30px;
+
+      .fx67ll-link-item {
+        width: 100%;
+        margin-bottom: 4px;
+        text-align: center;
+
+        a {
+          display: inline-block;
+          font-size: 24px;
+          text-decoration: none;
+          color: @red;
+          opacity: @textOpacity;
+        }
+
+        a:hover {
+          color: @green;
+        }
+      }
+    }
+
+    .fx67ll-footer {
+      font-size: 12px;
+    }
+  }
 }
 
 .swiper {
-	position: relative;
-	top: -(@titleHeight * 2);
-	.swiper-slide {
-		height: calc(32vw + (@titleHeight * 2) + @forSwiperBottom);
-		box-sizing: border-box;
-		padding: (@titleHeight * 2) @contentAsidePadding @forSwiperBottom @contentAsidePadding;
-	}
-	.swiper-pagination-fraction,
-	.swiper-pagination-custom,
-	.swiper-container-horizontal > .swiper-pagination-bullets {
-		color: #fff;
-	}
-	.swiper-slide-a {
-		.top {
-			.item:nth-child(2) {
-				span {
-					width: 100%;
-					display: block;
-					position: relative;
-					top: 4.2vw;
-				}
-				span:nth-child(1) {
-					line-height: 3vw;
-					font-weight: 900 !important;
-				}
-				span:nth-child(2) {
-					font-size: 2.6vw;
-					line-height: 4.4vw;
-				}
-			}
+  position: relative;
+  top: -(@titleHeight * 2);
+  .swiper-slide {
+    height: calc(32vw + (@titleHeight * 2) + @forSwiperBottom);
+    box-sizing: border-box;
+    padding: (@titleHeight * 2) @contentAsidePadding @forSwiperBottom @contentAsidePadding;
+  }
+  .swiper-pagination-fraction,
+  .swiper-pagination-custom,
+  .swiper-container-horizontal > .swiper-pagination-bullets {
+    color: #fff;
+  }
+  .swiper-slide-a {
+    .top {
+      .item:nth-child(2) {
+        span {
+          width: 100%;
+          display: block;
+          position: relative;
+          top: 4.2vw;
+        }
+        span:nth-child(1) {
+          line-height: 3vw;
+          font-weight: 900 !important;
+        }
+        span:nth-child(2) {
+          font-size: 2.6vw;
+          line-height: 4.4vw;
+        }
+      }
 
-			.item:nth-child(3) {
-				font-size: 2.2vw;
-				font-weight: 500;
-				line-height: 15.2vw;
-			}
-		}
+      .item:nth-child(3) {
+        font-size: 2.2vw;
+        font-weight: 500;
+        line-height: 15.2vw;
+      }
+    }
 
-		.bottom {
-			.item:nth-child(2) {
-				.card:nth-child(1) {
-					font-size: 2.8vw;
-					font-weight: 400;
-					span {
-						width: 100%;
-						display: block;
-						position: relative;
-						top: 3.4vw;
-					}
-					span:nth-child(1) {
-						line-height: 3vw;
-					}
-					span:nth-child(2) {
-						line-height: 4.4vw;
-					}
-				}
-				.card:nth-child(2) {
-					font-size: 1.8vw;
-					font-weight: 400;
-					line-height: 11vw;
-				}
-			}
-			.item:nth-child(3) {
-				.card:nth-child(1) {
-					font-size: 1.9vw;
-					font-weight: 500;
-					line-height: 7.5vw;
-				}
-			}
-		}
-	}
-	.swiper-slide-b {
-		.top {
-			.item:nth-child(3) {
-				a {
-					color: #ffffff;
-					line-height: 2.6vw !important;
-					font-weight: 900 !important;
-					&:hover {
-						color: #000000;
-					}
-				}
-				a:first-child {
-					margin-top: 2.5vw !important;
-				}
-			}
-		}
+    .bottom {
+      .item:nth-child(2) {
+        .card:nth-child(1) {
+          font-size: 2.8vw;
+          font-weight: 400;
+          span {
+            width: 100%;
+            display: block;
+            position: relative;
+            top: 3.4vw;
+          }
+          span:nth-child(1) {
+            line-height: 3vw;
+          }
+          span:nth-child(2) {
+            line-height: 4.4vw;
+          }
+        }
+        .card:nth-child(2) {
+          font-size: 1.8vw;
+          font-weight: 400;
+          line-height: 11vw;
+        }
+      }
+      .item:nth-child(3) {
+        .card:nth-child(1) {
+          font-size: 1.9vw;
+          font-weight: 500;
+          line-height: 7.5vw;
+        }
+      }
+    }
+  }
+  .swiper-slide-b {
+    .top {
+      .item:nth-child(3) {
+        a {
+          color: #ffffff;
+          line-height: 2.6vw !important;
+          font-weight: 900 !important;
+          &:hover {
+            color: #000000;
+          }
+        }
+        a:first-child {
+          margin-top: 2.5vw !important;
+        }
+      }
+    }
 
-		.bottom {
-			.item:nth-child(2) {
-				.card:nth-child(1) {
-					font-size: 2.3vw;
-					font-weight: 400;
-					span {
-						width: 100%;
-						display: block;
-						position: relative;
-						top: 3.4vw;
-						a {
-							color: #ffffff;
-							font-weight: 900 !important;
-							&:hover {
-								color: #000000;
-							}
-						}
-					}
-					span:nth-child(1) {
-						line-height: 3.2vw;
-					}
-					span:nth-child(2) {
-						line-height: 4.4vw;
-					}
-				}
-			}
-			.item:nth-child(3) {
-				.card:nth-child(1) {
-					a {
-						color: #ffffff;
-						font-size: 1.6vw;
-						line-height: 7.5vw;
-						font-weight: 900 !important;
-						&:hover {
-							color: #000000;
-						}
-					}
-				}
-				.card:nth-child(2) {
-					a {
-						color: #ffffff;
-						&:hover {
-							color: #000000;
-						}
-					}
-				}
-			}
-		}
-	}
+    .bottom {
+      .item:nth-child(2) {
+        .card:nth-child(1) {
+          font-size: 2.3vw;
+          font-weight: 400;
+          span {
+            width: 100%;
+            display: block;
+            position: relative;
+            top: 3.4vw;
+            a {
+              color: #ffffff;
+              font-weight: 900 !important;
+              &:hover {
+                color: #000000;
+              }
+            }
+          }
+          span:nth-child(1) {
+            line-height: 3.2vw;
+          }
+          span:nth-child(2) {
+            line-height: 4.4vw;
+          }
+        }
+      }
+      .item:nth-child(3) {
+        .card:nth-child(1) {
+          a {
+            color: #ffffff;
+            font-size: 1.6vw;
+            line-height: 7.5vw;
+            font-weight: 900 !important;
+            &:hover {
+              color: #000000;
+            }
+          }
+        }
+        .card:nth-child(2) {
+          a {
+            color: #ffffff;
+            &:hover {
+              color: #000000;
+            }
+          }
+        }
+      }
+    }
+  }
 }

@@ -21,12 +21,17 @@ export const fx67llRoutes = [{
 	{
 		path: '/medical',
 		name: 'medical',
-		component: () => import('@v/project/medical.vue') // 医疗模型
+		component: () => import('@v/project/medical/medical.vue') // 医疗模型
 	},
 	{
 		path: '/cube',
 		name: 'cube',
-		component: () => import('@v/project/cube.vue') // 魔方模型
+		component: () => import('@v/project/cube/cube.vue') // 魔方模型
+	},
+	{
+		path: '/fireworks',
+		name: 'fireworks',
+		component: () => import('@v/project/fireworks/FireworksTestDashboard.vue') // 烟花
 	},
 	{
 		path: '/three-hello',
