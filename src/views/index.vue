@@ -37,7 +37,7 @@
 							<div class="item">
 								<div class="card scale card-bg-img-empty"></div>
 								<div class="card scale" @click="goNext('fireworks')">
-									放烟花
+									<span>放烟花</span>
 								</div>
 							</div>
 							<div class="item">
