@@ -3,6 +3,10 @@ All My Threejs Projects Collection
 
 欢迎参观 [three.fx67ll.com](http://three.fx67ll.com "fx67ll's Three.js 作品合集的展示网站")  
 
+## 0.6.2.20260123  
+* 新增放烟花实验室界面  
+* 新增放烟花按钮组件    
+
 ## 0.6.1.20260116  
 * 使用AI探索烟花发射按钮组件  
 
