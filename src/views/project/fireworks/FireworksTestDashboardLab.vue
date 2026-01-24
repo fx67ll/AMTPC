@@ -1014,7 +1014,13 @@ export default {
 				}
 
 				this.demoFireworks.updateOptions({ hue: hueRange })
-				this.demoFireworks.launch(2)
+				this.$message({
+					message: `烟花样式 ${preset.name} 切换成功，点击发射看看吧 (๑•̀ㅂ•́)و✧`,
+					type: 'success',
+					offset: 70,
+					duration: 2333
+				});
+				// this.demoFireworks.launch(2)
 			}
 		},
 
