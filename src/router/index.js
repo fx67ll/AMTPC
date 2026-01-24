@@ -31,7 +31,7 @@ export const fx67llRoutes = [{
 	{
 		path: '/fireworks',
 		name: 'fireworks',
-		component: () => import('@v/project/fireworks/FireworksTestDashboard.vue') // 烟花
+		component: () => import('@v/project/fireworks/FireworksTestDashboardLab.vue') // 烟花
 	},
 	{
 		path: '/three-hello',
