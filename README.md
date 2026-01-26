@@ -3,6 +3,11 @@ All My Threejs Projects Collection
 
 欢迎参观 [three.fx67ll.com](http://three.fx67ll.com "fx67ll's Three.js 作品合集的展示网站")  
 
+## 0.6.4.20260126
+* 整合烟花生成代码的相关问题  
+* 烟花实验室完整的三种状态页面处理完毕  
+* 新增烟花按钮组件，验证成功后移植到`fx67llVueTool`组件库  
+
 ## 0.6.3.20260124
 * 修复单发和连发切换的相关问题    
 
