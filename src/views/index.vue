@@ -140,6 +140,7 @@
 				</span>
 			</div>
 			<div class="fx67ll-link">
+				<div class="fx67ll-link-item"><router-link tag="a" target="_blank" to="/fireworks">放烟花</router-link></div>
 				<div class="fx67ll-link-item"><router-link tag="a" target="_blank" to="/cube">魔方小游戏</router-link></div>
 				<div class="fx67ll-link-item"><router-link tag="a" target="_blank"
 						to="/medical">简易医疗模型操作演示</router-link></div>
