@@ -158,7 +158,8 @@
 									<span>{{ demoRunning ? '停止连发' : '开始连发' }}</span>
 								</button>
 								<button class="quick-btn" @click="clearDemoFireworks">
-									<span class="btn-icon">🗑️</span>
+									<!-- <span class="btn-icon">🗑️</span> -->
+									<span class="btn-icon">⚙️</span>
 									<span>{{ isShowMultiple ? '切换单发' : '切换连发' }}</span>
 								</button>
 							</div>
