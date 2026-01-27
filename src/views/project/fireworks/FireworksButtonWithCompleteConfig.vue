@@ -252,7 +252,7 @@
                                     <label class="config-label">
                                         <span class="label-text">发射间隔</span>
                                         <span class="label-value">{{ config.delay.min }} - {{ config.delay.max
-                                        }}ms</span>
+                                            }}ms</span>
                                     </label>
                                     <div class="dual-slider">
                                         <div class="slider-wrapper">
@@ -590,9 +590,14 @@
         </div>
 
         <!-- 浮动发射按钮 -->
-        <button class="floating-launch-btn" @click="launchSingle" v-if="panelCollapsed || !isShowMultiple">
+        <button class="floating-launch-btn" @click="launchSingle" v-if="!isShowMultiple">
             <span class="btn-emoji">🎆</span>
         </button>
+        <button class="floating-toggle-btn" :class="{ active: fireworksRunning }" @click="toggleFireworks"
+            v-if="isShowMultiple">
+            <span class="btn-emoji">{{ fireworksRunning ? '⏸️' : '▶️' }}</span>
+        </button>
+
 
         <!-- 统计面板 -->
         <div class="stats-panel" v-if="showStats">
@@ -769,8 +774,8 @@ export default {
 
             // 转换为 fireworks-js 需要的像素值格式
             return {
-                x: (rect.width * bounds.x / 100) - (rect.width * bounds.width / 100 / 2),
-                y: (rect.height * bounds.y / 100) - (rect.height * bounds.height / 100 / 2),
+                x: rect.left + (rect.width * bounds.x / 100) - (rect.width * bounds.width / 100 / 2),
+                y: rect.top + (rect.height * bounds.y / 100) - (rect.height * bounds.height / 100 / 2),
                 width: rect.width * bounds.width / 100,
                 height: rect.height * bounds.height / 100
             }
@@ -1249,7 +1254,9 @@ export default {
 .header-status {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
+    position: relative;
+    top: 4px;
 }
 
 .status-indicator {
@@ -1270,6 +1277,8 @@ export default {
     color: rgba(200, 220, 255, 0.8);
     font-size: 14px;
     transition: transform 0.3s ease;
+    position: relative;
+    top: -2px;
 }
 
 /* 侧边栏内容 */
@@ -1783,6 +1792,65 @@ input:checked+.slider:before {
     box-shadow:
         0 12px 35px rgba(255, 50, 100, 0.6),
         0 0 0 6px rgba(255, 255, 255, 0.12);
+}
+
+.floating-toggle-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 2px solid rgba(100, 150, 255, 0.35);
+    background: linear-gradient(135deg, rgba(40, 60, 120, 0.4), rgba(30, 50, 100, 0.3));
+    color: rgba(220, 230, 255, 0.9);
+    cursor: pointer;
+    z-index: 100;
+    box-shadow:
+        0 8px 25px rgba(0, 100, 200, 0.3),
+        0 0 0 4px rgba(0, 150, 255, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+}
+
+.floating-toggle-btn:hover {
+    background: linear-gradient(135deg, rgba(60, 100, 200, 0.4), rgba(40, 80, 160, 0.3));
+    border-color: rgba(0, 200, 255, 0.5);
+    transform: scale(1.1) translateY(-3px);
+    box-shadow:
+        0 12px 35px rgba(0, 100, 255, 0.4),
+        0 0 0 6px rgba(0, 200, 255, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.floating-toggle-btn.active {
+    background: linear-gradient(135deg, rgba(0, 150, 255, 0.5), rgba(0, 200, 255, 0.4));
+    border-color: rgba(0, 200, 255, 0.6);
+    color: #ffffff;
+    box-shadow:
+        0 8px 25px rgba(0, 200, 255, 0.4),
+        0 0 0 4px rgba(0, 200, 255, 0.2),
+        0 0 20px rgba(0, 200, 255, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.floating-toggle-btn.active:hover {
+    background: linear-gradient(135deg, rgba(0, 180, 255, 0.6), rgba(0, 220, 255, 0.5));
+    border-color: rgba(0, 255, 255, 0.7);
+    box-shadow:
+        0 12px 35px rgba(0, 200, 255, 0.5),
+        0 0 0 6px rgba(0, 220, 255, 0.25),
+        0 0 30px rgba(0, 220, 255, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.floating-toggle-btn:active {
+    transform: scale(0.95) translateY(0);
+    transition: all 0.1s ease;
 }
 
 /* 统计面板 */
