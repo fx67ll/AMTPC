@@ -3,15 +3,15 @@
         <!-- 全功能侧边栏 -->
         <div class="control-sidebar" :class="{ 'sidebar-collapsed': panelCollapsed }">
             <!-- 侧边栏头部 -->
-            <div class="sidebar-header" @click="togglePanel">
+            <div class="sidebar-header">
                 <div class="header-main">
-                    <span class="header-icon" v-if="!panelCollapsed">🎆</span>
+                    <span class="header-icon" v-if="!panelCollapsed">🔮</span>
                     <transition name="fade">
-                        <span v-if="!panelCollapsed" class="header-title">烟花控制台</span>
+                        <span v-if="!panelCollapsed" class="header-title" @click="goToConfigPage">烟花配置实验控制台</span>
                     </transition>
                 </div>
-                <div class="header-status">
-                    <div class="status-indicator" :class="{ active: fireworksRunning }" v-if="!panelCollapsed"></div>
+                <div class="header-status" @click="togglePanel">
+                    <div class="status-indicator" :class="{ active: fireworksRunning }" v-if="isShowMultiple"></div>
                     <span class="collapse-icon">{{ panelCollapsed ? '▶' : '◀' }}</span>
                 </div>
             </div>
@@ -470,7 +470,7 @@
         <div ref="canvasContainer" class="canvas-container"></div>
 
         <!-- 浮动发射按钮 -->
-        <button class="floating-launch-btn" @click="launchSingle" v-if="panelCollapsed">
+        <button class="floating-launch-btn" @click="launchSingle" v-if="panelCollapsed || !isShowMultiple">
             <span class="btn-emoji">🎆</span>
         </button>
 
@@ -499,7 +499,7 @@ export default {
             isShowMultiple: false,
 
             panelCollapsed: false,
-            expandedGroup: 'basic', // 默认展开基础参数组
+            expandedGroup: '', // 默认展开基础参数组
             fireworks: null,
             fireworksRunning: false,
             showStats: true,
@@ -585,6 +585,10 @@ export default {
         cancelAnimationFrame(this.statsAnimationId)
     },
     methods: {
+        goToConfigPage() {
+            this.$router.push({ path: '/fireworks-basic-config-test' })
+        },
+
         initFireworks() {
             const container = this.$refs.canvasContainer
             if (!container) return
@@ -988,7 +992,6 @@ export default {
     /* grid-template-columns: repeat(3, 1fr); */
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
-    margin-bottom: 10px;
 }
 
 .core-btn {
@@ -1329,7 +1332,6 @@ input:checked+.slider:before {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
-    margin-top: 20px;
     padding-top: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -1443,8 +1445,8 @@ input:checked+.slider:before {
 /* 统计面板 */
 .stats-panel {
     position: fixed;
-    bottom: 30px;
-    left: 400px;
+    top: 20px;
+    right: 15px;
     background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -1556,10 +1558,6 @@ input:checked+.slider:before {
     .config-item {
         grid-column: span 1;
     }
-
-    .stats-panel {
-        left: 370px;
-    }
 }
 
 @media (max-width: 768px) {
@@ -1594,13 +1592,6 @@ input:checked+.slider:before {
         width: 40px;
         height: 40px;
         font-size: 16px;
-    }
-
-    .stats-panel {
-        left: 20px;
-        bottom: 100px;
-        width: calc(100% - 40px);
-        max-width: 300px;
     }
 }
 </style>

@@ -3,15 +3,15 @@
         <!-- 重构后的侧边控制面板 -->
         <div class="control-sidebar" :class="{ 'sidebar-collapsed': panelCollapsed }">
             <!-- 侧边栏头部 -->
-            <div class="sidebar-header" @click="togglePanel">
+            <div class="sidebar-header">
                 <div class="header-main">
-                    <span class="header-icon" v-if="!panelCollapsed">🎆</span>
+                    <span class="header-icon" v-if="!panelCollapsed">🚽</span>
                     <transition name="fade">
-                        <span v-if="!panelCollapsed" class="header-title">烟花控制台</span>
+                        <span v-if="!panelCollapsed" class="header-title" @click="goToConfigPage">简易烟花控制台</span>
                     </transition>
                 </div>
-                <div class="header-status">
-                    <div class="status-indicator" :class="{ active: fireworksRunning }" v-if="!panelCollapsed"></div>
+                <div class="header-status" @click="togglePanel">
+                    <div class="status-indicator" :class="{ active: fireworksRunning }" v-if="isShowMultiple"></div>
                     <span class="collapse-icon">{{ panelCollapsed ? '▶' : '◀' }}</span>
                 </div>
             </div>
@@ -219,7 +219,7 @@
         <div ref="canvasContainer" class="canvas-container"></div>
 
         <!-- 浮动发射按钮（仅在收起状态显示） -->
-        <button class="floating-launch-btn" @click="launchSingle" v-if="panelCollapsed">
+        <button class="floating-launch-btn" @click="launchSingle" v-if="panelCollapsed || !isShowMultiple">
             <span class="btn-emoji">🎆</span>
         </button>
     </div>
@@ -287,6 +287,10 @@ export default {
         window.removeEventListener('resize', this.handleResize)
     },
     methods: {
+        goToConfigPage() {
+            this.$router.push({ path: '/fireworks-complete-config-test' })
+        },
+
         initFireworks() {
             const container = this.$refs.canvasContainer
             if (!container) return
@@ -483,7 +487,7 @@ export default {
     position: fixed;
     top: 0;
     left: 0;
-    width: 320px;
+    width: 380px;
     height: 100vh;
     background: rgba(15, 18, 35, 0.95);
     backdrop-filter: blur(20px);
@@ -1010,7 +1014,7 @@ input:checked+.slider:before {
 /* 响应式设计 */
 @media (max-width: 1400px) {
     .control-sidebar {
-        width: 300px;
+        width: 350px;
     }
 
     .sidebar-collapsed {
@@ -1020,7 +1024,7 @@ input:checked+.slider:before {
 
 @media (max-width: 768px) {
     .control-sidebar {
-        width: 280px;
+        width: 320px;
     }
 
     .sidebar-collapsed {

@@ -20,7 +20,7 @@
 							<span class="stat-label">配置覆盖</span>
 						</div>
 					</div>
-					<div class="hero-actions">
+					<!-- <div class="hero-actions">
 						<button class="hero-btn primary" @click="scrollToDemo">
 							<span class="btn-icon">🚀</span>
 							<span class="btn-text">立即体验</span>
@@ -29,10 +29,32 @@
 							<span class="btn-icon">📋</span>
 							<span class="btn-text">功能特性</span>
 						</button>
-						<a href="https://github.com/crashmax-dev/fireworks-js" target="_blank" class="hero-btn github">
-							<span class="btn-icon">⭐</span>
-							<span class="btn-text">GitHub</span>
-						</a>
+						// <a href="https://github.com/crashmax-dev/fireworks-js" target="_blank" class="hero-btn github">
+						// 	<span class="btn-icon">⭐</span>
+						// 	<span class="btn-text">GitHub</span>
+						// </a>
+						<button class="hero-btn secondary" @click="goToConfigPage">
+							<span class="btn-icon">📌</span>
+							<span class="btn-text">配置实验</span>
+						</button>
+					</div> -->
+					<div class="hero-actions">
+						<button class="hero-btn primary" @click="scrollToDemo">
+							<span class="btn-icon">🚀</span>
+							<span class="btn-text">立即体验</span>
+							<div class="btn-glow"></div>
+							<div class="btn-sparkle"></div>
+						</button>
+						<button class="hero-btn secondary feature-btn" @click="scrollToFeatures">
+							<span class="btn-icon">📋</span>
+							<span class="btn-text">功能特性</span>
+							<div class="btn-hover-effect"></div>
+						</button>
+						<button class="hero-btn config-btn" @click="goToConfigPage">
+							<span class="btn-icon">🔮</span>
+							<span class="btn-text">配置实验</span>
+							<div class="circuit-path"></div>
+						</button>
 					</div>
 				</div>
 			</div>
@@ -42,6 +64,7 @@
 
 		<!-- 主要展示区域 -->
 		<main class="showcase-container">
+
 			<!-- 功能特性 -->
 			<section id="features" class="features-section" ref="featuresSection">
 				<div class="section-header">
@@ -939,6 +962,13 @@ export default {
 			}
 		},
 
+		goToConfigPage() {
+			// 使用路由的resolve方法获取目标路由的定位信息
+			const route = this.$router.resolve({ path: '/fireworks-complete-config-test' })
+			// 打开新页签
+			window.open(route.href, '_blank')
+		},
+
 		scrollToTop() {
 			window.scrollTo({ top: 0, behavior: 'smooth' })
 		},
@@ -1055,7 +1085,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 /* 基础样式 */
 .fireworks-showcase {
 	position: relative;
@@ -1138,48 +1168,555 @@ export default {
 	letter-spacing: 1px;
 }
 
+// .hero-actions {
+// 	display: flex;
+// 	justify-content: center;
+// 	gap: 1rem;
+// 	margin-top: 2rem;
+// }
+
+// .hero-btn {
+// 	padding: 1rem 2rem;
+// 	border: none;
+// 	border-radius: 12px;
+// 	font-size: 1.1rem;
+// 	font-weight: 600;
+// 	cursor: pointer;
+// 	transition: all 0.3s ease;
+// 	display: flex;
+// 	align-items: center;
+// 	gap: 0.5rem;
+// 	text-decoration: none;
+// }
+
+// .hero-btn.primary {
+// 	background: linear-gradient(135deg, #ff3366, #ff6633);
+// 	color: white;
+// }
+
+// .hero-btn.secondary {
+// 	background: rgba(255, 255, 255, 0.1);
+// 	backdrop-filter: blur(10px);
+// 	border: 1px solid rgba(255, 255, 255, 0.2);
+// 	color: white;
+// }
+
+// .hero-btn.github {
+// 	background: rgba(255, 255, 255, 0.016);
+// 	border: 1px solid rgba(255, 255, 255, 0.1);
+// 	color: white;
+// }
+
+// .hero-btn:hover {
+// 	transform: translateY(-3px);
+// 	box-shadow: 0 10px 30px rgba(255, 51, 102, 0.3);
+// }
+
+/* 优化英雄区域按钮样式 */
 .hero-actions {
 	display: flex;
 	justify-content: center;
-	gap: 1rem;
-	margin-top: 2rem;
+	gap: 1.5rem;
+	margin-top: 3rem;
+	flex-wrap: wrap;
 }
 
 .hero-btn {
-	padding: 1rem 2rem;
+	position: relative;
+	padding: 1.2rem 2.5rem;
 	border: none;
-	border-radius: 12px;
+	border-radius: 16px;
 	font-size: 1.1rem;
 	font-weight: 600;
 	cursor: pointer;
-	transition: all 0.3s ease;
+	transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	display: flex;
 	align-items: center;
-	gap: 0.5rem;
+	justify-content: center;
+	gap: 0.8rem;
 	text-decoration: none;
+	overflow: hidden;
+	min-width: 180px;
+	min-height: 60px;
+	z-index: 1;
 }
 
+/* 主要按钮 - 立即体验 */
 .hero-btn.primary {
-	background: linear-gradient(135deg, #ff3366, #ff6633);
+	background: linear-gradient(135deg, #ff3366 0%, #ff6633 100%);
 	color: white;
+	box-shadow: 0 8px 30px rgba(255, 51, 102, 0.4),
+		0 4px 15px rgba(255, 102, 51, 0.3);
+	border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
-.hero-btn.secondary {
-	background: rgba(255, 255, 255, 0.1);
+.hero-btn.primary:hover {
+	transform: translateY(-5px) scale(1.05);
+	box-shadow: 0 15px 40px rgba(255, 51, 102, 0.6),
+		0 8px 25px rgba(255, 102, 51, 0.5),
+		inset 0 0 30px rgba(255, 255, 255, 0.1);
+	background: linear-gradient(135deg, #ff4477 0%, #ff7744 100%);
+}
+
+.hero-btn.primary:active {
+	transform: translateY(-2px) scale(1.02);
+	box-shadow: 0 5px 20px rgba(255, 51, 102, 0.4);
+}
+
+/* 发光效果 */
+.btn-glow {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: radial-gradient(circle at center,
+			rgba(255, 255, 255, 0.3) 0%,
+			transparent 70%);
+	opacity: 0;
+	transition: opacity 0.4s ease;
+	z-index: -1;
+}
+
+.hero-btn.primary:hover .btn-glow {
+	opacity: 1;
+	animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* 闪烁效果 */
+.btn-sparkle {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	background: rgba(255, 255, 255, 0.8);
+	border-radius: 50%;
+	box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+	opacity: 0;
+}
+
+.hero-btn.primary:hover .btn-sparkle {
+	animation: sparkleTravel 2s ease-in-out infinite;
+}
+
+/* 次要按钮 - 功能特性 */
+.hero-btn.secondary.feature-btn {
+	background: linear-gradient(135deg,
+			rgba(0, 150, 255, 0.15) 0%,
+			rgba(0, 200, 255, 0.1) 100%);
+	color: rgba(220, 240, 255, 0.95);
+	border: 2px solid rgba(0, 200, 255, 0.3);
 	backdrop-filter: blur(10px);
-	border: 1px solid rgba(255, 255, 255, 0.2);
+	box-shadow: 0 6px 25px rgba(0, 150, 255, 0.2),
+		inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.hero-btn.secondary.feature-btn:hover {
+	transform: translateY(-4px);
+	background: linear-gradient(135deg,
+			rgba(0, 150, 255, 0.25) 0%,
+			rgba(0, 200, 255, 0.2) 100%);
+	border-color: rgba(0, 220, 255, 0.5);
+	box-shadow: 0 10px 35px rgba(0, 150, 255, 0.3),
+		0 5px 20px rgba(0, 200, 255, 0.2),
+		inset 0 0 20px rgba(255, 255, 255, 0.1);
 	color: white;
 }
 
-.hero-btn.github {
-	background: rgba(255, 255, 255, 0.05);
-	border: 1px solid rgba(255, 255, 255, 0.1);
+.btn-hover-effect {
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(90deg,
+			transparent 0%,
+			rgba(255, 255, 255, 0.1) 50%,
+			transparent 100%);
+	transition: left 0.6s ease;
+}
+
+.hero-btn.secondary.feature-btn:hover .btn-hover-effect {
+	left: 100%;
+}
+
+/* 配置实验按钮样式 - 创意版本 */
+.hero-btn.config-btn {
+	background: linear-gradient(135deg,
+			rgba(138, 43, 226, 0.15) 0%,
+			rgba(75, 0, 130, 0.1) 100%);
+	color: rgba(240, 230, 255, 0.95);
+	border: 2px solid rgba(180, 100, 255, 0.3);
+	backdrop-filter: blur(10px);
+	box-shadow: 0 6px 25px rgba(138, 43, 226, 0.2),
+		0 0 20px rgba(180, 100, 255, 0.1),
+		inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.hero-btn.config-btn:hover {
+	transform: translateY(-4px);
+	background: linear-gradient(135deg,
+			rgba(138, 43, 226, 0.25) 0%,
+			rgba(75, 0, 130, 0.2) 100%);
+	border-color: rgba(200, 120, 255, 0.5);
+	box-shadow: 0 10px 35px rgba(138, 43, 226, 0.3),
+		0 5px 20px rgba(180, 100, 255, 0.2),
+		0 0 30px rgba(200, 120, 255, 0.3),
+		inset 0 0 20px rgba(255, 255, 255, 0.1);
 	color: white;
 }
 
-.hero-btn:hover {
-	transform: translateY(-3px);
-	box-shadow: 0 10px 30px rgba(255, 51, 102, 0.3);
+/* 电路板路径动画 */
+.circuit-path {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 16px;
+	overflow: hidden;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+}
+
+.hero-btn.config-btn:hover .circuit-path {
+	opacity: 1;
+}
+
+.circuit-path::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(90deg,
+			transparent,
+			rgba(138, 43, 226, 0.2),
+			rgba(75, 0, 130, 0.3),
+			rgba(138, 43, 226, 0.2),
+			transparent);
+	animation: circuitFlow 3s linear infinite;
+}
+
+/* 魔法效果 */
+.hero-btn.config-btn::after {
+	content: '';
+	position: absolute;
+	top: -2px;
+	left: -2px;
+	right: -2px;
+	bottom: -2px;
+	background: linear-gradient(45deg,
+			#ff00ff, #9b30ff, #00bfff, #9b30ff, #ff00ff);
+	border-radius: 18px;
+	z-index: -1;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	background-size: 400% 400%;
+	animation: magicBorder 3s ease-in-out infinite;
+}
+
+.hero-btn.config-btn:hover::after {
+	opacity: 1;
+}
+
+/* 按钮图标特殊效果 */
+.hero-btn.config-btn .btn-icon {
+	font-size: 1.4rem;
+	text-shadow: 0 0 10px rgba(155, 48, 255, 0.7);
+	transition: all 0.3s ease;
+}
+
+.hero-btn.config-btn:hover .btn-icon {
+	transform: scale(1.3) rotate(10deg);
+	text-shadow: 0 0 20px rgba(255, 0, 255, 0.9),
+		0 0 30px rgba(155, 48, 255, 0.8);
+}
+
+/* 文字效果 */
+.hero-btn.config-btn .btn-text {
+	position: relative;
+	z-index: 2;
+	text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.hero-btn.config-btn:hover .btn-text {
+	background: linear-gradient(135deg, #ff00ff, #9b30ff);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	text-shadow: none;
+}
+
+/* 按钮内边框效果 */
+.hero-btn.config-btn::before {
+	content: '';
+	position: absolute;
+	inset: 3px;
+	border-radius: 13px;
+	background: rgba(0, 0, 0, 0.2);
+	z-index: 1;
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+}
+
+.hero-btn.config-btn:hover::before {
+	opacity: 1;
+}
+
+/* 新增动画定义 */
+@keyframes circuitFlow {
+	0% {
+		left: -100%;
+	}
+
+	100% {
+		left: 100%;
+	}
+}
+
+@keyframes dotPulse {
+
+	0%,
+	100% {
+		transform: scale(1);
+		opacity: 0.3;
+		box-shadow: 0 0 5px #ff00ff;
+	}
+
+	50% {
+		transform: scale(1.5);
+		opacity: 1;
+		box-shadow: 0 0 15px #ff00ff,
+			0 0 20px #9b30ff;
+	}
+}
+
+@keyframes magicBorder {
+
+	0%,
+	100% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+	}
+}
+
+/* 粒子效果（可选，如果需要更炫酷） */
+.hero-btn.config-btn .btn-icon::after {
+	content: '✨';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 2rem;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.hero-btn.config-btn:hover .btn-icon::after {
+	opacity: 0.5;
+	animation: particleExplosion 0.5s ease-out forwards;
+}
+
+@keyframes particleExplosion {
+	0% {
+		transform: translate(-50%, -50%) scale(1);
+		opacity: 0.8;
+	}
+
+	100% {
+		transform: translate(-50%, -50%) scale(3);
+		opacity: 0;
+	}
+}
+
+/* 添加一个loading状态效果（如果需要） */
+.hero-btn.config-btn.loading {
+	position: relative;
+	color: transparent;
+}
+
+.hero-btn.config-btn.loading::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	border-radius: 16px;
+	background: conic-gradient(from 0deg,
+			#9b30ff, #ff00ff, #00bfff, #9b30ff);
+	animation: configLoading 2s linear infinite;
+	filter: blur(10px);
+	z-index: -2;
+}
+
+.hero-btn.config-btn.loading::after {
+	content: '⚡';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 1.5rem;
+	color: white;
+	z-index: 3;
+	animation: loadingSpark 1s ease-in-out infinite alternate;
+}
+
+@keyframes configLoading {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes loadingSpark {
+	0% {
+		opacity: 0.3;
+		transform: translate(-50%, -50%) scale(0.8);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translate(-50%, -50%) scale(1.2);
+	}
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+	.hero-btn.config-btn {
+		min-width: 160px;
+	}
+
+	.config-dots {
+		display: none;
+		/* 在小屏幕上隐藏粒子，避免性能问题 */
+	}
+}
+
+@media (max-width: 480px) {
+	.hero-btn.config-btn {
+		padding: 0.9rem 1.8rem;
+	}
+
+	.hero-btn.config-btn .btn-icon {
+		font-size: 1.2rem;
+	}
+}
+
+/* 按钮图标样式 */
+.btn-icon {
+	font-size: 1.3rem;
+	transition: transform 0.3s ease;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.hero-btn:hover .btn-icon {
+	transform: scale(1.2) rotate(5deg);
+}
+
+.btn-text {
+	font-size: 1.1rem;
+	font-weight: 600;
+	letter-spacing: 0.5px;
+	text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 按钮动画 */
+@keyframes pulseGlow {
+
+	0%,
+	100% {
+		opacity: 0.5;
+		transform: scale(1);
+	}
+
+	50% {
+		opacity: 0.8;
+		transform: scale(1.05);
+	}
+}
+
+@keyframes sparkleTravel {
+	0% {
+		opacity: 0;
+		transform: translate(0, 0) scale(0);
+	}
+
+	10% {
+		opacity: 1;
+		transform: translate(20px, -20px) scale(1);
+	}
+
+	20% {
+		opacity: 0.8;
+		transform: translate(40px, -40px) scale(0.8);
+	}
+
+	30% {
+		opacity: 0.6;
+		transform: translate(60px, -20px) scale(0.6);
+	}
+
+	40% {
+		opacity: 0.4;
+		transform: translate(80px, 0) scale(0.4);
+	}
+
+	50% {
+		opacity: 0;
+		transform: translate(100px, 20px) scale(0);
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes rotateGear {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+	.hero-actions {
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.hero-btn {
+		width: 100%;
+		max-width: 300px;
+		min-width: auto;
+	}
+}
+
+@media (max-width: 480px) {
+	.hero-btn {
+		padding: 1rem 2rem;
+		font-size: 1rem;
+	}
+
+	.btn-icon {
+		font-size: 1.2rem;
+	}
+
+	.btn-text {
+		font-size: 1rem;
+	}
 }
 
 .hero-canvas {
@@ -1191,6 +1728,7 @@ export default {
 	z-index: 1;
 	pointer-events: none;
 }
+
 
 /* 主要容器 */
 .showcase-container {

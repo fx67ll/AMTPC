@@ -35,6 +35,16 @@ export const fx67llRoutes = [
     component: () => import('@v/project/fireworks/FireworksTestDashboardLab.vue'), // 烟花
   },
   {
+    path: '/fireworks-complete-config-test',
+    name: 'fireworksConfigTest',
+    component: () => import('@v/project/fireworks/FireworksButtonWithCompleteConfig.vue'), // 烟花配置实验控制台
+  },
+  {
+    path: '/fireworks-basic-config-test',
+    name: 'fireworksConfigTest',
+    component: () => import('@v/project/fireworks/FireworksButtonWithBasicConfig.vue'), // 简易烟花控制台
+  },
+  {
     path: '/three-hello',
     name: 'threeHello',
     component: () => import('@v/demo/three-hello.vue'), // Threejs 官方示例 Hello World
