@@ -287,7 +287,7 @@
                                 </div>
 
                                 <!-- 新增：发射区域控制 -->
-                                <div class="config-item">
+                                <div class="config-item" :style="{ margin: '20px 0 10px 0' }">
                                     <label class="config-label">
                                         <span class="label-text">自定义发射区域</span>
                                         <label class="switch small">
@@ -338,7 +338,7 @@
                                             class="config-slider" @input="updateBoundariesConfig">
                                     </div>
 
-                                    <div class="switch-group">
+                                    <!-- <div class="switch-group">
                                         <label class="switch-item">
                                             <span class="switch-label">区域内随机发射</span>
                                             <label class="switch small">
@@ -356,38 +356,38 @@
                                                 <span class="slider"></span>
                                             </label>
                                         </label>
-                                    </div>
+                                    </div> -->
                                 </template>
+                            </div>
 
-                                <!-- 快捷位置预设 -->
-                                <div class="launch-presets" v-if="config.boundaries.enabled">
-                                    <div class="presets-title">快捷位置</div>
-                                    <div class="presets-buttons">
-                                        <button class="preset-position-btn" @click="setBoundaryPreset('center')"
-                                            :class="{ active: currentPreset === 'center' }">
-                                            居中
-                                        </button>
-                                        <button class="preset-position-btn" @click="setBoundaryPreset('left')"
-                                            :class="{ active: currentPreset === 'left' }">
-                                            左侧
-                                        </button>
-                                        <button class="preset-position-btn" @click="setBoundaryPreset('right')"
-                                            :class="{ active: currentPreset === 'right' }">
-                                            右侧
-                                        </button>
-                                        <button class="preset-position-btn" @click="setBoundaryPreset('top')"
-                                            :class="{ active: currentPreset === 'top' }">
-                                            上方
-                                        </button>
-                                        <button class="preset-position-btn" @click="setBoundaryPreset('bottom')"
-                                            :class="{ active: currentPreset === 'bottom' }">
-                                            下方
-                                        </button>
-                                        <button class="preset-position-btn" @click="setBoundaryPreset('random')"
-                                            :class="{ active: currentPreset === 'random' }">
-                                            随机
-                                        </button>
-                                    </div>
+                            <!-- 快捷位置预设 -->
+                            <div class="launch-presets" v-if="config.boundaries.enabled">
+                                <div class="presets-title">快捷位置</div>
+                                <div class="presets-buttons">
+                                    <button class="preset-position-btn" @click="setBoundaryPreset('center')"
+                                        :class="{ active: currentPreset === 'center' }">
+                                        居中
+                                    </button>
+                                    <button class="preset-position-btn" @click="setBoundaryPreset('left')"
+                                        :class="{ active: currentPreset === 'left' }">
+                                        左侧
+                                    </button>
+                                    <button class="preset-position-btn" @click="setBoundaryPreset('right')"
+                                        :class="{ active: currentPreset === 'right' }">
+                                        右侧
+                                    </button>
+                                    <button class="preset-position-btn" @click="setBoundaryPreset('top')"
+                                        :class="{ active: currentPreset === 'top' }">
+                                        上方
+                                    </button>
+                                    <button class="preset-position-btn" @click="setBoundaryPreset('bottom')"
+                                        :class="{ active: currentPreset === 'bottom' }">
+                                        下方
+                                    </button>
+                                    <button class="preset-position-btn" @click="setBoundaryPreset('random')"
+                                        :class="{ active: currentPreset === 'random' }">
+                                        随机
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -637,6 +637,16 @@ export default {
                 { name: '霓虹炫彩', emoji: '🌈', gradient: 'linear-gradient(135deg, #ff00ff, #00ffff, #ffff00)', hue: { min: 0, max: 360 } }
             ],
 
+            // 边界预设配置
+            boundaryPresets: {
+                center: { x: 50 + 13, y: 50, width: 30, height: 30 },
+                left: { x: 25 + 13, y: 50, width: 20, height: 40 },
+                right: { x: 75 + 13, y: 50, width: 20, height: 40 },
+                top: { x: 50 + 13, y: 25, width: 40, height: 20 },
+                bottom: { x: 50 + 13, y: 75, width: 40, height: 20 },
+                random: { x: Math.random() * 100, y: Math.random() * 100, width: 20, height: 20 }
+            },
+
             // 完整的 fireworks-js 配置对象（包含所有支持的选项）
             config: {
                 // 基础参数
@@ -667,12 +677,12 @@ export default {
                 // 发射区域配置 - 新增详细配置
                 boundaries: {
                     enabled: false,      // 是否启用自定义发射区域
-                    x: 50,              // 水平位置 (0-100)
+                    x: 63,              // 水平位置 (0-100)
                     y: 50,              // 垂直位置 (0-100)
                     width: 50,          // 区域宽度 (0-100)
                     height: 50,         // 区域高度 (0-100)
-                    random: true,       // 是否在区域内随机发射
-                    followMouse: false  // 是否跟随鼠标
+                    // random: true,       // 是否在区域内随机发射
+                    // followMouse: false  // 是否跟随鼠标
                 },
 
                 // 线条样式
@@ -774,12 +784,12 @@ export default {
                 // 更新配置
                 this.fireworks.updateOptions({ boundaries: bounds })
 
-                // 处理鼠标跟随
-                if (this.config.boundaries.followMouse) {
-                    this.setupMouseFollowing()
-                } else {
-                    window.removeEventListener('mousemove', this.handleMouseMoveForBoundaries)
-                }
+                // // 处理鼠标跟随
+                // if (this.config.boundaries.followMouse) {
+                //     this.setupMouseFollowing()
+                // } else {
+                //     window.removeEventListener('mousemove', this.handleMouseMoveForBoundaries)
+                // }
             }
         },
 
@@ -948,41 +958,41 @@ export default {
         initBoundaries() {
             if (this.config.boundaries.enabled) {
                 this.updateBoundariesConfig()
-                if (this.config.boundaries.followMouse) {
-                    this.setupMouseFollowing()
-                }
+                // if (this.config.boundaries.followMouse) {
+                //     this.setupMouseFollowing()
+                // }
             }
         },
 
-        // 设置鼠标跟随
-        setupMouseFollowing() {
-            if (!this.config.boundaries.followMouse) return
+        // // 设置鼠标跟随
+        // setupMouseFollowing() {
+        //     if (!this.config.boundaries.followMouse) return
 
-            const container = this.$refs.canvasContainer
-            if (!container) return
+        //     const container = this.$refs.canvasContainer
+        //     if (!container) return
 
-            window.addEventListener('mousemove', this.handleMouseMoveForBoundaries)
-        },
+        //     window.addEventListener('mousemove', this.handleMouseMoveForBoundaries)
+        // },
 
-        // 处理鼠标移动事件（用于边界跟随）
-        handleMouseMoveForBoundaries(event) {
-            if (!this.config.boundaries.followMouse || !this.fireworks) return
+        // // 处理鼠标移动事件（用于边界跟随）
+        // handleMouseMoveForBoundaries(event) {
+        //     if (!this.config.boundaries.followMouse || !this.fireworks) return
 
-            const container = this.$refs.canvasContainer
-            if (!container) return
+        //     const container = this.$refs.canvasContainer
+        //     if (!container) return
 
-            const rect = container.getBoundingClientRect()
+        //     const rect = container.getBoundingClientRect()
 
-            // 计算鼠标相对位置 (百分比)
-            const xPercent = ((event.clientX - rect.left) / rect.width) * 100
-            const yPercent = ((event.clientY - rect.top) / rect.height) * 100
+        //     // 计算鼠标相对位置 (百分比)
+        //     const xPercent = ((event.clientX - rect.left) / rect.width) * 100
+        //     const yPercent = ((event.clientY - rect.top) / rect.height) * 100
 
-            // 更新发射位置
-            this.config.boundaries.x = Math.max(0, Math.min(100, xPercent))
-            this.config.boundaries.y = Math.max(0, Math.min(100, yPercent))
+        //     // 更新发射位置
+        //     this.config.boundaries.x = Math.max(0, Math.min(100, xPercent))
+        //     this.config.boundaries.y = Math.max(0, Math.min(100, yPercent))
 
-            this.updateBoundariesConfig()
-        },
+        //     this.updateBoundariesConfig()
+        // },
 
         saveCurrentConfig() {
             try {
@@ -1539,6 +1549,7 @@ export default {
 
 /* 发射位置预设 */
 .launch-presets {
+    width: 100%;
     margin-top: 15px;
     padding-top: 15px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
