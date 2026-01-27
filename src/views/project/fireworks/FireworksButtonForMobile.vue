@@ -1,12 +1,7 @@
 <template>
-  <div class="fireworks-container">
+  <div class="fireworks-box" >
     <!-- 烟花发射按钮 -->
-    <button 
-      class="fireworks-button"
-      :style="buttonStyle"
-      @click="launchFireworks"
-      :title="buttonTooltip"
-    >
+    <button class="fireworks-button" :title="buttonTooltip" :style="buttonStyle" @click="launchFireworks">
       <span class="button-emoji">{{ buttonEmoji }}</span>
       <span v-if="showButtonText" class="button-text">{{ buttonText }}</span>
     </button>
@@ -15,7 +10,7 @@
     <div ref="canvasContainer" class="canvas-container"></div>
 
     <!-- 临时提示信息 -->
-    <div v-if="showFeedback" class="feedback-message">{{ feedbackText }}</div>
+    <div v-if="showFeedback && isShowTip" class="feedback-message">{{ feedbackText }}</div>
   </div>
 </template>
 
@@ -23,8 +18,8 @@
 import { Fireworks } from 'fireworks-js'
 
 export default {
-  name: 'FireworksButton',
-  
+  name: 'FireworksButtonForMobile',
+
   props: {
     // 按钮配置
     buttonConfig: {
@@ -52,7 +47,7 @@ export default {
         }
       })
     },
-    
+
     // 烟花配置
     fireworksConfig: {
       type: Object,
@@ -68,32 +63,32 @@ export default {
         explosion: 5,
         intensity: 50,
         flickering: 30,
-        
+
         // 颜色与外观
         hue: { min: 0, max: 360 },
         brightness: { min: 60, max: 90 },
         lineStyle: 'round',
-        
+
         // 物理效果
         decay: { min: 0.015, max: 0.025 },
-        
+
         // 发射控制
         delay: { min: 30, max: 60 },
         rocketsPoint: { min: 50, max: 50 },
-        
+
         // 线条样式
         lineWidth: {
           explosion: { min: 1, max: 3 },
           trace: { min: 0.5, max: 1 }
         },
-        
+
         // 鼠标控制
         mouse: {
           click: true,
           move: false,
           max: 3
         },
-        
+
         // 高级设置
         sound: false,
         autoresize: true,
@@ -107,26 +102,32 @@ export default {
         maxHeight: 0
       })
     },
-    
+
     // 自动发射
     autoLaunch: {
       type: Boolean,
       default: false
     },
-    
+
     // 自动发射间隔(毫秒)
     autoLaunchInterval: {
       type: Number,
       default: 3000
     },
-    
+
     // 发射数量
     launchCount: {
       type: Number,
       default: 1
-    }
+    },
+
+    // 是否显示发射tip
+    isShowTip: {
+      type: Boolean,
+      default: false
+    },
   },
-  
+
   data() {
     return {
       fireworks: null,
@@ -137,14 +138,14 @@ export default {
       autoLaunchTimer: null
     }
   },
-  
+
   computed: {
     // 按钮样式
     buttonStyle() {
       const position = this.buttonConfig.position
       const style = this.buttonConfig.style
       const styles = {}
-      
+
       // 位置样式
       if (position.fixed) {
         styles.position = 'fixed'
@@ -152,26 +153,26 @@ export default {
       } else {
         styles.position = 'absolute'
       }
-      
+
       if (position.top !== 'auto') styles.top = position.top
       if (position.right !== 'auto') styles.right = position.right
       if (position.bottom !== 'auto') styles.bottom = position.bottom
       if (position.left !== 'auto') styles.left = position.left
-      
+
       // 大小样式
       const sizeMap = {
         small: { width: '50px', height: '50px', fontSize: '24px' },
         medium: { width: '70px', height: '70px', fontSize: '28px' },
         large: { width: '90px', height: '90px', fontSize: '32px' }
       }
-      
+
       const size = sizeMap[style.size] || sizeMap.medium
       Object.assign(styles, size)
-      
+
       // 颜色样式
       let backgroundColor = ''
       let color = 'white'
-      
+
       switch (style.color) {
         case 'primary':
           backgroundColor = '#0066ff'
@@ -187,72 +188,72 @@ export default {
           backgroundColor = 'linear-gradient(135deg, #ff3366, #ff6633)'
           break
       }
-      
+
       styles.background = backgroundColor
       styles.color = color
-      
+
       // 圆角
       if (style.rounded) {
         styles.borderRadius = '50%'
       } else {
         styles.borderRadius = '12px'
       }
-      
+
       // 阴影
       if (style.shadow) {
         styles.boxShadow = '0 8px 25px rgba(255, 50, 100, 0.4)'
       }
-      
+
       return styles
     },
-    
+
     // 按钮图标
     buttonEmoji() {
       return this.buttonConfig.style.emoji || '🎆'
     },
-    
+
     // 按钮文字
     buttonText() {
       return this.buttonConfig.style.text || '发射烟花'
     },
-    
+
     // 是否显示按钮文字
     showButtonText() {
       return this.buttonConfig.style.showText !== false
     },
-    
+
     // 按钮提示
     buttonTooltip() {
       return this.buttonConfig.style.tooltip || '点击发射烟花'
     }
   },
-  
+
   mounted() {
     this.initFireworks()
-    
+
     // 如果启用自动发射，设置定时器
     if (this.autoLaunch) {
       this.startAutoLaunch()
     }
   },
-  
+
   beforeDestroy() {
     // 清理资源
     if (this.fireworks) {
       this.fireworks.stop()
     }
-    
+
     if (this.autoLaunchTimer) {
       clearInterval(this.autoLaunchTimer)
     }
-    
+
     if (this.feedbackTimer) {
       clearTimeout(this.feedbackTimer)
     }
-    
+
     window.removeEventListener('resize', this.handleResize)
   },
-  
+
   watch: {
     // 监听烟花配置变化
     fireworksConfig: {
@@ -263,7 +264,7 @@ export default {
         }
       }
     },
-    
+
     // 监听自动发射配置变化
     autoLaunch(newVal) {
       if (newVal) {
@@ -272,7 +273,7 @@ export default {
         this.stopAutoLaunch()
       }
     },
-    
+
     // 监听自动发射间隔变化
     autoLaunchInterval(newVal) {
       if (this.autoLaunch) {
@@ -281,13 +282,13 @@ export default {
       }
     }
   },
-  
+
   methods: {
     // 初始化烟花
     initFireworks() {
       const container = this.$refs.canvasContainer
       if (!container) return
-      
+
       try {
         this.fireworks = new Fireworks(container, this.fireworksConfig)
         window.addEventListener('resize', this.handleResize)
@@ -296,21 +297,21 @@ export default {
         console.error('烟花初始化失败:', error)
       }
     },
-    
+
     // 处理窗口大小变化
     handleResize() {
       if (this.fireworks && this.fireworksConfig.autoresize) {
         this.fireworks.updateOptions({ autoresize: true })
       }
     },
-    
+
     // 发射烟花
     launchFireworks() {
       if (!this.fireworks) return
-      
+
       this.fireworks.launch(this.launchCount)
       this.showFeedbackMessage('烟花发射！')
-      
+
       // 触发发射事件
       this.$emit('fireworks-launched', {
         count: this.launchCount,
@@ -318,20 +319,20 @@ export default {
         config: this.fireworksConfig
       })
     },
-    
+
     // 开始自动发射
     startAutoLaunch() {
       if (this.autoLaunchTimer) {
         clearInterval(this.autoLaunchTimer)
       }
-      
+
       this.autoLaunchTimer = setInterval(() => {
         this.launchFireworks()
       }, this.autoLaunchInterval)
-      
+
       this.showFeedbackMessage('自动发射已开启')
     },
-    
+
     // 停止自动发射
     stopAutoLaunch() {
       if (this.autoLaunchTimer) {
@@ -340,64 +341,64 @@ export default {
         this.showFeedbackMessage('自动发射已停止')
       }
     },
-    
+
     // 显示反馈消息
     showFeedbackMessage(text) {
       this.feedbackText = text
       this.showFeedback = true
-      
+
       if (this.feedbackTimer) {
         clearTimeout(this.feedbackTimer)
       }
-      
+
       this.feedbackTimer = setTimeout(() => {
         this.showFeedback = false
       }, 2000)
     },
-    
+
     // 开始连续发射
     startFireworks() {
       if (!this.fireworks) return
-      
+
       this.fireworks.start()
       this.fireworksRunning = true
       this.$emit('fireworks-started')
     },
-    
+
     // 停止连续发射
     stopFireworks() {
       if (!this.fireworks) return
-      
+
       this.fireworks.stop()
       this.fireworksRunning = false
       this.$emit('fireworks-stopped')
     },
-    
+
     // 清空烟花
     clearFireworks() {
       if (!this.fireworks) return
-      
+
       const wasRunning = this.fireworksRunning
       this.fireworks.stop()
       this.fireworksRunning = false
-      
+
       setTimeout(() => {
         if (wasRunning) {
           this.fireworks.start()
           this.fireworksRunning = true
         }
       }, 100)
-      
+
       this.$emit('fireworks-cleared')
     },
-    
+
     // 更新烟花配置
     updateFireworksConfig(config) {
       if (!this.fireworks) return
-      
+
       const newConfig = { ...this.fireworksConfig, ...config }
       this.fireworks.updateOptions(newConfig)
-      
+
       // 触发配置更新事件
       this.$emit('fireworks-config-updated', newConfig)
     }
@@ -406,10 +407,10 @@ export default {
 </script>
 
 <style scoped>
-.fireworks-container {
-  position: relative;
+.fireworks-box {
   width: 100%;
   height: 100%;
+  background: rgba(0, 0, 0, 0.97);
 }
 
 /* 烟花按钮样式 */
@@ -480,14 +481,17 @@ export default {
     opacity: 0;
     transform: translateY(-10px);
   }
+
   20% {
     opacity: 1;
     transform: translateY(0);
   }
+
   80% {
     opacity: 1;
     transform: translateY(0);
   }
+
   100% {
     opacity: 0;
     transform: translateY(-10px);
