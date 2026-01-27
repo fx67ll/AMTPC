@@ -252,7 +252,7 @@
                                     <label class="config-label">
                                         <span class="label-text">发射间隔</span>
                                         <span class="label-value">{{ config.delay.min }} - {{ config.delay.max
-                                            }}ms</span>
+                                        }}ms</span>
                                     </label>
                                     <div class="dual-slider">
                                         <div class="slider-wrapper">
@@ -284,6 +284,110 @@
                                     </label>
                                     <input type="range" v-model.number="config.traceLength" min="1" max="20"
                                         class="config-slider" @input="updateFireworksConfig">
+                                </div>
+
+                                <!-- 新增：发射区域控制 -->
+                                <div class="config-item">
+                                    <label class="config-label">
+                                        <span class="label-text">自定义发射区域</span>
+                                        <label class="switch small">
+                                            <input type="checkbox" v-model="config.boundaries.enabled"
+                                                @change="updateBoundariesConfig">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </label>
+                                </div>
+
+                                <!-- 当启用自定义发射区域时显示详细设置 -->
+                                <template v-if="config.boundaries.enabled">
+                                    <div class="config-item">
+                                        <label class="config-label">
+                                            <span class="label-text">水平位置</span>
+                                            <span class="label-value">{{ config.boundaries.x }}%</span>
+                                        </label>
+                                        <input type="range" v-model.number="config.boundaries.x" min="0" max="100"
+                                            class="config-slider" @input="updateBoundariesConfig">
+                                        <div class="slider-helper">左← →右</div>
+                                    </div>
+
+                                    <div class="config-item">
+                                        <label class="config-label">
+                                            <span class="label-text">垂直位置</span>
+                                            <span class="label-value">{{ config.boundaries.y }}%</span>
+                                        </label>
+                                        <input type="range" v-model.number="config.boundaries.y" min="0" max="100"
+                                            class="config-slider" @input="updateBoundariesConfig">
+                                        <div class="slider-helper">上↑ ↓下</div>
+                                    </div>
+
+                                    <div class="config-item">
+                                        <label class="config-label">
+                                            <span class="label-text">区域宽度</span>
+                                            <span class="label-value">{{ config.boundaries.width }}%</span>
+                                        </label>
+                                        <input type="range" v-model.number="config.boundaries.width" min="1" max="100"
+                                            class="config-slider" @input="updateBoundariesConfig">
+                                    </div>
+
+                                    <div class="config-item">
+                                        <label class="config-label">
+                                            <span class="label-text">区域高度</span>
+                                            <span class="label-value">{{ config.boundaries.height }}%</span>
+                                        </label>
+                                        <input type="range" v-model.number="config.boundaries.height" min="1" max="100"
+                                            class="config-slider" @input="updateBoundariesConfig">
+                                    </div>
+
+                                    <div class="switch-group">
+                                        <label class="switch-item">
+                                            <span class="switch-label">区域内随机发射</span>
+                                            <label class="switch small">
+                                                <input type="checkbox" v-model="config.boundaries.random"
+                                                    @change="updateBoundariesConfig">
+                                                <span class="slider"></span>
+                                            </label>
+                                        </label>
+
+                                        <label class="switch-item">
+                                            <span class="switch-label">跟随鼠标位置</span>
+                                            <label class="switch small">
+                                                <input type="checkbox" v-model="config.boundaries.followMouse"
+                                                    @change="updateBoundariesConfig">
+                                                <span class="slider"></span>
+                                            </label>
+                                        </label>
+                                    </div>
+                                </template>
+
+                                <!-- 快捷位置预设 -->
+                                <div class="launch-presets" v-if="config.boundaries.enabled">
+                                    <div class="presets-title">快捷位置</div>
+                                    <div class="presets-buttons">
+                                        <button class="preset-position-btn" @click="setBoundaryPreset('center')"
+                                            :class="{ active: currentPreset === 'center' }">
+                                            居中
+                                        </button>
+                                        <button class="preset-position-btn" @click="setBoundaryPreset('left')"
+                                            :class="{ active: currentPreset === 'left' }">
+                                            左侧
+                                        </button>
+                                        <button class="preset-position-btn" @click="setBoundaryPreset('right')"
+                                            :class="{ active: currentPreset === 'right' }">
+                                            右侧
+                                        </button>
+                                        <button class="preset-position-btn" @click="setBoundaryPreset('top')"
+                                            :class="{ active: currentPreset === 'top' }">
+                                            上方
+                                        </button>
+                                        <button class="preset-position-btn" @click="setBoundaryPreset('bottom')"
+                                            :class="{ active: currentPreset === 'bottom' }">
+                                            下方
+                                        </button>
+                                        <button class="preset-position-btn" @click="setBoundaryPreset('random')"
+                                            :class="{ active: currentPreset === 'random' }">
+                                            随机
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -467,7 +571,23 @@
         </div>
 
         <!-- 烟花画布容器 -->
-        <div ref="canvasContainer" class="canvas-container"></div>
+        <div ref="canvasContainer" class="canvas-container" :style="config.boundaries.enabled ? {
+            left: `${config.boundaries.x}%`,
+            top: `${config.boundaries.y}%`,
+            width: `${config.boundaries.width}%`,
+            height: `${config.boundaries.height}%`,
+            transform: `translate(-50%, -50%)`
+        } : { top: 0, left: 0, width: '100vw', height: '100vh', }"></div>
+
+        <!-- 发射区域预览 -->
+        <div class="boundaries-preview" v-if="config.boundaries.enabled" :style="{
+            left: `${config.boundaries.x}%`,
+            top: `${config.boundaries.y}%`,
+            width: `${config.boundaries.width}%`,
+            height: `${config.boundaries.height}%`
+        }">
+            <div class="preview-label">发射区域</div>
+        </div>
 
         <!-- 浮动发射按钮 -->
         <button class="floating-launch-btn" @click="launchSingle" v-if="panelCollapsed || !isShowMultiple">
@@ -594,7 +714,18 @@ export default {
             if (!container) return
 
             try {
-                this.fireworks = new Fireworks(container, this.config)
+                // 初始化配置
+                const initialConfig = { ...this.config }
+
+                // 如果启用了自定义发射区域，则应用boundaries配置
+                if (this.config.boundaries.enabled) {
+                    const bounds = this.calculateBoundariesPixels()
+                    if (bounds) {
+                        initialConfig.boundaries = bounds
+                    }
+                }
+
+                this.fireworks = new Fireworks(container, initialConfig)
                 window.addEventListener('resize', this.handleResize)
                 console.log('🎆 Fireworks.js 已初始化 - 全功能模式')
             } catch (error) {
@@ -605,13 +736,64 @@ export default {
         handleResize() {
             if (this.fireworks && this.config.autoresize) {
                 this.fireworks.updateOptions({ autoresize: true })
+
+                // 重新计算发射区域
+                if (this.config.boundaries.enabled) {
+                    this.updateBoundariesConfig()
+                }
+            }
+        },
+
+        // 计算边界像素值
+        calculateBoundariesPixels() {
+            const container = this.$refs.canvasContainer
+            if (!container) return null
+
+            const rect = container.getBoundingClientRect()
+            const bounds = this.config.boundaries
+
+            // 转换为 fireworks-js 需要的像素值格式
+            return {
+                x: (rect.width * bounds.x / 100) - (rect.width * bounds.width / 100 / 2),
+                y: (rect.height * bounds.y / 100) - (rect.height * bounds.height / 100 / 2),
+                width: rect.width * bounds.width / 100,
+                height: rect.height * bounds.height / 100
+            }
+        },
+
+        updateBoundariesConfig() {
+            if (!this.fireworks || !this.config.boundaries.enabled) return
+
+            const bounds = this.calculateBoundariesPixels()
+            if (bounds) {
+                // 更新配置
+                this.fireworks.updateOptions({ boundaries: bounds })
+
+                // 处理鼠标跟随
+                if (this.config.boundaries.followMouse) {
+                    this.setupMouseFollowing()
+                } else {
+                    window.removeEventListener('mousemove', this.handleMouseMoveForBoundaries)
+                }
             }
         },
 
         updateFireworksConfig() {
             if (!this.fireworks) return
             this.validateConfigValues()
-            this.fireworks.updateOptions(this.config)
+
+            // 合并配置，优先使用boundaries配置
+            const updatedConfig = { ...this.config }
+
+            // 如果启用了自定义发射区域，则应用boundaries配置
+            if (this.config.boundaries.enabled) {
+                const bounds = this.calculateBoundariesPixels()
+                if (bounds) {
+                    updatedConfig.boundaries = bounds
+                }
+            }
+
+            this.fireworks.updateOptions(updatedConfig)
         },
 
         validateConfigValues() {
@@ -654,6 +836,14 @@ export default {
             this.config.traceSpeed = Math.max(1, Math.min(30, this.config.traceSpeed))
             this.config.traceLength = Math.max(1, Math.min(20, this.config.traceLength))
             this.config.mouse.max = Math.max(1, Math.min(10, this.config.mouse.max))
+
+            // 确保边界值在有效范围内
+            if (this.config.boundaries) {
+                this.config.boundaries.x = Math.max(0, Math.min(100, this.config.boundaries.x))
+                this.config.boundaries.y = Math.max(0, Math.min(100, this.config.boundaries.y))
+                this.config.boundaries.width = Math.max(1, Math.min(100, this.config.boundaries.width))
+                this.config.boundaries.height = Math.max(1, Math.min(100, this.config.boundaries.height))
+            }
         },
 
         startStatsUpdate() {
@@ -680,7 +870,6 @@ export default {
             }
             updateStats()
         },
-
         launchSingle() {
             if (this.fireworksRunning) {
                 this.fireworks.stop()
@@ -733,6 +922,62 @@ export default {
             this.config.hue = { ...preset.hue }
             this.updateFireworksConfig()
             this.showTempFeedback(`已应用 ${preset.name} 配色`)
+        },
+
+        // 设置边界预设
+        setBoundaryPreset(presetName) {
+            this.currentPreset = presetName
+            const preset = this.boundaryPresets[presetName]
+
+            // 如果是随机预设，每次点击都重新生成随机位置
+            if (presetName === 'random') {
+                preset.x = Math.random() * 100
+                preset.y = Math.random() * 100
+            }
+
+            Object.assign(this.config.boundaries, preset)
+            this.updateBoundariesConfig()
+            this.showTempFeedback(`已设置发射位置: ${presetName}`)
+        },
+
+        // 初始化边界设置
+        initBoundaries() {
+            if (this.config.boundaries.enabled) {
+                this.updateBoundariesConfig()
+                if (this.config.boundaries.followMouse) {
+                    this.setupMouseFollowing()
+                }
+            }
+        },
+
+        // 设置鼠标跟随
+        setupMouseFollowing() {
+            if (!this.config.boundaries.followMouse) return
+
+            const container = this.$refs.canvasContainer
+            if (!container) return
+
+            window.addEventListener('mousemove', this.handleMouseMoveForBoundaries)
+        },
+
+        // 处理鼠标移动事件（用于边界跟随）
+        handleMouseMoveForBoundaries(event) {
+            if (!this.config.boundaries.followMouse || !this.fireworks) return
+
+            const container = this.$refs.canvasContainer
+            if (!container) return
+
+            const rect = container.getBoundingClientRect()
+
+            // 计算鼠标相对位置 (百分比)
+            const xPercent = ((event.clientX - rect.left) / rect.width) * 100
+            const yPercent = ((event.clientY - rect.top) / rect.height) * 100
+
+            // 更新发射位置
+            this.config.boundaries.x = Math.max(0, Math.min(100, xPercent))
+            this.config.boundaries.y = Math.max(0, Math.min(100, yPercent))
+
+            this.updateBoundariesConfig()
         },
 
         saveCurrentConfig() {
@@ -815,6 +1060,17 @@ export default {
                     delay: { min: 30, max: 60 },
                     rocketsPoint: { min: 50, max: 50 },
 
+                    // 发射区域配置
+                    boundaries: {
+                        enabled: false,
+                        x: 50,
+                        y: 50,
+                        width: 50,
+                        height: 50,
+                        random: true,
+                        followMouse: false
+                    },
+
                     // 线条样式
                     lineWidth: {
                         explosion: { min: 1, max: 3 },
@@ -881,15 +1137,41 @@ export default {
 
 .canvas-container {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
     z-index: 1;
     background: linear-gradient(180deg, #0a0a1a 0%, #151530 30%, #0c0c1c 100%);
     background-image:
         radial-gradient(circle at 20% 30%, rgba(30, 60, 150, 0.2) 0%, transparent 50%),
         radial-gradient(circle at 80% 70%, rgba(100, 40, 200, 0.2) 0%, transparent 50%);
+}
+
+/* 发射区域预览 */
+.boundaries-preview {
+    position: absolute;
+    border: 2px dashed rgba(0, 200, 255, 0.7);
+    background: rgba(0, 150, 255, 0.1);
+    pointer-events: none;
+    z-index: 10;
+    transform: translate(-50%, -50%);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.boundaries-preview:hover {
+    border-color: rgba(0, 255, 200, 0.9);
+    background: rgba(0, 200, 255, 0.15);
+}
+
+.preview-label {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 100, 200, 0.9);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    white-space: nowrap;
 }
 
 /* ===== 全功能侧边栏 ===== */
@@ -1149,7 +1431,7 @@ export default {
     border-radius: 3px;
     background: linear-gradient(90deg, #003366, #0066cc);
     outline: none;
-    -webkit-appearance: none;
+    /* -webkit-appearance: none; */
     margin-top: 5px;
 }
 
@@ -1200,6 +1482,14 @@ export default {
     text-align: right;
 }
 
+/* 滑块辅助文字 */
+.slider-helper {
+    font-size: 11px;
+    color: rgba(150, 180, 255, 0.7);
+    text-align: center;
+    margin-top: 5px;
+}
+
 /* 颜色预设 */
 .color-presets {
     margin-top: 20px;
@@ -1242,6 +1532,44 @@ export default {
     font-size: 14px;
     filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.7));
 }
+
+/* 发射位置预设 */
+.launch-presets {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.presets-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.preset-position-btn {
+    padding: 8px 5px;
+    border: 1px solid rgba(100, 150, 255, 0.3);
+    background: rgba(40, 60, 120, 0.2);
+    border-radius: 8px;
+    color: rgba(200, 220, 255, 0.9);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 11px;
+    text-align: center;
+}
+
+.preset-position-btn:hover {
+    background: rgba(60, 100, 200, 0.3);
+    transform: translateY(-1px);
+}
+
+.preset-position-btn.active {
+    background: linear-gradient(135deg, rgba(0, 150, 255, 0.3), rgba(0, 200, 255, 0.2));
+    border-color: rgba(0, 200, 255, 0.4);
+    color: #fff;
+}
+
 
 /* 开关组 */
 .switch-group {

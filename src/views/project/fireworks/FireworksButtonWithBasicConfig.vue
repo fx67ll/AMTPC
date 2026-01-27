@@ -711,7 +711,7 @@ export default {
     border-radius: 3px;
     background: linear-gradient(90deg, #003366, #0066cc);
     outline: none;
-    -webkit-appearance: none;
+    /* -webkit-appearance: none; */
     margin-top: 5px;
 }
 
