@@ -252,7 +252,7 @@
                                     <label class="config-label">
                                         <span class="label-text">发射间隔</span>
                                         <span class="label-value">{{ config.delay.min }} - {{ config.delay.max
-                                        }}ms</span>
+                                            }}ms</span>
                                     </label>
                                     <div class="dual-slider">
                                         <div class="slider-wrapper">
@@ -477,7 +477,7 @@
                                 </label>
 
                                 <label class="switch-item">
-                                    <span class="switch-label">移动发射</span>
+                                    <span class="switch-label">跟随鼠标位置</span>
                                     <label class="switch">
                                         <input type="checkbox" v-model="config.mouse.move"
                                             @change="updateFireworksConfig">
@@ -596,10 +596,10 @@
 
         <!-- 统计面板 -->
         <div class="stats-panel" v-if="showStats">
-            <div class="stats-item">
+            <!-- <div class="stats-item">
                 <span class="stats-label">活跃粒子:</span>
                 <span class="stats-value">{{ activeParticles }}</span>
-            </div>
+            </div> -->
             <div class="stats-item">
                 <span class="stats-label">帧率:</span>
                 <span class="stats-value">{{ fps }} FPS</span>
@@ -623,7 +623,7 @@ export default {
             fireworks: null,
             fireworksRunning: false,
             showStats: true,
-            activeParticles: 0,
+            // activeParticles: 0,
             fps: 60,
             lastTime: 0,
             frameCount: 0,
@@ -664,6 +664,17 @@ export default {
                 delay: { min: 30, max: 60 },
                 rocketsPoint: { min: 50, max: 50 },
 
+                // 发射区域配置 - 新增详细配置
+                boundaries: {
+                    enabled: false,      // 是否启用自定义发射区域
+                    x: 50,              // 水平位置 (0-100)
+                    y: 50,              // 垂直位置 (0-100)
+                    width: 50,          // 区域宽度 (0-100)
+                    height: 50,         // 区域高度 (0-100)
+                    random: true,       // 是否在区域内随机发射
+                    followMouse: false  // 是否跟随鼠标
+                },
+
                 // 线条样式
                 lineWidth: {
                     explosion: { min: 1, max: 3 },
@@ -680,12 +691,6 @@ export default {
                 // 高级设置
                 sound: false,
                 soundVolume: 0.5,
-                boundaries: {
-                    x: 50,
-                    y: 50,
-                    width: 50,
-                    height: 50
-                },
                 minHeight: 0,
                 maxHeight: 0
             }
@@ -859,13 +864,12 @@ export default {
                     this.frameCount = 0
                     this.lastTime = currentTime
 
-                    // 这里可以添加获取活跃粒子数的逻辑
-                    // 由于 fireworks-js 不直接提供这个API，我们可以估算
-                    if (this.fireworksRunning) {
-                        this.activeParticles = Math.floor(Math.random() * 100) + 50 // 模拟值
-                    } else {
-                        this.activeParticles = 0
-                    }
+                    // 这里可以添加获取活跃粒子数的逻辑，由于 fireworks-js 不直接提供这个API，我们可以估算
+                    // if (this.fireworksRunning) {
+                    //     this.activeParticles = Math.floor(Math.random() * 100) + 50 // 模拟值
+                    // } else {
+                    //     this.activeParticles = 0
+                    // }
                 }
             }
             updateStats()
