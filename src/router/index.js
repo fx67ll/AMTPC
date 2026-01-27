@@ -45,6 +45,11 @@ export const fx67llRoutes = [
     component: () => import('@v/project/fireworks/FireworksButtonWithBasicConfig.vue'), // 简易烟花控制台
   },
   {
+    path: '/fireworks-mobile',
+    name: 'fireworksMobile',
+    component: () => import('@v/project/fireworks/FireworksButtonForMobile.vue'), // 烟花 - 移动端
+  },
+  {
     path: '/three-hello',
     name: 'threeHello',
     component: () => import('@v/demo/three-hello.vue'), // Threejs 官方示例 Hello World
