@@ -252,7 +252,7 @@
                                     <label class="config-label">
                                         <span class="label-text">发射间隔</span>
                                         <span class="label-value">{{ config.delay.min }} - {{ config.delay.max
-                                            }}ms</span>
+                                        }}ms</span>
                                     </label>
                                     <div class="dual-slider">
                                         <div class="slider-wrapper">
