@@ -3,6 +3,9 @@ All My Threejs Projects Collection
 
 欢迎参观 [three.fx67ll.com](http://three.fx67ll.com "fx67ll's Three.js 作品合集的展示网站")  
 
+## 0.6.6.20260128  
+* 优化移动端演示按钮
+
 ## 0.6.5.20260127
 * `烟花实验室` + `烟花配置实验控制台` + `简易烟花控制台` --->>> **上线**  
 * 修复发射区域控制无效的问题  
