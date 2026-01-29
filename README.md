@@ -3,6 +3,9 @@ All My Threejs Projects Collection
 
 欢迎参观 [three.fx67ll.com](http://three.fx67ll.com "fx67ll's Three.js 作品合集的展示网站")  
 
+## 0.6.7.20260129
+* 更新通用烟花组件    
+
 ## 0.6.6.20260128  
 * 优化移动端演示按钮
 
