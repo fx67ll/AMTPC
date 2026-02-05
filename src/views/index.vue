@@ -90,11 +90,12 @@
 							:swiper-animate-delay="swiperAniConfigB.swiperAnimateDelay">
 							<div class="item scale card-bg-img-empty"></div>
 							<div class="item scale card-title-no-link">个人作品友情链接</div>
-							<div class="item scale link">
-								<a href="https://uni.fx67ll.com" target="_blank">uni.fx67ll.com</a>
-								<a href="https://map.fx67ll.com" target="_blank">map.fx67ll.com</a>
-								<a href="https://node.fx67ll.com" target="_blank">node.fx67ll.com</a>
+							<div class="item scale link more-link">
 								<a href="https://vue-ui.fx67ll.com" target="_blank">vue-ui.fx67ll.com</a>
+								<a href="https://node.fx67ll.com" target="_blank">node.fx67ll.com</a>
+								<a href="https://uni.fx67ll.com" target="_blank">uni.fx67ll.com</a>
+								<a href="https://react.fx67ll.com" target="_blank">react.fx67ll.com</a>
+								<a href="https://map.fx67ll.com" target="_blank">map.fx67ll.com</a>
 							</div>
 						</div>
 						<div class="bottom ani" :swiper-animate-effect="swiperAniConfigB.swiperAnimateEffect"
@@ -140,7 +141,8 @@
 				</span>
 			</div>
 			<div class="fx67ll-link">
-				<div class="fx67ll-link-item"><router-link tag="a" target="_blank" to="/fireworks-mobile">放烟花</router-link></div>
+				<div class="fx67ll-link-item"><router-link tag="a" target="_blank"
+						to="/fireworks-mobile">放烟花</router-link></div>
 				<div class="fx67ll-link-item"><router-link tag="a" target="_blank" to="/cube">魔方小游戏</router-link></div>
 				<div class="fx67ll-link-item"><router-link tag="a" target="_blank"
 						to="/medical">简易医疗模型操作演示</router-link></div>
