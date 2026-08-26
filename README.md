@@ -3,6 +3,9 @@ All My Threejs Projects Collection
 
 欢迎参观 [three.fx67ll.com](http://three.fx67ll.com "fx67ll's Three.js 作品合集的展示网站")  
 
+## 0.6.11.20260826
+* 补充新增的个人作品相关链接  
+
 ## 0.6.10.20260804
 * 优化`404`页面相关文案，提升信息可读性  
 
