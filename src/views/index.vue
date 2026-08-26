@@ -89,13 +89,12 @@
 							:swiper-animate-duration="swiperAniConfigB.swiperAnimateDuration"
 							:swiper-animate-delay="swiperAniConfigB.swiperAnimateDelay">
 							<div class="item scale card-bg-img-empty"></div>
-							<div class="item scale card-title-no-link">个人作品友情链接</div>
+							<div class="item scale card-title-no-link">个人工具友情链接</div>
 							<div class="item scale link more-link">
+								<a href="https://resume.fx67ll.com" target="_blank">resume.fx67ll</a>
 								<a href="https://vue-ui.fx67ll.com" target="_blank">vue-ui.fx67ll.com</a>
-								<a href="https://node.fx67ll.com" target="_blank">node.fx67ll.com</a>
-								<a href="https://react.fx67ll.com" target="_blank">react.fx67ll.com</a>
-								<a href="https://uni.fx67ll.com" target="_blank">uni.fx67ll.com</a>
-								<a href="https://map.fx67ll.com" target="_blank">map.fx67ll.com</a>
+								<a href="https://tool.fx67ll.com" target="_blank">tool.fx67ll.com</a>
+								<a href="https://time.fx67ll.com" target="_blank">time.fx67ll.com</a>
 							</div>
 						</div>
 						<div class="bottom ani" :swiper-animate-effect="swiperAniConfigB.swiperAnimateEffect"
@@ -104,9 +103,6 @@
 							<div class="item scale card-bg-img-empty"></div>
 							<div class="item">
 								<div class="card scale link">
-									<!-- <span>
-										<a href="https://fx67ll.vip" target="_blank">fx67ll.vip</a>
-									</span> -->
 									<span>
 										<a href="https://life.fx67ll.com" target="_blank">life.fx67ll.com</a>
 									</span>
@@ -119,6 +115,44 @@
 							<div class="item">
 								<div class="card scale link">
 									<a href="https://nav.fx67ll.com" target="_blank">nav.fx67ll.com</a>
+								</div>
+								<div class="card scale link">
+									<a href="https://fx67ll.xyz" target="_blank">fx67ll.xyz</a>
+								</div>
+							</div>
+						</div>
+					</swiper-slide>
+					<swiper-slide class="swiper-slide swiper-slide-b">
+						<div class="top ani" :swiper-animate-effect="swiperAniConfigB.swiperAnimateEffect"
+							:swiper-animate-duration="swiperAniConfigB.swiperAnimateDuration"
+							:swiper-animate-delay="swiperAniConfigB.swiperAnimateDelay">
+							<div class="item scale card-bg-img-empty"></div>
+							<div class="item scale card-title-no-link">演示作品友情链接</div>
+							<div class="item scale link more-link">
+								<a href="https://uni.fx67ll.com" target="_blank">uni.fx67ll.com</a>
+								<a href="https://map.fx67ll.com" target="_blank">map.fx67ll.com</a>
+								<a href="https://node.fx67ll.com" target="_blank">node.fx67ll.com</a>
+								<a href="https://react.fx67ll.com" target="_blank">react.fx67ll.com</a>
+							</div>
+						</div>
+						<div class="bottom ani" :swiper-animate-effect="swiperAniConfigB.swiperAnimateEffect"
+							:swiper-animate-duration="swiperAniConfigB.swiperAnimateDuration"
+							:swiper-animate-delay="swiperAniConfigB.swiperAnimateDelay">
+							<div class="item scale card-bg-img-empty"></div>
+							<div class="item">
+								<div class="card scale link">
+									<span>
+										<a href="https://run.fx67ll.com" target="_blank">run.fx67ll.com</a>
+									</span>
+									<span>
+										<a href="https://express.fx67ll.com" target="_blank">express.fx67ll</a>
+									</span>
+								</div>
+								<div class="card scale card-bg-img-empty"></div>
+							</div>
+							<div class="item">
+								<div class="card scale link">
+									<a href="https://404.fx67ll.com" target="_blank">404.fx67ll.com</a>
 								</div>
 								<div class="card scale link">
 									<a href="https://fx67ll.xyz" target="_blank">fx67ll.xyz</a>
